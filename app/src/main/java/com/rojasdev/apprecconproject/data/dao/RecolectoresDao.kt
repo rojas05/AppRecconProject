@@ -16,12 +16,12 @@ interface RecolectoresDao {
     @Query("SELECT * FROM Recolectores WHERE PK_ID_Recolector = :id")
     fun getById(id: Int): RecolectoresEntity
 
-    @Update
-    fun update(recolectores: RecolectoresEntity)
+    @Query("UPDATE Recolectores SET name_recolector=:name WHERE PK_ID_Recolector=:ID")
+    fun update(name:String, ID:Int)
 
     @Insert
     fun insert(recolectores: List<RecolectoresEntity>)
 
-    @Delete
-    fun delete(recolectores: RecolectoresEntity)
+    @Query("DELETE FROM Recolectores WHERE PK_ID_Recolector=:id")
+    fun delete(id: Int)
 }
