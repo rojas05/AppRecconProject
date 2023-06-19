@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">AppRecconProject</string>
+    <string name="hello">Hello</string>
+    <string name="hintUser">Ingrese el nombre del Recolector</string>
+    <string name="btnAdd">Insertar</string>
 </resources>

@@ -1,6 +1,8 @@
 package com.rojasdev.apprecconproject.data.dataBase
 
+import android.content.Context
 import androidx.room.Database
+import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.rojasdev.apprecconproject.data.dao.RecolectoresDao
 import com.rojasdev.apprecconproject.data.dao.RecollectionDao
@@ -18,12 +20,23 @@ import com.rojasdev.apprecconproject.data.entities.SettingEntity
 )
 abstract class AppDataBase : RoomDatabase() {
 
-    abstract val RecolectoresDao: RecolectoresDao
-    abstract val RecollectionDao: RecollectionDao
-    abstract val SettingDao: SettingDao
+    abstract fun RecolectoresDao(): RecolectoresDao
+    abstract fun RecollectionDao(): RecollectionDao
+    abstract fun SettingDao(): SettingDao
 
     companion object{
         const val DATABASE_NAME = "DB_Reccon"
+
+        private var Instance:AppDataBase? = null
+
+            fun getInstance(context: Context): AppDataBase {
+                if (Instance == null) {
+                 Instance = Room.databaseBuilder(context.applicationContext, AppDataBase::class.java, AppDataBase.DATABASE_NAME)
+                     .build()
+                }
+                return Instance!!
+            }
+
     }
 
 }
