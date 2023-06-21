@@ -5,14 +5,10 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "Configuracion",
-        foreignKeys = [
-            ForeignKey(entity = RecolectoresEntity::class, parentColumns = ["Fk_Configuracion"], childColumns = ["PK_ID_Configuracion"])
-        ]
-    )
+@Entity(tableName = "Configuracion")
 data class SettingEntity(
-    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "PK_ID_Configuracion") val Id: Int,
+    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "PK_ID_Configuracion") val Id: Int?,
     @ColumnInfo(name = "Alimentacion") val feeding: String,
     @ColumnInfo(name = "Precio") val cost: Int,
-    @ColumnInfo(name = "Estado") val status: String
+    @ColumnInfo(name = "Estado") val status: String,
 )
