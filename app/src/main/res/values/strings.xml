@@ -1,5 +1,22 @@
 <resources>
-    <string name="app_name">AppRecconProject</string>
+    <string name="app_name">AppReccon</string>
+
+    <string name="si_alimentacion">precio por kilo con alimentación</string>
+    <string name="no_alimentacion">precio por kilo sin alimentación</string>
+    <string name="recolector">Recolector(a)</string>
+
+    <string name="require">¡Importante! Para que RECCON funcione correctamente, asegúrate de proporcionar los precios por kilogramo recolectado. ¡Optimiza tu contabilidad cafetera con nosotros!</string>
+
+    <string name="welcome">¡Bienvenido a RECCON, la aplicación que revolucionará la contabilidad de la recolección de café! Diseñada pensando en los productores, nuestro objetivo es simplificar tus procesos y brindarte un manejo sencillo. Surgimos en el corazón del campo, enfocados en potenciar el desarrollo tecnologico del sector agrario. ¡Únete a nuestra comunidad y descubre una nueva forma de llevar tu contabilidad cafetera!</string>
+    <string name="ready">listo</string>
+    <string name="Init">empecemos</string>
+
+    <string name="requireDates">Por favor, completa la información para continuar. ¡Gracias!</string>
+    <string name="go">Presiona el botón \"Empecemos\" para comenzar. ¡Estamos emocionados de tener a bordo!</string>
+    <string name="collection">recolección</string>
+    <string name="descriptionCollection">Registra cada detalle y mantén un control preciso de tu actividad cafetera. ¡Optimiza tus procesos y maximiza tu productividad!</string>
+    <string name="report">informe</string>
+    <string name="descriptionReport">Obtén una visión completa de tu producción cafetera y toma decisiones informadas para el éxito de tu negocio.</string>
     <string name="hello">Hello</string>
     <string name="hintUser">Ingrese el nombre del Recolector</string>
     <string name="btnAdd">Insertar</string>
