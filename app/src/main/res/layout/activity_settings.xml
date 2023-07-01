@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ActivityMainModule">
+    tools:context=".ActivitySettings">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -38,33 +38,50 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-
                     <TextView
-                        android:id="@+id/textView1"
+                        android:id="@+id/textView4"
                         style="@style/texViewAlert"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="@string/report"
+                        android:text="@string/no_alimentacion"
                         android:textSize="30sp"
-                        android:backgroundTint="@color/Tom_Thumb"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/textView3"
-                        style="@style/texViewDescription"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:background="@drawable/checklist"
-                        android:text="@string/descriptionReport"
-                        android:textColor="@color/white"
-                        android:textSize="20sp"
+                        android:id="@+id/tvYesAliment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/price"
+                        android:textSize="50sp"
                         android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+
+                    <ImageView
+                        android:id="@+id/imageView5"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="16dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView4"
+                        app:srcCompat="@drawable/ic_no_alimentacion" />
+
+                    <Button
+                        android:id="@+id/btUpdateYesAliment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:text="@string/update"
+                        style="@style/buttons"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView1" />
+                        app:layout_constraintTop_toBottomOf="@+id/tvYesAliment" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -97,35 +114,46 @@
                         style="@style/texViewAlert"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="@string/collection"
+                        android:text="@string/no_alimentacion"
                         android:textSize="30sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <ImageView
-                        android:id="@+id/imageView2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:contentDescription="@string/collection"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
                     <TextView
-                        android:id="@+id/textView2"
-                        style="@style/texViewDescription"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:background="@drawable/cafe"
-                        android:text="@string/descriptionCollection"
-                        android:textColor="@color/white"
-                        android:textSize="20sp"
+                        android:id="@+id/tvNoAlimente"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        tools:text="$1000"
+                        android:textSize="50sp"
                         android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+                    <ImageView
+                        android:id="@+id/imageView3"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="16dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView"
+                        app:srcCompat="@drawable/ic_no_alimentacion" />
+
+                    <Button
+                        android:id="@+id/btUpdateNoAliment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:text="@string/update"
+                        style="@style/buttons"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView" />
+                        app:layout_constraintTop_toBottomOf="@+id/tvNoAlimente" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -141,6 +169,5 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

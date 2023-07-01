@@ -20,4 +20,7 @@
     <string name="hello">Hello</string>
     <string name="hintUser">Ingrese el nombre del Recolector</string>
     <string name="btnAdd">Insertar</string>
+
+    <string name="price">$</string>
+    <string name="update">Actualizar</string>
 </resources>

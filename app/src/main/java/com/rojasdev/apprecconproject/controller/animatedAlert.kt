@@ -23,6 +23,20 @@ object animatedAlert {
         animator.start()
     }
 
+    fun animatedClick(cv: CardView){
+        cv.alpha = 1f
+        val animator = ValueAnimator.ofFloat(1f,0.8f,1f)
+        animator.duration = 400
+        animator.interpolator = AccelerateDecelerateInterpolator()
+        animator.addUpdateListener { valueAnimator ->
+            val animatedValues = valueAnimator.animatedValue as Float
+            cv.alpha = animatedValues
+            cv.scaleX = animatedValues
+            cv.scaleY = animatedValues
+        }
+        animator.start()
+    }
+
     fun onBackAlert(dialog: AlertDialog, contex : Context, mensaje : String){
         dialog.setOnKeyListener { _, keyCode,_ ->
             if (keyCode == KeyEvent.KEYCODE_BACK){

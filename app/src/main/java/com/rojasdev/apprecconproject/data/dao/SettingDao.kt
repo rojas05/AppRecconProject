@@ -11,6 +11,6 @@ import com.rojasdev.apprecconproject.data.entities.SettingEntity
 interface SettingDao {
 
     @Insert
-    fun config(config:SettingEntity)
+    fun Insertconfig(config:SettingEntity)
 
 }

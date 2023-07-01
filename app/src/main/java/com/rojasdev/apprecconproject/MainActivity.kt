@@ -8,5 +8,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         startActivity(Intent(this,ActivityMainModule::class.java))
+        finish()
     }
 }
