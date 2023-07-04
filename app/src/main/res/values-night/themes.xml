@@ -41,4 +41,8 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="foadingButtons">
+        <item name="android:backgroundTint">@color/Thunderbird</item>
+    </style>
+
 </resources>

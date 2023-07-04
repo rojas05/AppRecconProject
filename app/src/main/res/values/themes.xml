@@ -29,6 +29,10 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="foadingButtons">
+        <item name="android:backgroundTint">@color/Thunderbird</item>
+    </style>
+
     <style name="texViewDescription">
         <item name="android:fontFamily">@font/comfortaa</item>
         <item name="android:gravity">center</item>

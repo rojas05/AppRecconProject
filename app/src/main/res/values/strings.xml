@@ -23,4 +23,6 @@
 
     <string name="price">$</string>
     <string name="update">Actualizar</string>
+    <string name="settingsAliment">Configuracion de precios</string>
+    <string name="support">Soporte tecnico</string>
 </resources>

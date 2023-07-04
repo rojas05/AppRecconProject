@@ -9,6 +9,6 @@ import com.rojasdev.apprecconproject.data.entities.RecollectionEntity
 interface RecollectionDao {
 
     @Insert
-    fun addRecoleccion(recoleccion:RecollectionEntity)
+    suspend fun addRecoleccion(recoleccion:RecollectionEntity)
 
 }

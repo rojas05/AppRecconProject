@@ -10,5 +10,5 @@ data class SettingEntity(
     @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "PK_ID_Configuracion") val Id: Int?,
     @ColumnInfo(name = "Alimentacion") val feeding: String,
     @ColumnInfo(name = "Precio") val cost: Int,
-    @ColumnInfo(name = "Estado") val status: String,
+    @ColumnInfo(name = "Estado") val status: String
 )

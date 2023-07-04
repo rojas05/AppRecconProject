@@ -20,19 +20,21 @@
             android:layout_height="match_parent">
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cvInformes"
-                android:layout_width="300dp"
-                android:layout_height="350dp"
+                android:id="@+id/cvYesAliment"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:clickable="true"
+                android:focusable="true"
                 app:cardBackgroundColor="@color/gray"
                 app:cardCornerRadius="10dp"
-                app:cardElevation="8dp"
+                app:cardElevation="20dp"
                 app:cardUseCompatPadding="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/guideline"
-                android:clickable="true"
-                android:focusable="true">
+                app:layout_constraintTop_toTopOf="@+id/guideline">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -43,7 +45,7 @@
                         style="@style/texViewAlert"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="@string/no_alimentacion"
+                        android:text="@string/si_alimentacion"
                         android:textSize="30sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -54,9 +56,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
-                        android:text="@string/price"
-                        android:textSize="50sp"
+                        android:textSize="60sp"
                         android:textStyle="bold"
+                        android:textColor="@color/white"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/imageView5" />
@@ -66,18 +68,18 @@
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_marginTop="16dp"
+                        android:src="@drawable/ic_alimentacion"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView4"
-                        app:srcCompat="@drawable/ic_no_alimentacion" />
+                        app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
                     <Button
                         android:id="@+id/btUpdateYesAliment"
+                        style="@style/buttons"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
                         android:text="@string/update"
-                        style="@style/buttons"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -88,21 +90,23 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cvCollection"
-                android:layout_width="300dp"
-                android:layout_height="350dp"
+                android:id="@+id/cvNoAliment"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:clickable="true"
+                android:focusable="true"
                 app:cardBackgroundColor="@color/gray"
                 app:cardCornerRadius="10dp"
-                app:cardElevation="8dp"
+                app:cardElevation="20dp"
                 app:cardUseCompatPadding="true"
                 app:layout_constraintBottom_toTopOf="@+id/guideline"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.494"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0"
-                android:clickable="true"
-                android:focusable="true">
+                app:layout_constraintVertical_bias="1.0">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -122,38 +126,39 @@
 
 
                     <TextView
-                        android:id="@+id/tvNoAlimente"
+                        android:id="@+id/tvNoAliment"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
-                        tools:text="$1000"
-                        android:textSize="50sp"
+                        android:textSize="60sp"
                         android:textStyle="bold"
+                        android:textColor="@color/white"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+                        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+                        tools:text="$1000" />
 
                     <ImageView
                         android:id="@+id/imageView3"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_marginTop="16dp"
+                        android:src="@drawable/ic_no_alimentacion"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView"
-                        app:srcCompat="@drawable/ic_no_alimentacion" />
+                        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
                     <Button
                         android:id="@+id/btUpdateNoAliment"
+                        style="@style/buttons"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
                         android:text="@string/update"
-                        style="@style/buttons"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/tvNoAlimente" />
+                        app:layout_constraintTop_toBottomOf="@+id/tvNoAliment" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
