@@ -52,8 +52,8 @@ class ActivitySettings : AppCompatActivity() {
             launch(Dispatchers.Main) {
                 idNoAliment = query[0].Id
                 price.priceSplit(query[0].cost){
-                 binding.tvNoAliment.text = it
-               }
+                    binding.tvNoAliment.text = it
+                }
             }
         }
     }
@@ -78,12 +78,12 @@ class ActivitySettings : AppCompatActivity() {
             setting.cost,
             "active"
         )
-            CoroutineScope(Dispatchers.IO).launch{
-                AppDataBase.getInstance(this@ActivitySettings).SettingDao().Insertconfig(newSetting)
-                AppDataBase.getInstance(this@ActivitySettings).SettingDao().UpdateConfig(setting.Id,"archived")
-                launch(Dispatchers.Main) {
-                    ready()
-                }
+        CoroutineScope(Dispatchers.IO).launch{
+            AppDataBase.getInstance(this@ActivitySettings).SettingDao().Insertconfig(newSetting)
+            AppDataBase.getInstance(this@ActivitySettings).SettingDao().UpdateConfig(setting.Id,"archived")
+            launch(Dispatchers.Main) {
+                ready()
             }
+        }
     }
 }

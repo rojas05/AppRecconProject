@@ -13,16 +13,21 @@
 
     <string name="requireDates">Por favor, completa la información para continuar. ¡Gracias!</string>
     <string name="go">Presiona el botón \"Empecemos\" para comenzar. ¡Estamos emocionados de tener a bordo!</string>
-    <string name="collection">recolección</string>
+    <string name="collection">Recolección</string>
     <string name="descriptionCollection">Registra cada detalle y mantén un control preciso de tu actividad cafetera. ¡Optimiza tus procesos y maximiza tu productividad!</string>
-    <string name="report">informe</string>
+    <string name="report">Informe</string>
     <string name="descriptionReport">Obtén una visión completa de tu producción cafetera y toma decisiones informadas para el éxito de tu negocio.</string>
     <string name="hello">Hello</string>
-    <string name="hintUser">Ingrese el nombre del Recolector</string>
+    <string name="hintUser">Nombre del Recolector</string>
     <string name="btnAdd">Insertar</string>
 
     <string name="price">$</string>
     <string name="update">Actualizar</string>
     <string name="settingsAliment">Configuracion de precios</string>
     <string name="support">Soporte tecnico</string>
+    
+     //txt del alert para add un Recolector
+    <string name="addUser">Añadir nuevo miembro al equipo de Recolección</string>
+    <string name="btnAddRecolector">Añadir Miembro</string>
+    
 </resources>

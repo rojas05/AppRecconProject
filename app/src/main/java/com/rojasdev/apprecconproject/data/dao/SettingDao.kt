@@ -13,6 +13,7 @@ interface SettingDao {
 
     @Query("SELECT * FROM configuracion WHERE Estado == 'active' AND Alimentacion == :aliment")
     suspend fun getAliment(aliment: String): List<SettingEntity>
+
     @Query("UPDATE configuracion SET Estado = :status WHERE PK_ID_Configuracion == :id")
     suspend fun UpdateConfig(id: Int?, status: String)
 }
