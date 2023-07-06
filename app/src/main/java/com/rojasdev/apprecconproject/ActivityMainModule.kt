@@ -30,12 +30,14 @@ class ActivityMainModule : AppCompatActivity() {
 
         binding.cvInformes.setOnClickListener {
             animatedAlert.animatedClick(binding.cvInformes)
+            startActivity(Intent(this,ActivityInformes::class.java))
         }
 
         binding.cvCollection.setOnClickListener {
             animatedAlert.animatedClick(binding.cvCollection)
             startActivity(Intent(this,ActivityRecolection::class.java))
         }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

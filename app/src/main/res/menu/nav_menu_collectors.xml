@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/collectors"
+        android:title="@string/collectors"
+        android:icon="@drawable/ic_recolector"
+        android:visible="true"/>
+    <item
+        android:id="@+id/collection"
+        android:title="@string/collectionCancel"
+        android:icon="@drawable/ic_pdf_24"
+        android:visible="true"/>
+    <item
+        android:visible="true"
+        android:title=""/>
+    <item
+        android:visible="true"
+        android:title="" />
+</menu>

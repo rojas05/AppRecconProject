@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">AppReccon</string>
 
     <string name="si_alimentacion">precio por kilo con alimentación</string>
@@ -13,21 +13,38 @@
 
     <string name="requireDates">Por favor, completa la información para continuar. ¡Gracias!</string>
     <string name="go">Presiona el botón \"Empecemos\" para comenzar. ¡Estamos emocionados de tener a bordo!</string>
-    <string name="collection">Recolección</string>
+    <string name="collection">recolección</string>
     <string name="descriptionCollection">Registra cada detalle y mantén un control preciso de tu actividad cafetera. ¡Optimiza tus procesos y maximiza tu productividad!</string>
-    <string name="report">Informe</string>
+    <string name="report">informe</string>
     <string name="descriptionReport">Obtén una visión completa de tu producción cafetera y toma decisiones informadas para el éxito de tu negocio.</string>
     <string name="hello">Hello</string>
-    <string name="hintUser">Nombre del Recolector</string>
+    <string name="hintUser">Ingrese el nombre del Recolector</string>
     <string name="btnAdd">Insertar</string>
 
     <string name="price">$</string>
     <string name="update">Actualizar</string>
     <string name="settingsAliment">Configuracion de precios</string>
+
     <string name="support">Soporte tecnico</string>
-    
-     //txt del alert para add un Recolector
-    <string name="addUser">Añadir nuevo miembro al equipo de Recolección</string>
-    <string name="btnAddRecolector">Añadir Miembro</string>
-    
+
+    //txt del alert para add un Recolector
+    <string name="addUser">¡Comienza a gestionar tu equipo de recolectores de manera eficiente y sin complicaciones!</string>
+
+
+    <string name="IYear">Informe anual</string>
+    <string name="IYearDescription">Utiliza este informe para tomar decisiones informadas y maximizar tu éxito en el sector cafetero.</string>
+
+    <string name="IWeek">Informe semanal</string>
+    <string name="IWeekDescription">Obtén una visión precisa de tu producción semanal y toma decisiones estratégicas para optimizar tu cultivo.</string>
+
+    <string name="IMonth">Informe mensual</string>
+    <string name="IMonthDescription">Analiza datos como la productividad y los costos.</string>
+
+    <string name="create">generar</string>
+
+    <string name="pdf">Informes en PDF</string>
+    <string name="informed">Informe rapido</string>
+    <string name="collectionCancel">Pagar recoleccion</string>
+    <string name="collectors">Recolectores</string>
+
 </resources>
