@@ -15,16 +15,20 @@
         android:theme="@style/Theme.AppRecconProject"
         tools:targetApi="31">
         <activity
-            android:name=".ActivityRecolection"
+            android:name=".ActivitySettings"
             android:exported="false"
             android:parentActivityName=".ActivityMainModule"/>
         <activity
-            android:name=".ActivitySettings"
-            android:exported="false"
-            android:parentActivityName=".ActivityMainModule" />
-        <activity
             android:name=".ActivityMainModule"
             android:exported="false" />
+        <activity
+            android:name=".ActivityRecolection"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityInformes"
+            android:exported="false"
+            android:parentActivityName=".ActivityMainModule"
+            android:theme="@style/Theme.AppRecconProject.informes"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"
