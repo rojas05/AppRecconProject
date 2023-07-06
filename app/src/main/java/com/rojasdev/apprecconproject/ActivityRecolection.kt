@@ -18,20 +18,6 @@ class ActivityRecolection : AppCompatActivity() {
          super.onCreate(savedInstanceState)
           setContentView(binding.root)
 
-        alert()
-    }
-
-    private fun alert() {
-        alertAddRecolector{
-            insertRecolector(it)
-        }.show(supportFragmentManager, "dialog")
-    }
-
-    private fun insertRecolector(recolector:RecolectoresEntity ) {
-        CoroutineScope(Dispatchers.IO).launch {
-            AppDataBase.getInstance(this@ActivityRecolection).RecolectoresDao().add(recolector)
-        }
-        Toast.makeText(this@ActivityRecolection, "Se agrego un nuevo miembro ${recolector.name}", Toast.LENGTH_SHORT).show()
     }
 
 }

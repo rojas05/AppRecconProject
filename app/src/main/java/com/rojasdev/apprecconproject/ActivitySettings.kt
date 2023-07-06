@@ -2,7 +2,6 @@ package com.rojasdev.apprecconproject
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import com.rojasdev.apprecconproject.alert.alertSettingsUpdate
 import com.rojasdev.apprecconproject.controller.animatedAlert
 import com.rojasdev.apprecconproject.controller.price

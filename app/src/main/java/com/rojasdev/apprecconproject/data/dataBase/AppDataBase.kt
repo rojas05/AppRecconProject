@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.rojasdev.apprecconproject.ActivityMainModule
 import com.rojasdev.apprecconproject.data.dao.RecolectoresDao
 import com.rojasdev.apprecconproject.data.dao.RecollectionDao
 import com.rojasdev.apprecconproject.data.dao.SettingDao

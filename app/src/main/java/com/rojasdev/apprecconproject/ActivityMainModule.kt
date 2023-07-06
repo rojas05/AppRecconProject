@@ -2,24 +2,26 @@ package com.rojasdev.apprecconproject
 
 import android.content.Context
 import android.content.Intent
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
-import androidx.annotation.RequiresApi
+import com.rojasdev.apprecconproject.alert.alertAddRecolector
 import com.rojasdev.apprecconproject.alert.alertSettings
 import com.rojasdev.apprecconproject.alert.alertWelcome
 import com.rojasdev.apprecconproject.controller.animatedAlert
 import com.rojasdev.apprecconproject.data.dataBase.AppDataBase
+import com.rojasdev.apprecconproject.data.entities.RecolectoresEntity
 import com.rojasdev.apprecconproject.data.entities.SettingEntity
 import com.rojasdev.apprecconproject.databinding.ActivityMainModuleBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class ActivityMainModule : AppCompatActivity() {
+
     lateinit var binding: ActivityMainModuleBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityMainModuleBinding.inflate(layoutInflater)
@@ -34,7 +36,7 @@ class ActivityMainModule : AppCompatActivity() {
 
         binding.cvCollection.setOnClickListener {
             animatedAlert.animatedClick(binding.cvCollection)
-            startActivity(Intent(this,ActivityRecolection::class.java))
+                alertAddRecolcetor()
         }
     }
 
@@ -77,6 +79,34 @@ class ActivityMainModule : AppCompatActivity() {
         val register = preferences.getString("register","")
         if(register != "true"){
             alerts()
+        }
+    }
+
+    private fun alertAddRecolcetor() {
+        alertAddRecolector{
+            insertRecolector(it)
+            allUser()
+        }.show(supportFragmentManager, "dialog")
+    }
+
+    private fun insertRecolector(recolector: RecolectoresEntity) {
+        CoroutineScope(Dispatchers.IO).launch {
+            AppDataBase.getInstance(this@ActivityMainModule).RecolectoresDao().add(recolector)
+        }
+        Toast.makeText(this@ActivityMainModule, "Se agrego un nuevo miembro ${recolector.name}", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun allUser() {
+        CoroutineScope(Dispatchers.IO).launch {
+            val allRecolector = AppDataBase.getInstance(this@ActivityMainModule).RecolectoresDao()
+            val user = withContext(Dispatchers.IO){
+                allRecolector.getAllRecolector()
+            }
+                if(user != null) {
+                    startActivity(Intent(this@ActivityMainModule, ActivityRecolection::class.java ))
+                } else {
+                    finish()
+                  }
         }
     }
 
