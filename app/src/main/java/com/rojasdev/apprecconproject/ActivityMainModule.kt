@@ -87,7 +87,6 @@ class ActivityMainModule : AppCompatActivity() {
     private fun alertAddRecolcetor() {
         alertAddRecolector{
             insertRecolector(it)
-            allUser()
         }.show(supportFragmentManager, "dialog")
     }
 
@@ -96,20 +95,6 @@ class ActivityMainModule : AppCompatActivity() {
             AppDataBase.getInstance(this@ActivityMainModule).RecolectoresDao().add(recolector)
         }
         Toast.makeText(this@ActivityMainModule, "Se agrego un nuevo miembro ${recolector.name}", Toast.LENGTH_SHORT).show()
-    }
-
-    private fun allUser() {
-        CoroutineScope(Dispatchers.IO).launch {
-            val allRecolector = AppDataBase.getInstance(this@ActivityMainModule).RecolectoresDao()
-            val user = withContext(Dispatchers.IO){
-                allRecolector.getAllRecolector()
-            }
-                if(user != null) {
-                    startActivity(Intent(this@ActivityMainModule, ActivityRecolection::class.java ))
-                } else {
-                    finish()
-                  }
-        }
     }
 
 }

@@ -9,11 +9,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
+import com.rojasdev.apprecconproject.ActivityRecolection
 import com.rojasdev.apprecconproject.controller.animatedAlert
 import com.rojasdev.apprecconproject.controller.requireInput
 import com.rojasdev.apprecconproject.data.dataBase.AppDataBase
 import com.rojasdev.apprecconproject.data.entities.RecolectoresEntity
 import com.rojasdev.apprecconproject.databinding.AlertRecolectonBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class alertAddRecolector( val onClickListener: (RecolectoresEntity) -> Unit ): DialogFragment() {
 
@@ -47,7 +52,7 @@ class alertAddRecolector( val onClickListener: (RecolectoresEntity) -> Unit ): D
                 if (recolector != ""){
                     Toast.makeText(requireContext(),"Presiona el botón 'Añadir' para recolectar con excelencia", Toast.LENGTH_SHORT).show()
                 } else {
-                    dismiss()
+                    allUser()
                 }
         }
 
@@ -65,4 +70,21 @@ class alertAddRecolector( val onClickListener: (RecolectoresEntity) -> Unit ): D
         )
             onClickListener(addUser)
     }
+
+    private fun allUser() {
+        CoroutineScope(Dispatchers.IO).launch {
+            val allRecolector = AppDataBase.getInstance(requireContext()).RecolectoresDao()
+            val user = allRecolector.getAllRecolector()
+
+            withContext(Dispatchers.Main) {
+                if (user.isNotEmpty()) {
+                    startActivity(Intent(requireContext(), ActivityRecolection::class.java))
+                } else {
+                    Toast.makeText(requireContext(), "No hay datos", Toast.LENGTH_SHORT).show()
+                    dismiss()
+                }
+            }
+        }
+    }
+
 }
