@@ -37,7 +37,7 @@ class ActivityMainModule : AppCompatActivity() {
 
         binding.cvCollection.setOnClickListener {
             animatedAlert.animatedClick(binding.cvCollection)
-                alertAddRecolcetor()
+                checkCollection()
         }
 
     }
@@ -73,6 +73,7 @@ class ActivityMainModule : AppCompatActivity() {
         val preferences = getSharedPreferences( "register", Context.MODE_PRIVATE)
         val editor = preferences.edit()
         editor.putString("register","true")
+        editor.putString("collection","false")
         editor.apply()
     }
 
@@ -84,17 +85,40 @@ class ActivityMainModule : AppCompatActivity() {
         }
     }
 
+    private fun checkCollection(){
+        val preferences = getSharedPreferences( "register", Context.MODE_PRIVATE)
+        val collection = preferences.getString("collection","")
+        if(collection != "true"){
+            alertAddRecolcetor()
+        }else{
+            startActivity(Intent(this,ActivityRecolection::class.java))
+        }
+    }
+
     private fun alertAddRecolcetor() {
-        alertAddRecolector{
-            insertRecolector(it)
-        }.show(supportFragmentManager, "dialog")
+        alertAddRecolector(
+            {
+                insertRecolector(it)
+            },
+            {
+                startActivity(Intent(this,ActivityRecolection::class.java))
+            }
+        ).show(supportFragmentManager, "dialog")
     }
 
     private fun insertRecolector(recolector: RecolectoresEntity) {
         CoroutineScope(Dispatchers.IO).launch {
             AppDataBase.getInstance(this@ActivityMainModule).RecolectoresDao().add(recolector)
         }
+        preferencesCollecion()
         Toast.makeText(this@ActivityMainModule, "Se agrego un nuevo miembro ${recolector.name}", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun preferencesCollecion() {
+        val preferences = getSharedPreferences( "register", Context.MODE_PRIVATE)
+        val editor = preferences.edit()
+        editor.putString("collection","true")
+        editor.apply()
     }
 
 }

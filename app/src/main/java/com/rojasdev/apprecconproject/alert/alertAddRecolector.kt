@@ -3,6 +3,7 @@ package com.rojasdev.apprecconproject.alert
 import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Intent
+import android.content.IntentSender.OnFinished
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -20,16 +21,19 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class alertAddRecolector( val onClickListener: (RecolectoresEntity) -> Unit ): DialogFragment() {
+class alertAddRecolector(
+    val onClickListener: (RecolectoresEntity) -> Unit,
+    val finished: () -> Unit
+): DialogFragment() {
 
     private lateinit var binding: AlertRecolectonBinding
+    private var insertCollector = false
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         binding = AlertRecolectonBinding.inflate(LayoutInflater.from(context))
-
-        animatedAlert.animatedInit(binding.cvRecolector)
-
         val builder = AlertDialog.Builder(requireActivity())
         builder.setView(binding.root)
+
+        animatedAlert.animatedInit(binding.cvRecolector)
 
         val myListInput = listOf(
             binding.yesAddRecolector
@@ -50,7 +54,7 @@ class alertAddRecolector( val onClickListener: (RecolectoresEntity) -> Unit ): D
         binding.btnFinishAdding.setOnClickListener {
             val recolector = binding.yesAddRecolector.text.toString()
                 if (recolector != ""){
-                    Toast.makeText(requireContext(),"Presiona el botón 'Añadir' para recolectar con excelencia", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(),"Presiona el botón 'guardar'", Toast.LENGTH_SHORT).show()
                 } else {
                     allUser()
                 }
@@ -62,6 +66,7 @@ class alertAddRecolector( val onClickListener: (RecolectoresEntity) -> Unit ): D
     }
 
     private fun dates() {
+        insertCollector = true
         val recolector = binding.yesAddRecolector.text.toString()
         val addUser = RecolectoresEntity(
             null,
@@ -72,18 +77,10 @@ class alertAddRecolector( val onClickListener: (RecolectoresEntity) -> Unit ): D
     }
 
     private fun allUser() {
-        CoroutineScope(Dispatchers.IO).launch {
-            val allRecolector = AppDataBase.getInstance(requireContext()).RecolectoresDao()
-            val user = allRecolector.getAllRecolector()
-
-            withContext(Dispatchers.Main) {
-                if (user.isNotEmpty()) {
-                    startActivity(Intent(requireContext(), ActivityRecolection::class.java))
-                } else {
-                    Toast.makeText(requireContext(), "No hay datos", Toast.LENGTH_SHORT).show()
-                    dismiss()
-                }
-            }
+        if (insertCollector) {
+            finished()
+        } else {
+            dismiss()
         }
     }
 

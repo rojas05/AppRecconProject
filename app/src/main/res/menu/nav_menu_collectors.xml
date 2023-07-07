@@ -6,14 +6,11 @@
         android:icon="@drawable/ic_recolector"
         android:visible="true"/>
     <item
-        android:id="@+id/collection"
-        android:title="@string/collectionCancel"
-        android:icon="@drawable/ic_pdf_24"
-        android:visible="true"/>
-    <item
         android:visible="true"
         android:title=""/>
     <item
-        android:visible="true"
-        android:title="" />
+        android:id="@+id/collection"
+        android:title="@string/collectionCancel"
+        android:icon="@drawable/ic_price"
+        android:visible="true"/>
 </menu>

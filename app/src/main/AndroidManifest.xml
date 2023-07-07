@@ -26,7 +26,8 @@
             android:exported="false" />
         <activity
             android:name=".ActivityRecolection"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".ActivityMainModule" />
         <activity
             android:name=".ActivityInformes"
             android:exported="false"
