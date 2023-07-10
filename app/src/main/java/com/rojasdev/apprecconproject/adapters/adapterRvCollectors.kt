@@ -9,6 +9,7 @@ import com.rojasdev.apprecconproject.viewHolders.viewHolderCvCollectors
 
 class adapterRvCollectors(
     private var items:List<RecolectoresEntity>,
+    private var list: List<Long>,
     private val onClickListenerNext: (RecolectoresEntity) -> Unit,
     private val onClickListenerDelete: (RecolectoresEntity) -> Unit,
     private val onClickListenerKg: (RecolectoresEntity) -> Unit) : RecyclerView.Adapter<viewHolderCvCollectors>()
@@ -21,7 +22,7 @@ class adapterRvCollectors(
 
     override fun onBindViewHolder(holder: viewHolderCvCollectors, position: Int) {
         val item = items[position]
-        holder.render(item,onClickListenerNext,onClickListenerDelete,onClickListenerKg)
+        holder.render(item,list,onClickListenerNext,onClickListenerDelete,onClickListenerKg)
     }
 
     override fun getItemCount(): Int {

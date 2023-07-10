@@ -16,4 +16,5 @@ interface SettingDao {
 
     @Query("UPDATE configuracion SET Estado = :status WHERE PK_ID_Configuracion == :id")
     suspend fun UpdateConfig(id: Int?, status: String)
+
 }

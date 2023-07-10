@@ -22,6 +22,7 @@ class viewHolderCvCollectors( var view: View): RecyclerView.ViewHolder(view) {
     @SuppressLint("ResourceAsColor")
     fun render(
         item: RecolectoresEntity,
+        list: List<Long>,
         onClickListenerNext: (RecolectoresEntity) -> Unit,
         onClickListenerDelete: (RecolectoresEntity) -> Unit,
         onClickListenerKg: (RecolectoresEntity) -> Unit
@@ -29,14 +30,13 @@ class viewHolderCvCollectors( var view: View): RecyclerView.ViewHolder(view) {
         binding.cvCollector.animation = AnimationUtils.loadAnimation(view.context, R.anim.recycler_transition)
         binding.tvNameCollector.text = item.name
 
-        CoroutineScope(Dispatchers.IO).launch {
-            val collection = AppDataBase.getInstance(view.context).RecollectionDao().getCollectionIdCollector(item.id!!)
-            launch(Dispatchers.Main) {
-                if (collection.isNotEmpty()){
-                    binding.fbDeleteCollector.alpha = 0f
-                    binding.fbDeleteCollector.isClickable = false
-                }
-            }
+
+        val result = item.id!!.toLong() in list
+
+        if (result){
+            binding.fbDeleteCollector.alpha = 0f
+        }else{
+            binding.fbDeleteCollector.alpha = 1f
         }
 
         binding.fbDeleteCollector.setOnClickListener {
