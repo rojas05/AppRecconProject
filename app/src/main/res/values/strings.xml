@@ -54,5 +54,6 @@
     <string name="no">No</string>
     <string name="kgRecolectados">kilogramos recolectados</string>
     <string name="addCollection">¡Optimiza tu contabilidad y lleva un registro detallado de cada recolección!</string>
+    <string name="deleteCollection">¿Estás seguro de que deseas eliminar este recolector? Esta acción eliminará permanentemente a este recolector. Por favor, confirma tu decisión para proceder.</string>
 
 </resources>

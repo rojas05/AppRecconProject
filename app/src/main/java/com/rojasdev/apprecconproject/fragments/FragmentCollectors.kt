@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.rojasdev.apprecconproject.ActivityMainModule
 import com.rojasdev.apprecconproject.adapters.adapterRvCollectors
 import com.rojasdev.apprecconproject.alert.alertCollection
+import com.rojasdev.apprecconproject.alert.alertDeleteCollector
 import com.rojasdev.apprecconproject.data.dao.RecollectionDao
 import com.rojasdev.apprecconproject.data.dataBase.AppDataBase
 import com.rojasdev.apprecconproject.data.entities.RecolectoresEntity
@@ -64,6 +65,7 @@ class FragmentCollectors(
                     },
                     {
                         //delete
+                        initAlertDelete(it)
                     },
                     {
                         //add collection
@@ -76,6 +78,19 @@ class FragmentCollectors(
 
             }
         }
+    }
+
+    private fun initAlertDelete(it: RecolectoresEntity) {
+        alertDeleteCollector(
+            it.name
+        ){
+            CoroutineScope(Dispatchers.IO).launch {
+                AppDataBase.getInstance(requireContext()).RecolectoresDao().deleteCollectorId(it.id!!)
+                launch {
+                    dates()
+                }
+            }
+        }.show(parentFragmentManager,"dialog")
     }
 
     private fun InitAlertAddCollection(it: RecolectoresEntity) {

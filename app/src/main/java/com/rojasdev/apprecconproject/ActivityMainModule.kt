@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import com.rojasdev.apprecconproject.alert.alertAddRecolector
 import com.rojasdev.apprecconproject.alert.alertSettings
 import com.rojasdev.apprecconproject.alert.alertWelcome
@@ -27,6 +28,12 @@ class ActivityMainModule : AppCompatActivity() {
         binding = ActivityMainModuleBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+        this.onBackPressedDispatcher.addCallback(object : OnBackPressedCallback(true){
+            override fun handleOnBackPressed() {
+                finishAffinity()
+            }
+        })
 
         checkRegister()
 
@@ -54,6 +61,7 @@ class ActivityMainModule : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
+
     private fun alerts(){
         alertWelcome{
             alertSettings{

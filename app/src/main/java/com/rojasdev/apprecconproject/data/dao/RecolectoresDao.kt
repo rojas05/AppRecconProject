@@ -15,4 +15,7 @@ interface RecolectoresDao {
     @Query("SELECT * FROM recolectores")
     suspend fun getAllRecolector(): List<RecolectoresEntity>
 
+    @Query("delete from recolectores WHERE PK_ID_Recolector LIKE :id")
+    suspend fun deleteCollectorId(id: Int)
+
 }
