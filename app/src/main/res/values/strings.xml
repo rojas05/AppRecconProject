@@ -46,14 +46,21 @@
     <string name="informed">Informe rapido</string>
     <string name="collectionCancel">Pagar recoleccion</string>
     <string name="collectors">Recolectores</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="total">total a pagar</string>
+
+    <string name="cvKg">Ultima Recoleccion</string>
+    <string name="tvKg">216 Kg</string>
+    <string name="tvFeend">Alimentacion</string>
+    <string name="tvRecolcection">Recoleciones Anteriores</string>
+    <string name="total">Total</string>
+
     <string name="aliment">Alimentacion</string>
     <string name="yes">Si</string>
     <string name="no">No</string>
     <string name="kgRecolectados">kilogramos recolectados</string>
     <string name="addCollection">¡Optimiza tu contabilidad y lleva un registro detallado de cada recolección!</string>
+    <string name="tvKgtxt">Recolectado</string>
+
     <string name="deleteCollection">¿Estás seguro de que deseas eliminar este recolector? Esta acción eliminará permanentemente a este recolector. Por favor, confirma tu decisión para proceder.</string>
+
 
 </resources>

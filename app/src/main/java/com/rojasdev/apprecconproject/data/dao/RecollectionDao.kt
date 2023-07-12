@@ -11,6 +11,7 @@ interface RecollectionDao {
 
     @Insert
     suspend fun addRecoleccion(recoleccion:RecollectionEntity)
+
     @Query("SELECT * FROM Recoleccion  WHERE Fk_recolector like :idCollector AND Estado like 'active'")
     suspend fun getCollectionIdCollector(idCollector: Int): List<RecollectionEntity>
 

@@ -57,7 +57,7 @@ class ActivityMainModule : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.settings -> startActivity(Intent(this,ActivitySettings::class.java))
-            R.id.support -> Toast.makeText(this, "trabajando...", Toast.LENGTH_SHORT).show()
+            R.id.support ->  startActivity(Intent(this,ActivityRecolectionDetail::class.java))   //Toast.makeText(this, "Trabajando...", Toast.LENGTH_SHORT).show()
         }
         return super.onOptionsItemSelected(item)
     }
@@ -119,7 +119,7 @@ class ActivityMainModule : AppCompatActivity() {
             AppDataBase.getInstance(this@ActivityMainModule).RecolectoresDao().add(recolector)
         }
         preferencesCollecion()
-        Toast.makeText(this@ActivityMainModule, "Se agrego un nuevo miembro ${recolector.name}", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this@ActivityMainModule,  "${getString(R.string.btnAddRecolector)} ${recolector.name}", Toast.LENGTH_SHORT).show()
     }
 
     private fun preferencesCollecion() {

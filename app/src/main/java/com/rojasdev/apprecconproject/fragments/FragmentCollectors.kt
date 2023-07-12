@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.rojasdev.apprecconproject.ActivityMainModule
+import com.rojasdev.apprecconproject.ActivityRecolectionDetail
 import com.rojasdev.apprecconproject.adapters.adapterRvCollectors
 import com.rojasdev.apprecconproject.alert.alertCollection
 import com.rojasdev.apprecconproject.alert.alertDeleteCollector
@@ -60,8 +61,11 @@ class FragmentCollectors(
                 adapter = adapterRvCollectors(
                     ingresosL,
                     idCollectors,
-                    {
+                    { item ->
                         //pasar a detalle recolector
+                            startActivity(
+                                Intent(requireContext(), ActivityRecolectionDetail::class.java
+                                ).putExtra("userId", item.id).putExtra("userName", item.name))
                     },
                     {
                         //delete

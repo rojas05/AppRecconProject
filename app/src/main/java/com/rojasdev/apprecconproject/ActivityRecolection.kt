@@ -22,7 +22,7 @@ class ActivityRecolection : AppCompatActivity() {
     private lateinit var binding: ActivityRecolectionBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityRecolectionBinding.inflate(layoutInflater)
-         super.onCreate(savedInstanceState)
+        super.onCreate(savedInstanceState)
           setContentView(binding.root)
 
         title = "Recolectores"
