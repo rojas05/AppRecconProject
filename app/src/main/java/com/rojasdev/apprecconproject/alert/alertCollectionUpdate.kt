@@ -10,31 +10,41 @@ import androidx.fragment.app.DialogFragment
 import com.rojasdev.apprecconproject.controller.animatedAlert
 import com.rojasdev.apprecconproject.controller.controllerCheckBox
 import com.rojasdev.apprecconproject.controller.requireInput
+import com.rojasdev.apprecconproject.data.dataModel.collectorCollection
 import com.rojasdev.apprecconproject.data.entities.RecolectoresEntity
 import com.rojasdev.apprecconproject.data.entities.RecollectionEntity
 import com.rojasdev.apprecconproject.databinding.AlertCollectionBinding
 import java.text.SimpleDateFormat
 import java.util.Date
 
-class alertCollection (
-    var collector: RecolectoresEntity,
-    var onClickListener: (RecollectionEntity) -> Unit
+class alertCollectionUpdate(
+    val collection: List<collectorCollection>,
+    val nameCollector: String,
+    private val onClickListener: (RecollectionEntity) -> Unit,
 ): DialogFragment() {
-    private var settingsId: Int? = null
     private lateinit var binding: AlertCollectionBinding
+    private var settingsId: Int? = null
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         binding = AlertCollectionBinding.inflate(LayoutInflater.from(context))
+            val builder = AlertDialog.Builder(requireActivity())
+                builder.setView(binding.root)
 
         animatedAlert.animatedInit(binding.cvRecolector)
 
-        val builder = AlertDialog.Builder(requireActivity())
-        builder.setView(binding.root)
+        binding.tvDescription.text = "Actualizar la ultima recoleccion"
+        binding.tvNameCollector.text = nameCollector
 
         val myListInput = listOf(
             binding.etKg
         )
 
-        binding.tvNameCollector.text = collector.name
+        if(collection[0].Alimentacion.equals("yes")){
+            binding.cbYes.isChecked = true
+        } else {
+            binding.cbNo.isChecked = true
+        }
+
+        binding.etKg.setText(collection[0].Cantidad.toString())
 
         binding.cbYes.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
@@ -72,8 +82,6 @@ class alertCollection (
         return dialog
     }
 
-
-
     private fun dates() {
         dismiss()
         val kg = binding.etKg.text.toString()
@@ -82,14 +90,15 @@ class alertCollection (
         val dateFormat = formato.format(date)
 
         val collection = RecollectionEntity(
-            null,
+            collection[0].PK_ID_Recoleccion ,
             kg.toDouble(),
             dateFormat.toString(),
             "active",
-            collector.id!!,
+            collection[0].PK_ID_Recolector,
             settingsId!!
         )
 
         onClickListener(collection)
     }
+
 }

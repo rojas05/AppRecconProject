@@ -16,8 +16,8 @@ class viewHolderCvRecollecition( var view: View ): RecyclerView.ViewHolder(view)
 
         binding.cvCollectionDetail.animation = AnimationUtils.loadAnimation(view.context, R.anim.recycler_transition)
 
-            binding.tvNameCollector.text = "Presio: $${itemDetail.Precio}"
-            binding.tvDate.text = "Fecha: ${itemDetail.Fecha}"
+            binding.tvNameCollector.text = "Fecha: ${itemDetail.Fecha}"
+            binding.tvDate.text = "Presio: $${itemDetail.Precio}"
             binding.tvKgDetail.text = "${itemDetail.Cantidad} Kg"
 
 

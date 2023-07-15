@@ -4,7 +4,6 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import com.rojasdev.apprecconproject.data.entities.RecollectionEntity
-import com.rojasdev.apprecconproject.data.entities.SettingEntity
 
 @Dao
 interface RecollectionDao {
@@ -17,4 +16,8 @@ interface RecollectionDao {
 
     @Query("SELECT Fk_recolector FROM Recoleccion  WHERE Estado like 'active'")
     suspend fun getfKIdCollectorS(): List<Long>
+
+    @Query("UPDATE Recoleccion SET Cantidad = :Kg, Fk_Configuracion = :feed WHERE PK_ID_Recoleccion = :idCollecion AND Fk_recolector = :idCollector")
+    suspend fun updateCollection(idCollecion:Int, idCollector:Int, Kg:Double, feed:Int)
+
 }

@@ -2,14 +2,11 @@ package com.rojasdev.apprecconproject
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.CheckBox
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.rojasdev.apprecconproject.adapters.adapterRvCollectors
 import com.rojasdev.apprecconproject.adapters.adpaterRvRecolection
+import com.rojasdev.apprecconproject.alert.alertCollectionUpdate
 import com.rojasdev.apprecconproject.data.dataBase.AppDataBase
-import com.rojasdev.apprecconproject.data.entities.RecolectoresEntity
+import com.rojasdev.apprecconproject.data.dataModel.collectorCollection
 import com.rojasdev.apprecconproject.data.entities.RecollectionEntity
 import com.rojasdev.apprecconproject.databinding.ActivityRecolectionDetailBinding
 import kotlinx.coroutines.CoroutineScope
@@ -20,6 +17,7 @@ class ActivityRecolectionDetail : AppCompatActivity() {
 
     lateinit var binding: ActivityRecolectionDetailBinding
         private lateinit var adapter: adpaterRvRecolection
+        private lateinit var collectionUpdate: List<collectorCollection>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityRecolectionDetailBinding.inflate(layoutInflater)
@@ -33,14 +31,29 @@ class ActivityRecolectionDetail : AppCompatActivity() {
 
         getRecollection(idCollector)
 
-        binding.button
+        binding.btnUpdate.setOnClickListener {
+           alertCollectionUpdate(
+               collectionUpdate,
+               userName!!
+           ){
+               updateRecoleccion(it)
+           }.show(supportFragmentManager,"dialog")
+        }
 
     }
+
+    private fun updateRecoleccion(it: RecollectionEntity){
+        CoroutineScope(Dispatchers.IO).launch {
+            AppDataBase.getInstance(this@ActivityRecolectionDetail).RecollectionDao().updateCollection(it.ID!!,it.collector,it.total,it.setting)
+        }
+    }
+
 
     private fun getRecollection(idCollector: Int, userState: String = "active") {
         CoroutineScope(Dispatchers.IO).launch{
             val allRecolection = AppDataBase.getInstance(this@ActivityRecolectionDetail).RecolectoresDao().getCollectorAndCollection(userState, idCollector)
                 launch(Dispatchers.Main) {
+                    collectionUpdate = listOf(allRecolection[0])
                     adapter = adpaterRvRecolection(allRecolection)
                         binding.rvRecolections.adapter = adapter
                         binding.rvRecolections.layoutManager = LinearLayoutManager(this@ActivityRecolectionDetail)
@@ -48,25 +61,4 @@ class ActivityRecolectionDetail : AppCompatActivity() {
         }
     }
 
-    fun onCheckboxClicked(view: View) {
-        if (view is CheckBox) {
-          val checked: Boolean = view.isChecked
-            when (view.id) {
-                R.id.yesFeendingCheckBox -> {
-                    if (checked) {
-                        Toast.makeText(this, "presiono si", Toast.LENGTH_SHORT).show()
-                    } else {
-                        Toast.makeText(this, "no presiono", Toast.LENGTH_SHORT).show()
-                    }
-                }
-                R.id.notFeendingCheckBox -> {
-                    if (checked) {
-                        Toast.makeText(this, "presiono si de no", Toast.LENGTH_SHORT).show()
-                    } else {
-                        Toast.makeText(this, "presiono no de si", Toast.LENGTH_SHORT).show()
-                    }
-                }
-            }
-        }
-    }
 }

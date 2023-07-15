@@ -14,11 +14,9 @@ import com.rojasdev.apprecconproject.ActivityRecolectionDetail
 import com.rojasdev.apprecconproject.adapters.adapterRvCollectors
 import com.rojasdev.apprecconproject.alert.alertCollection
 import com.rojasdev.apprecconproject.alert.alertDeleteCollector
-import com.rojasdev.apprecconproject.data.dao.RecollectionDao
 import com.rojasdev.apprecconproject.data.dataBase.AppDataBase
 import com.rojasdev.apprecconproject.data.entities.RecolectoresEntity
 import com.rojasdev.apprecconproject.data.entities.RecollectionEntity
-import com.rojasdev.apprecconproject.databinding.ActivityMainModuleBinding
 import com.rojasdev.apprecconproject.databinding.FragmentCollectorsAndCollecionBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -42,6 +40,8 @@ class FragmentCollectors(
             }
         })
 
+
+
         CoroutineScope(Dispatchers.IO).launch {
             dates()
         }
@@ -63,9 +63,22 @@ class FragmentCollectors(
                     idCollectors,
                     { item ->
                         //pasar a detalle recolector
-                            startActivity(
-                                Intent(requireContext(), ActivityRecolectionDetail::class.java
-                                ).putExtra("userId", item.id).putExtra("userName", item.name))
+                        val id: Int? = item.id
+                            if (id != null) {
+                                CoroutineScope(Dispatchers.IO).launch {
+                                    val getId = AppDataBase.getInstance(requireContext()).RecollectionDao().getCollectionIdCollector(id)
+                                    launch(Dispatchers.Main) {
+                                        if(getId.isNotEmpty()) {
+                                            startActivity(Intent(
+                                                    requireContext(), ActivityRecolectionDetail::class.java
+                                                ).putExtra("userId", item.id).putExtra("userName", item.name)
+                                            )
+                                        } else {
+                                            Toast.makeText(requireContext(), "No hay datos", Toast.LENGTH_SHORT).show()
+                                        }
+                                    }
+                                }
+                            }
                     },
                     {
                         //delete
