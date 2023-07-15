@@ -56,7 +56,7 @@
                         style="@style/texViewDescription"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
-                        android:background="@drawable/checklist"
+                        android:background="@drawable/informes"
                         android:text="@string/descriptionReport"
                         android:textColor="@color/white"
                         android:textSize="20sp"
