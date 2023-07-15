@@ -2,7 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/cvSettings"
+    android:id="@+id/cv"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardUseCompatPadding="true"
@@ -21,11 +21,13 @@
         <TextView
             android:id="@+id/textView10"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginTop="16dp"
+            android:fontFamily="@font/comfortaa"
             android:text="@string/total"
-            app:layout_constraintEnd_toEndOf="@+id/textView5"
-            app:layout_constraintStart_toStartOf="@+id/textView5"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="@+id/tvTotalPrice"
+            app:layout_constraintStart_toStartOf="@+id/tvTotalPrice"
             app:layout_constraintTop_toBottomOf="@+id/tvNameCollector" />
 
         <TextView
@@ -62,7 +64,7 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/tvTotalPrice"
             style="@style/tvItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -70,15 +72,16 @@
             app:layout_constraintBottom_toTopOf="@+id/btReady"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline4"
-            app:layout_constraintTop_toBottomOf="@+id/textView6"
             tools:text="$328,700" />
 
         <TextView
             android:id="@+id/textView6"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginTop="16dp"
+            android:fontFamily="@font/comfortaa"
             android:text="@string/kgRecolectados"
+            android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="@+id/tvKg"
             app:layout_constraintStart_toStartOf="@+id/tvKg"
             app:layout_constraintTop_toBottomOf="@+id/tvNameCollector" />

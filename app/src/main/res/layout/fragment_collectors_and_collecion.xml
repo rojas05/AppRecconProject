@@ -10,6 +10,7 @@
         android:id="@+id/rvCollectors"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingBottom="30dp" />
+        android:paddingBottom="30dp"
+        tools:listitem="@layout/item_collecion" />
 
 </FrameLayout>

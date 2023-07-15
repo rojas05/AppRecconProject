@@ -12,8 +12,6 @@ import com.rojasdev.apprecconproject.data.entities.RecolectoresEntity
 import com.rojasdev.apprecconproject.databinding.ActivityRecolectionBinding
 import com.rojasdev.apprecconproject.fragments.FragmentCollecion
 import com.rojasdev.apprecconproject.fragments.FragmentCollectors
-import com.rojasdev.apprecconproject.fragments.FragmentInforme
-import com.rojasdev.apprecconproject.fragments.FragmentPdf
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -26,6 +24,7 @@ class ActivityRecolection : AppCompatActivity() {
           setContentView(binding.root)
 
         title = "Recolectores"
+        appearNavBar()
 
         openFragment(FragmentCollectors{
             if (it == "down"){
@@ -36,7 +35,7 @@ class ActivityRecolection : AppCompatActivity() {
         })
 
         binding.floatingActionButton.setOnClickListener {
-            alertAddRecolcetor()
+            initAlertAddRecolcetor()
         }
 
     }
@@ -82,25 +81,11 @@ class ActivityRecolection : AppCompatActivity() {
                 meniItem ->
             when(meniItem.itemId){
                 R.id.collectors ->{
-                    title = "Recolectores"
-                    openFragment(FragmentCollectors{
-                        if (it == "down"){
-                            hideNavBar()
-                        }else if (it == "up"){
-                            appearNavBar()
-                        }
-                    })
+                    initFragmentCollectors()
                     true
                 }
                 R.id.collection ->{
-                    title = "Recoleccion"
-                    openFragment(FragmentCollecion{
-                        if (it == "down"){
-                            hideNavBar()
-                        }else if (it == "up"){
-                            appearNavBar()
-                        }
-                    })
+                 initFragmentCollection()
                     true
                 }
                 else -> false
@@ -108,7 +93,31 @@ class ActivityRecolection : AppCompatActivity() {
         }
     }
 
-    private fun alertAddRecolcetor() {
+    private fun initFragmentCollectors() {
+        title = "Recolectores"
+        openFragment(FragmentCollectors{
+            if (it == "down"){
+                hideNavBar()
+            }else if (it == "up"){
+                appearNavBar()
+            }
+        })
+    }
+
+    private fun initFragmentCollection() {
+         title = "Recoleccion"
+        openFragment(FragmentCollecion{
+            if (it == "down"){
+                        hideNavBar()
+            }else if (it == "up"){
+                        appearNavBar()
+            }
+        })
+
+    }
+
+    private fun initAlertAddRecolcetor() {
+
         alertAddRecolector(
             {
                 insertRecolector(it)
@@ -128,7 +137,9 @@ class ActivityRecolection : AppCompatActivity() {
     private fun insertRecolector(recolector: RecolectoresEntity) {
         CoroutineScope(Dispatchers.IO).launch {
             AppDataBase.getInstance(this@ActivityRecolection).RecolectoresDao().add(recolector)
+            launch(Dispatchers.Main) {
+                Toast.makeText(this@ActivityRecolection, "Se agrego un nuevo miembro ${recolector.name}", Toast.LENGTH_SHORT).show()
+            }
         }
-        Toast.makeText(this, "Se agrego un nuevo miembro ${recolector.name}", Toast.LENGTH_SHORT).show()
     }
 }

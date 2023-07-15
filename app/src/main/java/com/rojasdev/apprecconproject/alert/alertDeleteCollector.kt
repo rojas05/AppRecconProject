@@ -27,6 +27,7 @@ class alertDeleteCollector(
 
         binding.brYes.setOnClickListener {
             onClickListener()
+            dismiss()
         }
 
         binding.btNo.setOnClickListener {

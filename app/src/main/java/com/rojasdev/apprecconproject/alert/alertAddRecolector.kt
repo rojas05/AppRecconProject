@@ -79,6 +79,7 @@ class alertAddRecolector(
     private fun allUser() {
         if (insertCollector) {
             finished()
+            dismiss()
         } else {
             dismiss()
         }
