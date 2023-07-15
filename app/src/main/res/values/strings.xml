@@ -29,7 +29,7 @@
     //txt del alert para add un Recolector
     <string name="addUser">¡Comienza a gestionar tu equipo de recolectores de manera eficiente y sin complicaciones!</string>
     <string name="btnAddRecolector">Añadir Miembro</string>
-    <string name="btnFinish">Finalizar</string>
+    <string name="btnFinish">Cancelar</string>
 
     <string name="IYear">Informe anual</string>
     <string name="IYearDescription">Utiliza este informe para tomar decisiones informadas y maximizar tu éxito en el sector cafetero.</string>
@@ -56,11 +56,12 @@
     <string name="aliment">Alimentacion</string>
     <string name="yes">Si</string>
     <string name="no">No</string>
-    <string name="kgRecolectados">kilogramos recolectados</string>
+    <string name="kgRecolectados">recolectado</string>
     <string name="addCollection">¡Optimiza tu contabilidad y lleva un registro detallado de cada recolección!</string>
     <string name="tvKgtxt">Recolectado</string>
 
     <string name="deleteCollection">¿Estás seguro de que deseas eliminar este recolector? Esta acción eliminará permanentemente a este recolector. Por favor, confirma tu decisión para proceder.</string>
+    <string name="priceCollection">ganado</string>
 
 
 </resources>

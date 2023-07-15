@@ -55,7 +55,7 @@ class FragmentCollectors(
 
     private suspend fun dates(){
         CoroutineScope(Dispatchers.IO).launch{
-            val idCollectors = AppDataBase.getInstance((requireContext())).RecollectionDao().getfKIdCollectorS()
+            val idCollectors = AppDataBase.getInstance((requireContext())).RecollectionDao().getfKIdCollectors()
             val ingresosL = AppDataBase.getInstance(requireContext()).RecolectoresDao().getAllRecolector()
             launch(Dispatchers.Main) {
                 adapter = adapterRvCollectors(

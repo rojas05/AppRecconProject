@@ -71,7 +71,7 @@ class alertAddRecolector(
         val addUser = RecolectoresEntity(
             null,
             recolector,
-            null
+            "active"
         )
             onClickListener(addUser)
     }
@@ -79,6 +79,7 @@ class alertAddRecolector(
     private fun allUser() {
         if (insertCollector) {
             finished()
+            dismiss()
         } else {
             dismiss()
         }

@@ -36,6 +36,7 @@ class viewHolderCvCollectors( var view: View): RecyclerView.ViewHolder(view) {
 
         if (result){
             binding.fbDeleteCollector.alpha = 0f
+            binding.fbDeleteCollector.isClickable = false
         }else{
             binding.fbDeleteCollector.alpha = 1f
         }

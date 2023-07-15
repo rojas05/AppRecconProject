@@ -5,7 +5,7 @@ data class collectorCollection(
     val name_recolector : String,
     val PK_ID_Recoleccion: Int,
     val Cantidad : Double,
-    val Precio: Int,
+    val Precio: Double,
     val Estado: String,
     val Alimentacion: String,
     val Fecha: String,
