@@ -49,7 +49,7 @@
 
     <string name="cvKg">Ultima Recoleccion</string>
     <string name="tvKg">216 Kg</string>
-    <string name="tvFeend">Alimentacion</string>
+    <string name="tvFeend">Alimentacion:</string>
     <string name="tvRecolcection">Recoleciones Anteriores</string>
     <string name="total">Total</string>
 

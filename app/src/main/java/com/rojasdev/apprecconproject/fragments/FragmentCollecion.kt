@@ -96,7 +96,6 @@ class FragmentCollecion(
     private fun updateCollection(idUPdate: Int) {
         CoroutineScope(Dispatchers.IO).launch{
             launch(Dispatchers.Main) {
-              AppDataBase.getInstance((requireContext())).RecollectionDao().updateCollectionState(idUPdate)
                 AppDataBase.getInstance((requireContext())).RecolectoresDao().updateCollectionState(idUPdate)
                 launch {
                     totalCollectionCollector()

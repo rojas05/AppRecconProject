@@ -42,20 +42,19 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/tv"
+                    android:id="@+id/tvKg"
                     style="@style/texViewDescriptionInformed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="16dp"
                     android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:text="@string/tvKg"
                     android:textColor="@color/white"
                     android:textSize="60sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView8" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView8"
+                    tools:text="@string/tvKg" />
 
                 <TextView
                     android:id="@+id/textView5"
@@ -63,47 +62,31 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
+                    android:layout_marginTop="2dp"
                     android:layout_marginBottom="8dp"
                     android:text="@string/tvFeend"
                     android:textColor="@color/white"
-                    android:textSize="30sp"
+                    android:textSize="32sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.466"
+                    app:layout_constraintHorizontal_bias="0.46"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv"
-                    app:layout_constraintVertical_bias="0.132" />
+                    app:layout_constraintTop_toBottomOf="@+id/tvKg"
+                    app:layout_constraintVertical_bias="0.059" />
 
-                <androidx.appcompat.widget.AppCompatCheckBox
+                <TextView
                     android:id="@+id/yesFeendingCheckBox"
                     style="@style/texViewDescriptionInformed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="76dp"
-                    android:layout_marginTop="20dp"
-                    android:onClick="onCheckboxClicked"
-                    android:text="@string/yes"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
                     android:textColor="@color/white"
-                    android:textSize="25sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView5"
-                    app:layout_constraintVertical_bias="0.0" />
-
-                <androidx.appcompat.widget.AppCompatCheckBox
-                    android:id="@+id/notFeendingCheckBox"
-                    style="@style/texViewDescriptionInformed"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:onClick="onCheckboxClicked"
-                    android:text="@string/no"
-                    android:textColor="@color/white"
-                    android:textSize="25sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:textSize="28sp"
+                    tools:text="@string/yes"
+                    app:layout_constraintBottom_toTopOf="@+id/btnUpdate"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.427"
-                    app:layout_constraintStart_toEndOf="@+id/yesFeendingCheckBox"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView5"
                     app:layout_constraintVertical_bias="0.0" />
 
@@ -112,6 +95,7 @@
                     style="@style/buttons"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
                     android:text="@string/update"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -144,7 +128,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="15dp"
             android:text="@string/tvRecolcection"
             android:textColor="@color/black"
             android:textSize="30sp"

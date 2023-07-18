@@ -24,7 +24,7 @@ interface RecolectoresDao {
     suspend fun deleteCollectorId(id: Int)
 
     @Query("SELECT r.PK_ID_Recolector ,r.name_recolector, sum(re.Cantidad) " +
-            "as kg_collection, sum(re.Cantidad * c.Precio) as price_total " +
+            "AS kg_collection, sum(re.Cantidad * c.Precio) AS price_total " +
             "FROM recolectores r " +
             "INNER JOIN recoleccion re ON r.PK_ID_Recolector = re.Fk_recolector " +
             "INNER JOIN configuracion c ON re.Fk_Configuracion = c.PK_ID_Configuracion " +
@@ -37,8 +37,8 @@ interface RecolectoresDao {
     @Query("UPDATE Recolectores SET  estado_recolector = 'archive' WHERE PK_ID_Recolector = :id")
     suspend fun updateCollectionState(id:Int)
 
-    @Query("SELECT r.PK_ID_Recolector, r.name_recolector, re.PK_ID_Recoleccion, re.Cantidad, con.Precio * re.Cantidad as Precio," +
-            "re.Estado, con.Alimentacion, re.Fecha " +
+    @Query("SELECT r.PK_ID_Recolector, r.name_recolector, re.PK_ID_Recoleccion, re.Cantidad, (con.Precio * re.Cantidad) AS Precio,"  +
+                   "re.Estado, con.Alimentacion, re.Fecha " +
             "FROM recolectores r " +
             "INNER JOIN Recoleccion re ON r.PK_ID_Recolector = re.Fk_recolector " +
             "INNER JOIN Configuracion con ON re.Fk_Configuracion = con.PK_ID_Configuracion " +
