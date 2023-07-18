@@ -36,14 +36,16 @@ class viewHolderCvCollectors( var view: View): RecyclerView.ViewHolder(view) {
 
         if (result){
             binding.fbDeleteCollector.alpha = 0f
-            binding.fbDeleteCollector.isClickable = false
+            binding.fbDeleteCollector.setOnClickListener {
+                onClickListenerNext(item)
+            }
         }else{
             binding.fbDeleteCollector.alpha = 1f
+            binding.fbDeleteCollector.setOnClickListener {
+                onClickListenerDelete(item)
+            }
         }
 
-        binding.fbDeleteCollector.setOnClickListener {
-            onClickListenerDelete(item)
-        }
         binding.cvCollector.setOnClickListener {
             onClickListenerNext(item)
         }

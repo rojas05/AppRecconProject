@@ -34,10 +34,11 @@ interface RecolectoresDao {
     @Query("UPDATE recoleccion SET Cantidad = :total WHERE Fk_recolector = :id")
     suspend fun updateCollection(total:Double, id:Int)
 
-    @Query("UPDATE Recolectores SET  estado_recolector = 'active' WHERE PK_ID_Recolector = :id")
+    @Query("UPDATE Recolectores SET  estado_recolector = 'archive' WHERE PK_ID_Recolector = :id")
     suspend fun updateCollectionState(id:Int)
 
-    @Query("SELECT r.PK_ID_Recolector, r.name_recolector, re.PK_ID_Recoleccion, re.Cantidad, con.Precio, re.Estado, con.Alimentacion, re.Fecha " +
+    @Query("SELECT r.PK_ID_Recolector, r.name_recolector, re.PK_ID_Recoleccion, re.Cantidad, con.Precio * re.Cantidad as Precio," +
+            "re.Estado, con.Alimentacion, re.Fecha " +
             "FROM recolectores r " +
             "INNER JOIN Recoleccion re ON r.PK_ID_Recolector = re.Fk_recolector " +
             "INNER JOIN Configuracion con ON re.Fk_Configuracion = con.PK_ID_Configuracion " +
