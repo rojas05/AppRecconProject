@@ -15,14 +15,17 @@ class viewHolderCancelCollection( var view: View): RecyclerView.ViewHolder(view)
 
     val binding = ItemCollectionCancelBinding.bind(view)
 
-
-    @SuppressLint("ResourceAsColor")
     fun render(
         item: collectorCollection
     ){
-        binding.tvAliment.text = item.Alimentacion
+        if (item.Alimentacion.equals("yes")){
+            binding.tvAliment.text = "si ${item.Precio.toInt()}"
+        }else{
+            binding.tvAliment.text = "no ${item.Precio.toInt()}"
+        }
+
         binding.tvKg.text = "${item.Cantidad}kg"
-        price.priceSplit(item.Precio.toInt()){
+        price.priceSplit(item.result.toInt()){
             binding.tvPrice.text = it
         }
     }

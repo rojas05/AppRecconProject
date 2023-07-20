@@ -59,7 +59,7 @@ class ActivityRecolectionDetail : AppCompatActivity() {
 
     private fun getRecollection(idCollector: Int, userState: String = "active") {
         CoroutineScope(Dispatchers.IO).launch{
-            val allRecolection = AppDataBase.getInstance(this@ActivityRecolectionDetail).RecolectoresDao().getCollectorAndCollection(userState, idCollector)
+            val allRecolection= AppDataBase.getInstance(this@ActivityRecolectionDetail).RecolectoresDao().getCollectorAndCollection(userState,idCollector)
                 launch(Dispatchers.Main) {
                     collectionUpdate = listOf(allRecolection[0])
                     adapter = adpaterRvRecolection(allRecolection) {
@@ -77,11 +77,11 @@ class ActivityRecolectionDetail : AppCompatActivity() {
                     }
 
                     price.priceSplit(allRecolection[0].result.toInt()){
-                        binding.tvTotal.text = "Total a Pagar: ${it}"
+                        binding.tvTotal.text = "Total ${it}"
                     }
 
                     price.priceSplit(allRecolection[0].Precio.toInt()){
-                        binding.tvPrice.text = "Presio: ${it}"
+                        binding.tvPrice.text = "Precio: ${it}"
                     }
                 }
         }

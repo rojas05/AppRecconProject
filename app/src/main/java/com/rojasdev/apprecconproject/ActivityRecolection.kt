@@ -1,5 +1,6 @@
 package com.rojasdev.apprecconproject
 
+import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
@@ -106,13 +107,20 @@ class ActivityRecolection : AppCompatActivity() {
 
     private fun initFragmentCollection() {
          title = "Recoleccion"
-        openFragment(FragmentCollecion{
-            if (it == "down"){
+        openFragment(
+            FragmentCollecion(
+                {
+                    if (it == "down"){
                         hideNavBar()
-            }else if (it == "up"){
+                    }else if (it == "up"){
                         appearNavBar()
-            }
-        })
+                    }
+                },
+                {
+                    preferencesCollecion()
+                }
+            )
+        )
 
     }
 
@@ -141,5 +149,12 @@ class ActivityRecolection : AppCompatActivity() {
                 Toast.makeText(this@ActivityRecolection, "Se agrego un nuevo miembro ${recolector.name}", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    private fun preferencesCollecion() {
+        val preferences = getSharedPreferences( "register", Context.MODE_PRIVATE)
+        val editor = preferences.edit()
+        editor.putString("collection","false")
+        editor.apply()
     }
 }

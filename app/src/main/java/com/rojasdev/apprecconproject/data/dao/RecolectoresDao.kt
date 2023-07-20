@@ -35,7 +35,7 @@ interface RecolectoresDao {
     suspend fun updateCollection(total:Double, id:Int)
 
     @Query("UPDATE Recolectores SET  estado_recolector = 'archive' WHERE PK_ID_Recolector = :id")
-    suspend fun updateCollectionState(id:Int)
+    suspend fun updateCollectorState(id:Int)
 
     @Query("SELECT r.PK_ID_Recolector, r.name_recolector, re.PK_ID_Recoleccion, re.Cantidad, (con.Precio * re.Cantidad) AS result, con.Precio,"  +
                    "re.Estado, con.Alimentacion, re.Fecha, re.Fk_Configuracion " +

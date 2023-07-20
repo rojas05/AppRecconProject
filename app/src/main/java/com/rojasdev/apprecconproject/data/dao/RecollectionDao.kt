@@ -14,7 +14,7 @@ interface RecollectionDao {
     @Query("SELECT * FROM Recoleccion  WHERE Fk_recolector like :idCollector AND Estado = 'active'")
     suspend fun getCollectionIdCollector(idCollector: Int): List<RecollectionEntity>
 
-    @Query("SELECT Fk_recolector FROM Recoleccion  WHERE Estado like 'active'")
+    @Query("SELECT Fk_recolector FROM Recoleccion  WHERE Estado == 'active'")
     suspend fun getfKIdCollectors(): List<Long>
 
     @Query("UPDATE Recoleccion SET Cantidad = :Kg, Fk_Configuracion = :feed WHERE PK_ID_Recoleccion = :idCollecion AND Fk_recolector = :idCollector")

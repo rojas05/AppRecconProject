@@ -1,11 +1,13 @@
 package com.rojasdev.apprecconproject.fragments
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.rojasdev.apprecconproject.ActivityMainModule
@@ -21,7 +23,9 @@ import kotlinx.coroutines.launch
 
 
 class FragmentCollecion(
-    var scroll:(String)-> Unit) : Fragment() {
+    var scroll:(String)-> Unit,
+    var preferences:()-> Unit) : Fragment()
+{
     private var _binding: FragmentCollectorsAndCollecionBinding? = null
     private val binding get() = _binding!!
     private lateinit var adapter: adapterRvColleccionTotal
@@ -66,7 +70,6 @@ class FragmentCollecion(
     }
 
     private fun dates(total:List<collecionTotalCollector>) {
-
     adapter = adapterRvColleccionTotal(total)
     {
         initCancelCollection(it)
@@ -95,13 +98,24 @@ class FragmentCollecion(
     private fun updateCollection(idUPdate: Int) {
         CoroutineScope(Dispatchers.IO).launch{
             launch(Dispatchers.Main) {
-                AppDataBase.getInstance((requireContext())).RecolectoresDao().updateCollectionState(idUPdate)
+                AppDataBase.getInstance((requireContext())).RecolectoresDao().updateCollectorState(idUPdate)
+                AppDataBase.getInstance((requireContext())).RecollectionDao().updateCollectionState(idUPdate)
                 launch {
                     totalCollectionCollector()
+                    preferencesUpdate()
                 }
             }
         }
     }
 
-
+    private fun preferencesUpdate(){
+        CoroutineScope(Dispatchers.IO).launch{
+            val idCollectors = AppDataBase.getInstance((requireContext())).RecollectionDao().getfKIdCollectors()
+            launch(Dispatchers.Main) {
+                if(idCollectors.isEmpty()){
+                    preferences()
+                }
+            }
+        }
+    }
 }

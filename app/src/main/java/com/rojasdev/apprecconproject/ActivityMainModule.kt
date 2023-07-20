@@ -57,7 +57,7 @@ class ActivityMainModule : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.settings -> startActivity(Intent(this,ActivitySettings::class.java))
-            R.id.support ->  startActivity(Intent(this,ActivityRecolectionDetail::class.java))   //Toast.makeText(this, "Trabajando...", Toast.LENGTH_SHORT).show()
+            R.id.support -> Toast.makeText(this, "Trabajando...", Toast.LENGTH_SHORT).show()
         }
         return super.onOptionsItemSelected(item)
     }
