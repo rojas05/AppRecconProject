@@ -54,14 +54,15 @@
     <string name="total">Total</string>
 
     <string name="aliment">Alimentacion</string>
+    <string name="prince">Precio</string>
     <string name="yes">Si</string>
     <string name="no">No</string>
-    <string name="kgRecolectados">recolectado</string>
+    <string name="kgRecolectados">Añadir una Recoleccion</string>
     <string name="addCollection">¡Optimiza tu contabilidad y lleva un registro detallado de cada recolección!</string>
     <string name="tvKgtxt">Recolectado</string>
 
     <string name="deleteCollection">¿Estás seguro de que deseas eliminar este recolector? Esta acción eliminará permanentemente a este recolector. Por favor, confirma tu decisión para proceder.</string>
-    <string name="priceCollection">ganado</string>
+    <string name="priceCollection">Ganado</string>
 
 
 </resources>

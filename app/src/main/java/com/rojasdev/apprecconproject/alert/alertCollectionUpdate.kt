@@ -15,10 +15,15 @@ import com.rojasdev.apprecconproject.data.entities.RecolectoresEntity
 import com.rojasdev.apprecconproject.data.entities.RecollectionEntity
 import com.rojasdev.apprecconproject.databinding.AlertCollectionBinding
 import java.text.SimpleDateFormat
+import java.util.Calendar
 import java.util.Date
+import java.util.Locale
 
 class alertCollectionUpdate(
-    val collection: List<collectorCollection>,
+    val PK_ID_Recoleccion: Int,
+    val PK_ID_Recolector: Int,
+    val Alimentacion: String,
+    val Cantidad: Double,
     val nameCollector: String,
     private val onClickListener: (RecollectionEntity) -> Unit,
 ): DialogFragment() {
@@ -31,20 +36,20 @@ class alertCollectionUpdate(
 
         animatedAlert.animatedInit(binding.cvRecolector)
 
-        binding.tvDescription.text = "Actualizar la ultima recoleccion"
+        binding.tvDescription.text = "Actualiza la ultima recoleccion"
         binding.tvNameCollector.text = nameCollector
 
         val myListInput = listOf(
             binding.etKg
         )
 
-        if(collection[0].Alimentacion.equals("yes")){
+        if(Alimentacion.equals("yes")){
             binding.cbYes.isChecked = true
         } else {
             binding.cbNo.isChecked = true
         }
 
-        binding.etKg.setText(collection[0].Cantidad.toString())
+        binding.etKg.setText(Cantidad.toString())
 
         binding.cbYes.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
@@ -85,16 +90,17 @@ class alertCollectionUpdate(
     private fun dates() {
         dismiss()
         val kg = binding.etKg.text.toString()
-        val date = Date()
-        val formato = SimpleDateFormat("dd/MM/yyyy HH:mm")
+        val date = Calendar.getInstance().time
+        val formatDate = "EEEE, MMMM dd 'del' yyyy ' Hora: ' HH:mm:ss"
+        val formato = SimpleDateFormat(formatDate, Locale("es", "CO"))
         val dateFormat = formato.format(date)
 
         val collection = RecollectionEntity(
-            collection[0].PK_ID_Recoleccion ,
+            PK_ID_Recoleccion ,
             kg.toDouble(),
             dateFormat.toString(),
             "active",
-            collection[0].PK_ID_Recolector,
+            PK_ID_Recolector,
             settingsId!!
         )
 

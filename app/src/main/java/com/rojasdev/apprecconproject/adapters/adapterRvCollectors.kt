@@ -12,9 +12,7 @@ class adapterRvCollectors(
     private var list: List<Long>,
     private val onClickListenerNext: (RecolectoresEntity) -> Unit,
     private val onClickListenerDelete: (RecolectoresEntity) -> Unit,
-    private val onClickListenerKg: (RecolectoresEntity) -> Unit) : RecyclerView.Adapter<viewHolderCvCollectors>()
-
-{
+    private val onClickListenerKg: (RecolectoresEntity) -> Unit) : RecyclerView.Adapter<viewHolderCvCollectors>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): viewHolderCvCollectors {
         return viewHolderCvCollectors(LayoutInflater.from(parent.context).inflate(R.layout.item_collector,parent,false,))

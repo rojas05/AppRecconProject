@@ -14,7 +14,9 @@ import com.rojasdev.apprecconproject.data.entities.RecolectoresEntity
 import com.rojasdev.apprecconproject.data.entities.RecollectionEntity
 import com.rojasdev.apprecconproject.databinding.AlertCollectionBinding
 import java.text.SimpleDateFormat
+import java.util.Calendar
 import java.util.Date
+import java.util.Locale
 
 class alertCollection (
     var collector: RecolectoresEntity,
@@ -77,8 +79,9 @@ class alertCollection (
     private fun dates() {
         dismiss()
         val kg = binding.etKg.text.toString()
-        val date = Date()
-        val formato = SimpleDateFormat("dd/MM/yyyy HH:mm")
+        val date = Calendar.getInstance().time
+        val formatDate = "EEEE MMMM dd 'del' yyyy '  Hora: ' HH:mm:ss"
+        val formato = SimpleDateFormat(formatDate, Locale("es", "CO"))
         val dateFormat = formato.format(date)
 
         val collection = RecollectionEntity(

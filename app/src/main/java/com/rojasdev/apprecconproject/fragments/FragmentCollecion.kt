@@ -10,7 +10,6 @@ import androidx.activity.OnBackPressedCallback
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.rojasdev.apprecconproject.ActivityMainModule
 import com.rojasdev.apprecconproject.adapters.adapterRvColleccionTotal
-import com.rojasdev.apprecconproject.adapters.adapterRvCollectors
 import com.rojasdev.apprecconproject.alert.alertCancelCollection
 import com.rojasdev.apprecconproject.controller.scrolling
 import com.rojasdev.apprecconproject.data.dataBase.AppDataBase

@@ -57,16 +57,16 @@
                     tools:text="@string/tvKg" />
 
                 <TextView
-                    android:id="@+id/textView5"
+                    android:id="@+id/tvFeending"
                     style="@style/texViewDescriptionInformed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="2dp"
                     android:layout_marginBottom="8dp"
-                    android:text="@string/tvFeend"
                     android:textColor="@color/white"
                     android:textSize="32sp"
+                    tools:text="@string/tvFeend"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.46"
@@ -75,7 +75,7 @@
                     app:layout_constraintVertical_bias="0.059" />
 
                 <TextView
-                    android:id="@+id/yesFeendingCheckBox"
+                    android:id="@+id/tvPrice"
                     style="@style/texViewDescriptionInformed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -83,11 +83,11 @@
                     android:layout_marginBottom="8dp"
                     android:textColor="@color/white"
                     android:textSize="28sp"
-                    tools:text="@string/yes"
+                    tools:text="@string/prince"
                     app:layout_constraintBottom_toTopOf="@+id/btnUpdate"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView5"
+                    app:layout_constraintTop_toBottomOf="@+id/tvFeending"
                     app:layout_constraintVertical_bias="0.0" />
 
                 <Button
@@ -100,7 +100,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/yesFeendingCheckBox" />
+                    app:layout_constraintTop_toBottomOf="@+id/tvPrice" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
