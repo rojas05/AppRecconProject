@@ -20,9 +20,6 @@ class ActivityRecolectionDetail : AppCompatActivity() {
     lateinit var binding: ActivityRecolectionDetailBinding
         private lateinit var adapter: adpaterRvRecolection
         private lateinit var collectionUpdate: List<collectorCollection>
-        private lateinit var feeding: String
-        private var idRecoleccion: Int? = null
-        private var total: Double = 0.0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityRecolectionDetailBinding.inflate(layoutInflater)
@@ -32,17 +29,16 @@ class ActivityRecolectionDetail : AppCompatActivity() {
         val idCollector = intent.getIntExtra("userId", 0)
         val userName = intent.getStringExtra("userName")
 
-
         title = userName
 
         getRecollection(idCollector)
 
         binding.btnUpdate.setOnClickListener {
            alertCollectionUpdate(
-               idRecoleccion!!,
-               idCollector,
-               feeding,
-               total,
+               collectionUpdate[0].PK_ID_Recoleccion,
+               collectionUpdate[0].PK_ID_Recolector,
+               collectionUpdate[0].Alimentacion,
+               collectionUpdate[0].Cantidad,
                userName!!
            ){
                updateRecoleccion(it,idCollector)
