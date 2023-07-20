@@ -13,34 +13,16 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <ImageView
-            android:id="@+id/ivNext"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="@color/gray"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline2"
-            app:layout_constraintTop_toTopOf="parent"
-            android:src="@drawable/ic_next" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.90" />
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/tvNameCollector"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
             style="@style/tvItem"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:gravity="center_vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline3"
             app:layout_constraintStart_toStartOf="parent"
@@ -49,32 +31,28 @@
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fbAddKg"
+            style="@style/foadingButtons"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="32dp"
             android:clickable="true"
             app:backgroundTint="@color/Dark_Tan"
-            style="@style/foadingButtons"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/ivNext"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/guideline4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline4"
             app:srcCompat="@drawable/ic_kilogramo" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fbDeleteCollector"
+            style="@style/foadingButtons"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="16dp"
+            android:layout_height="56dp"
+            android:layout_marginEnd="32dp"
             android:clickable="true"
             app:backgroundTint="@color/Dark_Tan"
-            style="@style/foadingButtons"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/guideline4"
             app:layout_constraintEnd_toStartOf="@+id/fbAddKg"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline4"
             app:srcCompat="@drawable/ic_delete" />
 
         <androidx.constraintlayout.widget.Guideline
@@ -82,6 +60,37 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.5" />
+            app:layout_constraintGuide_percent="0.45" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.35" />
+
+        <TextView
+            android:id="@+id/tvDeleteAndDetail"
+            style="@style/tvItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="@+id/fbDeleteCollector"
+            app:layout_constraintStart_toStartOf="@+id/fbDeleteCollector"
+            app:layout_constraintTop_toBottomOf="@+id/fbDeleteCollector"
+            tools:text="eliminar" />
+
+        <TextView
+            android:id="@+id/tv"
+            style="@style/tvItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/collection"
+            android:textAlignment="center"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="@+id/fbAddKg"
+            app:layout_constraintStart_toStartOf="@+id/fbAddKg"
+            app:layout_constraintTop_toBottomOf="@+id/fbAddKg" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

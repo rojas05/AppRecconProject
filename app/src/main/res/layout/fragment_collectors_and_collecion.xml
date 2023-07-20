@@ -11,6 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingBottom="30dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginStart="6dp"
         tools:listitem="@layout/item_collecion" />
 
 </FrameLayout>
