@@ -1,3 +1,69 @@
 <resources>
-    <string name="app_name">AppRecconProject</string>
+    <string name="app_name">AppReccon</string>
+
+    <string name="si_alimentacion">Precio por kilo con alimentación</string>
+    <string name="no_alimentacion">Precio por kilo sin alimentación</string>
+    <string name="recolector">Recolector(a)</string>
+
+    <string name="require">¡Importante! Para que RECCON funcione correctamente, asegúrate de proporcionar los precios por kilogramo recolectado. ¡Optimiza tu contabilidad cafetera con nosotros!</string>
+
+    <string name="welcome">¡Bienvenido a RECCON, la aplicación que revolucionará la contabilidad de la recolección de café! Diseñada pensando en los productores, nuestro objetivo es simplificar tus procesos y brindarte un manejo sencillo. Surgimos en el corazón del campo, enfocados en potenciar el desarrollo tecnologico del sector agrario. ¡Únete a nuestra comunidad y descubre una nueva forma de llevar tu contabilidad cafetera!</string>
+    <string name="ready">listo</string>
+    <string name="Init">Empecemos</string>
+
+    <string name="requireDates">Por favor, completa la información para continuar. ¡Gracias!</string>
+    <string name="go">Presiona el botón \"Empecemos\" para comenzar. ¡Estamos emocionados de tener a bordo!</string>
+    <string name="collection">Recolección</string>
+    <string name="descriptionCollection">Registra cada detalle y mantén un control preciso de tu actividad cafetera. ¡Optimiza tus procesos y maximiza tu productividad!</string>
+    <string name="report">Informe</string>
+    <string name="descriptionReport">Obtén una visión completa de tu producción cafetera y toma decisiones informadas para el éxito de tu negocio.</string>
+    <string name="hello">Hello</string>
+    <string name="hintUser">Nombre del Recolector</string>
+    <string name="btnAdd">Insertar</string>
+
+    <string name="price">$</string>
+    <string name="update">Actualizar</string>
+    <string name="settingsAliment">Configuracion de precios</string>
+    <string name="support">Soporte tecnico</string>
+
+    //txt del alert para add un Recolector
+    <string name="addUser">¡Comienza a gestionar tu equipo de recolectores de manera eficiente y sin complicaciones!</string>
+    <string name="btnAddRecolector">Añadir Miembro</string>
+    <string name="btnFinish">Cancelar</string>
+
+    <string name="IYear">Informe anual</string>
+    <string name="IYearDescription">Utiliza este informe para tomar decisiones informadas y maximizar tu éxito en el sector cafetero.</string>
+
+    <string name="IWeek">Informe semanal</string>
+    <string name="IWeekDescription">Obtén una visión precisa de tu producción semanal y toma decisiones estratégicas para optimizar tu cultivo.</string>
+
+    <string name="IMonth">Informe mensual</string>
+    <string name="IMonthDescription">Analiza datos como la productividad y los costos.</string>
+
+    <string name="create">generar</string>
+
+    <string name="pdf">Informes en PDF</string>
+    <string name="informed">Informe rapido</string>
+    <string name="collectionCancel">Pagar recoleccion</string>
+    <string name="collectors">Recolectores</string>
+
+    <string name="cvKg">Ultima Recoleccion</string>
+    <string name="tvKg">216 Kg</string>
+    <string name="tvFeend">Alimentacion:</string>
+    <string name="tvRecolcection">Recoleciones Anteriores</string>
+    <string name="total">Total</string>
+
+    <string name="aliment">Alimentacion</string>
+    <string name="collect">Recolectado</string>
+    <string name="prince">Precio</string>
+    <string name="yes">Si</string>
+    <string name="no">No</string>
+    <string name="kgRecolectados">Añadir una Recoleccion</string>
+    <string name="addCollection">¡Optimiza tu contabilidad y lleva un registro detallado de cada recolección!</string>
+    <string name="tvKgtxt">Recolectado</string>
+
+    <string name="deleteCollection">¿Estás seguro de que deseas eliminar este recolector? Esta acción eliminará permanentemente a este recolector. Por favor, confirma tu decisión para proceder.</string>
+    <string name="priceCollection">Ganado</string>
+
+
 </resources>
