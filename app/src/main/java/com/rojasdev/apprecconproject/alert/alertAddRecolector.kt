@@ -7,11 +7,20 @@ import android.content.IntentSender.OnFinished
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextUtils
+import android.text.TextWatcher
+import android.view.KeyEvent
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.DialogFragment
+import com.google.android.material.snackbar.BaseTransientBottomBar.ContentViewCallback
 import com.rojasdev.apprecconproject.ActivityRecolection
+import com.rojasdev.apprecconproject.R
 import com.rojasdev.apprecconproject.controller.animatedAlert
+import com.rojasdev.apprecconproject.controller.customSnackbar
 import com.rojasdev.apprecconproject.controller.requireInput
 import com.rojasdev.apprecconproject.data.dataBase.AppDataBase
 import com.rojasdev.apprecconproject.data.entities.RecolectoresEntity
@@ -35,37 +44,39 @@ class alertAddRecolector(
 
         animatedAlert.animatedInit(binding.cvRecolector)
 
-        val myListInput = listOf(
-            binding.yesAddRecolector
-        )
-
-        binding.btAddRecolector.setOnClickListener {
-           val required = requireInput.validate(myListInput,requireContext())
-                if (required){
-                    dates()
-                    binding.yesAddRecolector.setText("")
-                }
-        }
-
         binding.btnClose.setOnClickListener{
+            finished()
             dismiss()
         }
 
-        binding.btnFinishAdding.setOnClickListener {
-            val recolector = binding.yesAddRecolector.text.toString()
-                if (recolector != ""){
-                    Toast.makeText(requireContext(),"Presiona el botón 'guardar'", Toast.LENGTH_SHORT).show()
-                } else {
-                    allUser()
-                }
-        }
+        binding.yesAddRecolector.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                finish()
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                addCollector()
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+               if (binding.yesAddRecolector.text!!.isEmpty()){
+                   finish()
+               }else{
+                   addCollector()
+               }
+            }
+
+        })
+
+        finish()
 
         val dialog = builder.create()
               dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                     return dialog
     }
 
-    private fun dates() {
+    private fun dates(view: View) {
+
         insertCollector = true
         val recolector = binding.yesAddRecolector.text.toString()
         val addUser = RecolectoresEntity(
@@ -73,7 +84,8 @@ class alertAddRecolector(
             recolector,
             "active"
         )
-            onClickListener(addUser)
+        customSnackbar.showCustomSnackbar(view,"Recolector ${recolector} guardado")
+        onClickListener(addUser)
     }
 
     private fun allUser() {
@@ -82,6 +94,27 @@ class alertAddRecolector(
             dismiss()
         } else {
             dismiss()
+        }
+    }
+
+    private fun addCollector(){
+        binding.btAddRecolector.text = getString(R.string.btnAddRecolector)
+        val myListInput = listOf(
+            binding.yesAddRecolector
+        )
+
+        binding.btAddRecolector.setOnClickListener {
+            val required = requireInput.validate(myListInput,requireContext())
+            if (required){
+                dates(it)
+                binding.yesAddRecolector.setText("")
+            }
+        }
+    }
+    private fun finish(){
+        binding.btAddRecolector.text = getString(R.string.finish)
+        binding.btAddRecolector.setOnClickListener {
+            allUser()
         }
     }
 

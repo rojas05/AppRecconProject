@@ -14,6 +14,7 @@ import com.rojasdev.apprecconproject.ActivityRecolectionDetail
 import com.rojasdev.apprecconproject.adapters.adapterRvCollectors
 import com.rojasdev.apprecconproject.alert.alertCollection
 import com.rojasdev.apprecconproject.alert.alertDeleteCollector
+import com.rojasdev.apprecconproject.controller.customSnackbar
 import com.rojasdev.apprecconproject.data.dataBase.AppDataBase
 import com.rojasdev.apprecconproject.data.entities.RecolectoresEntity
 import com.rojasdev.apprecconproject.data.entities.RecollectionEntity
@@ -62,30 +63,12 @@ class FragmentCollectors(
                     ingresosL,
                     idCollectors,
                     { item ->
-                        //pasar a detalle recolector
-                        val id: Int? = item.id
-                            if (id != null) {
-                                CoroutineScope(Dispatchers.IO).launch {
-                                    val getId = AppDataBase.getInstance(requireContext()).RecollectionDao().getCollectionIdCollector(id)
-                                    launch(Dispatchers.Main) {
-                                        if(getId.isNotEmpty()) {
-                                            startActivity(Intent(
-                                                    requireContext(), ActivityRecolectionDetail::class.java
-                                                ).putExtra("userId", item.id).putExtra("userName", item.name)
-                                            )
-                                        } else {
-                                            Toast.makeText(requireContext(), "No hay datos", Toast.LENGTH_SHORT).show()
-                                        }
-                                    }
-                                }
-                            }
+                        initDetailCollector(item)
                     },
                     {
-                        //delete
                         initAlertDelete(it)
                     },
                     {
-                        //add collection
                         InitAlertAddCollection(it)
                     }
                 )
@@ -93,6 +76,25 @@ class FragmentCollectors(
                 binding.rvCollectors.adapter = adapter
                 binding.rvCollectors.layoutManager = LinearLayoutManager(requireContext())
 
+            }
+        }
+    }
+
+    private fun initDetailCollector(item: RecolectoresEntity) {
+        val id:Int? = item.id
+        if (id != null) {
+            CoroutineScope(Dispatchers.IO).launch {
+                val getId = AppDataBase.getInstance(requireContext()).RecollectionDao().getCollectionIdCollector(id)
+                launch(Dispatchers.Main) {
+                    if(getId.isNotEmpty()) {
+                        startActivity(Intent(
+                            requireContext(), ActivityRecolectionDetail::class.java
+                        ).putExtra("userId", item.id).putExtra("userName", item.name)
+                        )
+                    } else {
+
+                    }
+                }
             }
         }
     }
@@ -117,7 +119,7 @@ class FragmentCollectors(
     }
 
     private fun insertCollection(recollection: RecollectionEntity) {
-        Toast.makeText(requireContext(), "Apuntado", Toast.LENGTH_SHORT).show()
+        customSnackbar.showCustomSnackbar(binding.fragmentCollectors,"Recoleccion guardada")
         CoroutineScope(Dispatchers.IO).launch {
             AppDataBase.getInstance(requireContext()).RecollectionDao().addRecoleccion(recollection)
             launch {

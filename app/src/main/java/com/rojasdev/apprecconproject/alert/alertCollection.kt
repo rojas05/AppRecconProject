@@ -36,7 +36,7 @@ class alertCollection (
             binding.etKg
         )
 
-        binding.tvNameCollector.text = collector.name
+        binding.tvDescription.text = collector.name
 
         binding.cbYes.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {

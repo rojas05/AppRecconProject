@@ -145,9 +145,6 @@ class ActivityRecolection : AppCompatActivity() {
     private fun insertRecolector(recolector: RecolectoresEntity) {
         CoroutineScope(Dispatchers.IO).launch {
             AppDataBase.getInstance(this@ActivityRecolection).RecolectoresDao().add(recolector)
-            launch(Dispatchers.Main) {
-                Toast.makeText(this@ActivityRecolection, "Se agrego un nuevo miembro ${recolector.name}", Toast.LENGTH_SHORT).show()
-            }
         }
     }
 

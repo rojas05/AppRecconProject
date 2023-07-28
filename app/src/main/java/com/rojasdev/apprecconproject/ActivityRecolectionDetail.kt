@@ -1,8 +1,10 @@
 package com.rojasdev.apprecconproject
 
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.rojasdev.apprecconproject.adapters.adpaterRvRecolection
 import com.rojasdev.apprecconproject.alert.alertCollectionUpdate
@@ -21,6 +23,7 @@ class ActivityRecolectionDetail : AppCompatActivity() {
         private lateinit var adapter: adpaterRvRecolection
         private lateinit var collectionUpdate: List<collectorCollection>
 
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityRecolectionDetailBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
@@ -47,6 +50,7 @@ class ActivityRecolectionDetail : AppCompatActivity() {
 
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     private fun updateRecoleccion(it: RecollectionEntity, idCollector: Int){
         CoroutineScope(Dispatchers.IO).launch {
             AppDataBase.getInstance(this@ActivityRecolectionDetail).RecollectionDao().updateCollection(it.ID!!,it.collector,it.total,it.setting)
@@ -57,36 +61,35 @@ class ActivityRecolectionDetail : AppCompatActivity() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     private fun getRecollection(idCollector: Int, userState: String = "active") {
         CoroutineScope(Dispatchers.IO).launch{
-            val allRecolection= AppDataBase.getInstance(this@ActivityRecolectionDetail).RecolectoresDao().getCollectorAndCollection(userState,idCollector)
+            val collection= AppDataBase.getInstance(this@ActivityRecolectionDetail).RecolectoresDao().getCollectorAndCollection(userState,idCollector)
                 launch(Dispatchers.Main) {
-                    collectionUpdate = listOf(allRecolection[0])
-                    adapter = adpaterRvRecolection(allRecolection) {
+                    collectionUpdate = listOf(collection[0])
+                    adapter = adpaterRvRecolection(collection) {
                         // Update Collection
                         alertUpdateRecollection(it, idCollector)
                     }
-                        binding.tvKg.text = allRecolection[0].Cantidad.toString() + "Kg"
                         binding.rvRecolections.adapter = adapter
                         binding.rvRecolections.layoutManager = LinearLayoutManager(this@ActivityRecolectionDetail)
 
-                    if (allRecolection[0].Alimentacion == "yes") {
+                    binding.tvKg.text = collection[0].Cantidad.toString() + "Kg"
+
+                    if (collection[0].Alimentacion == "yes") {
                         binding.tvFeending.text = "Alimentación: Si"
                     } else {
                         binding.tvFeending.text = "Alimentación: No"
                     }
 
-                    price.priceSplit(allRecolection[0].result.toInt()){
-                        binding.tvTotal.text = "Total ${it}"
-                    }
-
-                    price.priceSplit(allRecolection[0].Precio.toInt()){
+                    price.priceSplit(collection[0].Precio.toInt()){
                         binding.tvPrice.text = "Precio: ${it}"
                     }
                 }
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     private fun alertUpdateRecollection(it:collectorCollection, idCollector: Int){
         alertCollectionUpdate(
             it.PK_ID_Recoleccion,
@@ -99,6 +102,7 @@ class ActivityRecolectionDetail : AppCompatActivity() {
         }.show(supportFragmentManager,"dialog")
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     private fun updateCollection(it:RecollectionEntity, idCollector: Int) {
         CoroutineScope(Dispatchers.IO).launch {
             AppDataBase.getInstance(this@ActivityRecolectionDetail).RecollectionDao().updateCollection(it.ID!!,it.collector,it.total,it.setting)

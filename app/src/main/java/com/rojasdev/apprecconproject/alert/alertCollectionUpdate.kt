@@ -36,8 +36,7 @@ class alertCollectionUpdate(
 
         animatedAlert.animatedInit(binding.cvRecolector)
 
-        binding.tvDescription.text = "Actualiza la ultima recoleccion"
-        binding.tvNameCollector.text = nameCollector
+        binding.tvDescription.text = nameCollector
 
         val myListInput = listOf(
             binding.etKg

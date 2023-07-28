@@ -28,7 +28,9 @@
 
     //txt del alert para add un Recolector
     <string name="addUser">¡Comienza a gestionar tu equipo de recolectores de manera eficiente y sin complicaciones!</string>
-    <string name="btnAddRecolector">Añadir Miembro</string>
+    <string name="btnAddRecolector">Añadir Recolector</string>
+    <string name="readyAddRecolector">Recolector</string>
+    <string name="save">Guardado</string>
     <string name="btnFinish">Cancelar</string>
 
     <string name="IYear">Informe anual</string>
@@ -54,7 +56,7 @@
     <string name="total">Total</string>
 
     <string name="aliment">Alimentacion</string>
-    <string name="collect">Recolectado</string>
+    <string name="collect">Recoleccion</string>
     <string name="prince">Precio</string>
     <string name="yes">Si</string>
     <string name="no">No</string>
@@ -64,6 +66,9 @@
 
     <string name="deleteCollection">¿Estás seguro de que deseas eliminar este recolector? Esta acción eliminará permanentemente a este recolector. Por favor, confirma tu decisión para proceder.</string>
     <string name="priceCollection">Ganado</string>
+    <string name="finish_collection">¡Recolección finalizada!</string>
+    <string name="finish">finalizar</string>
+    <string name="collectado">pesa</string>
 
 
 </resources>

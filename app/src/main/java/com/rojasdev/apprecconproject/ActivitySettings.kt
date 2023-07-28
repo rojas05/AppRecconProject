@@ -16,6 +16,8 @@ class ActivitySettings : AppCompatActivity() {
     lateinit var binding : ActivitySettingsBinding
     var idNoAliment : Int? = null
     var idYesAliment : Int? = null
+    var priceYesAliment : Int? = null
+    var priceNoAliment : Int? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivitySettingsBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
@@ -28,7 +30,7 @@ class ActivitySettings : AppCompatActivity() {
 
         binding.btUpdateNoAliment.setOnClickListener {
             animatedAlert.animatedClick(binding.cvNoAliment)
-            alertSettingsUpdate(getString(R.string.no_alimentacion),"no",idNoAliment!!){
+            alertSettingsUpdate(getString(R.string.no_alimentacion),"no",idNoAliment!!,priceNoAliment!!){
                 insertNewSetting(it){
                     getNoAliment()
                 }
@@ -37,7 +39,7 @@ class ActivitySettings : AppCompatActivity() {
 
         binding.btUpdateYesAliment.setOnClickListener {
             animatedAlert.animatedClick(binding.cvYesAliment)
-            alertSettingsUpdate(getString(R.string.si_alimentacion),"yes",idYesAliment!!){
+            alertSettingsUpdate(getString(R.string.si_alimentacion),"yes",idYesAliment!!,priceYesAliment!!){
                 insertNewSetting(it){
                     getYesAliment()
                 }
@@ -51,6 +53,7 @@ class ActivitySettings : AppCompatActivity() {
             launch(Dispatchers.Main) {
                 idNoAliment = query[0].Id
                 price.priceSplit(query[0].cost){
+                    priceNoAliment = query[0].cost
                     binding.tvNoAliment.text = it
                 }
             }
@@ -64,6 +67,7 @@ class ActivitySettings : AppCompatActivity() {
             launch(Dispatchers.Main) {
                 idYesAliment = query[0].Id
                 price.priceSplit(query[0].cost){
+                    priceYesAliment = query[0].cost
                     binding.tvYesAliment.text = it
                 }
             }

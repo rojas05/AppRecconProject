@@ -1,18 +1,18 @@
 package com.rojasdev.apprecconproject.fragments
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.os.CountDownTimer
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.rojasdev.apprecconproject.ActivityMainModule
 import com.rojasdev.apprecconproject.adapters.adapterRvColleccionTotal
 import com.rojasdev.apprecconproject.alert.alertCancelCollection
+import com.rojasdev.apprecconproject.controller.customSnackbar
 import com.rojasdev.apprecconproject.controller.scrolling
 import com.rojasdev.apprecconproject.data.dataBase.AppDataBase
 import com.rojasdev.apprecconproject.data.dataModel.collecionTotalCollector
@@ -114,8 +114,20 @@ class FragmentCollecion(
             launch(Dispatchers.Main) {
                 if(idCollectors.isEmpty()){
                     preferences()
+                    customSnackbar.showCustomSnackbar(requireView(),"Recoleccion terminada")
+                    starTimer()
                 }
             }
         }
+    }
+
+    fun starTimer() {
+        object: CountDownTimer(1000,1){
+            override fun onTick(p0: Long) {
+            }
+            override fun onFinish() {
+                startActivity(Intent(requireContext(),ActivityMainModule::class.java))
+            }
+        }.start()
     }
 }

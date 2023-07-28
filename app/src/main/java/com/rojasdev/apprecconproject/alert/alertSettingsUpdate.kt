@@ -17,6 +17,7 @@ class alertSettingsUpdate(
     var description: String,
     var feending: String,
     var idSetting: Int,
+    var price: Int,
     var onClickListener: (SettingEntity) -> Unit
 ): DialogFragment() {
     private lateinit var binding: AlertUpdateSettingBinding
@@ -52,6 +53,7 @@ class alertSettingsUpdate(
     }
 
     private fun initView() {
+        binding.yesAliment.setText(price.toString())
         binding.tvDescription.text = description
         if (feending == "yes"){
             binding.tilSiAlimentacion.setStartIconDrawable(R.drawable.ic_alimentacion)

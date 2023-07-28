@@ -8,10 +8,12 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import com.google.android.material.snackbar.Snackbar
 import com.rojasdev.apprecconproject.alert.alertAddRecolector
 import com.rojasdev.apprecconproject.alert.alertSettings
 import com.rojasdev.apprecconproject.alert.alertWelcome
 import com.rojasdev.apprecconproject.controller.animatedAlert
+import com.rojasdev.apprecconproject.controller.customSnackbar
 import com.rojasdev.apprecconproject.data.dataBase.AppDataBase
 import com.rojasdev.apprecconproject.data.entities.RecolectoresEntity
 import com.rojasdev.apprecconproject.data.entities.SettingEntity
@@ -119,7 +121,6 @@ class ActivityMainModule : AppCompatActivity() {
             AppDataBase.getInstance(this@ActivityMainModule).RecolectoresDao().add(recolector)
         }
         preferencesCollecion()
-        Toast.makeText(this@ActivityMainModule,  "${getString(R.string.btnAddRecolector)} ${recolector.name}", Toast.LENGTH_SHORT).show()
     }
 
     private fun preferencesCollecion() {
@@ -128,5 +129,6 @@ class ActivityMainModule : AppCompatActivity() {
         editor.putString("collection","true")
         editor.apply()
     }
+
 
 }
