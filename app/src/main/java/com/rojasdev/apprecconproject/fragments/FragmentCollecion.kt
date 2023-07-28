@@ -21,7 +21,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-
 class FragmentCollecion(
     var scroll:(String)-> Unit,
     var preferences:()-> Unit) : Fragment()
