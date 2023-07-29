@@ -28,8 +28,6 @@ class ActivityMainModule : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        //autoTexSize.textViewAutoSize(binding.tv)
-
         title = "Precios "
 
         this.onBackPressedDispatcher.addCallback(object : OnBackPressedCallback(true){
@@ -163,6 +161,5 @@ class ActivityMainModule : AppCompatActivity() {
         editor.putString("collection","true")
         editor.apply()
     }
-
 
 }
