@@ -80,14 +80,18 @@ class alertCollection (
         dismiss()
         val kg = binding.etKg.text.toString()
         val date = Calendar.getInstance().time
-        val formatDate = "EEEE, MMMM dd 'del' yyyy '  Hora: ' HH:mm:ss"
+        val formatDate = "EEEE, MMMM dd 'del' yyyy"
+        val formatTime = "'Hora: ' HH:mm"
         val formato = SimpleDateFormat(formatDate, Locale("es", "CO"))
+        val formatoTime = SimpleDateFormat(formatTime, Locale("es", "CO"))
         val dateFormat = formato.format(date)
+        val timeFormat = formatoTime.format(date)
 
         val collection = RecollectionEntity(
             null,
             kg.toDouble(),
             dateFormat.toString(),
+            timeFormat.toString(),
             "active",
             collector.id!!,
             settingsId!!

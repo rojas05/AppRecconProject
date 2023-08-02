@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
+        <View
             android:id="@+id/imageView4"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -45,11 +45,27 @@
             android:textColor="@color/black"
             android:textSize="15sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/tvDate"
+            app:layout_constraintBottom_toTopOf="@+id/tvTime"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintStart_toStartOf="@+id/guideline1"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Fecha" />
+
+        <TextView
+            android:id="@+id/tvTime"
+            style="@style/tvItem"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:padding="1dp"
+            android:textSize="17sp"
+            app:layout_constraintBottom_toTopOf="@+id/tvDate"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline1"
+            tools:text="Hora" />
 
         <TextView
             android:id="@+id/tvDate"
@@ -102,7 +118,7 @@
             style="@style/texViewDescriptionInformed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="18dp"
             android:padding="2dp"
             android:text="@string/tvKg"
             android:textColor="@color/black"
@@ -130,7 +146,7 @@
             style="@style/buttons"
             android:layout_width="100dp"
             android:layout_height="35dp"
-            android:layout_marginTop="3dp"
+            android:layout_marginTop="2dp"
             android:layout_marginBottom="3dp"
             android:text="@string/update"
             android:background="@drawable/border_radius_btn"

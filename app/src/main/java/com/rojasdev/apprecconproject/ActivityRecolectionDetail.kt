@@ -80,7 +80,7 @@ class ActivityRecolectionDetail : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.N)
     private fun updateCollection(it:RecollectionEntity, idCollector: Int) {
         CoroutineScope(Dispatchers.IO).launch {
-            AppDataBase.getInstance(this@ActivityRecolectionDetail).RecollectionDao().updateCollection(it.ID!!,it.collector,it.total,it.setting)
+            AppDataBase.getInstance(this@ActivityRecolectionDetail).RecollectionDao().updateCollection(it.ID!!,it.date,it.time,it.collector,it.total,it.setting)
             launch(Dispatchers.Main){
                 getRecollection(idCollector)
                 Toast.makeText(this@ActivityRecolectionDetail, "Se actializo la Recoleccion", Toast.LENGTH_SHORT).show()

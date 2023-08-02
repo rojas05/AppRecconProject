@@ -71,8 +71,8 @@ class alertAddRecolector(
         finish()
 
         val dialog = builder.create()
-              dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                    return dialog
+            dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                return dialog
     }
 
     private fun dates(view: View) {

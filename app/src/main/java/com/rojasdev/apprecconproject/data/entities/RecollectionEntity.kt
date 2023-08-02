@@ -15,6 +15,7 @@ data class RecollectionEntity(
     @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "PK_ID_Recoleccion") val ID: Int?,
     @ColumnInfo(name = "Cantidad") val total: Double,
     @ColumnInfo(name = "Fecha") val date: String,
+    @ColumnInfo(name = "Hora") val time: String,
     @ColumnInfo(name = "Estado") val state: String?,
     @ColumnInfo(name = "Fk_recolector") val collector:Int,
     @ColumnInfo(name = "Fk_Configuracion") val setting:Int

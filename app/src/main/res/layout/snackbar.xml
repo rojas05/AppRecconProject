@@ -30,7 +30,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageView6"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="recolector cristian guardado exitosamente" />
+            tools:text="Recolector cristian guardado exitosamente" />
 
         <ImageView
             android:id="@+id/imageView6"

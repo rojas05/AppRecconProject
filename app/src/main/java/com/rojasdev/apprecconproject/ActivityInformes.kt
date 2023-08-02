@@ -17,7 +17,6 @@ class ActivityInformes : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-
         title = "Informe rapido"
         openFragment(FragmentInforme())
         Toast.makeText(this, "list", Toast.LENGTH_SHORT).show()

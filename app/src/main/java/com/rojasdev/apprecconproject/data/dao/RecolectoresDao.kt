@@ -3,10 +3,10 @@ package com.rojasdev.apprecconproject.data.dao
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import com.rojasdev.apprecconproject.data.dataModel.allCollecionAndCollector
 import com.rojasdev.apprecconproject.data.dataModel.collecionTotalCollector
 import com.rojasdev.apprecconproject.data.dataModel.collectorCollection
 import com.rojasdev.apprecconproject.data.entities.RecolectoresEntity
-
 
 @Dao
 interface RecolectoresDao {
@@ -39,12 +39,20 @@ interface RecolectoresDao {
 
     @Query("SELECT r.PK_ID_Recolector, r.name_recolector, re.PK_ID_Recoleccion, re.Cantidad, " +
             "con.Precio * re.Cantidad AS result, con.Precio, "  +
-            "re.Estado, con.Alimentacion, re.Fecha, re.Fk_Configuracion " +
+            "re.Estado, con.Alimentacion, re.Fecha, re.Hora, re.Fk_Configuracion " +
             "FROM recolectores r " +
             "INNER JOIN Recoleccion re ON r.PK_ID_Recolector = re.Fk_recolector " +
             "INNER JOIN Configuracion con ON re.Fk_Configuracion = con.PK_ID_Configuracion " +
             "WHERE re.Estado == :state AND re.Fk_recolector LIKE :id  ORDER BY re.Fecha DESC")
     suspend fun getCollectorAndCollection(state: String, id: Int): List<collectorCollection>
 
+    @Query("SELECT r.PK_ID_Recolector, r.name_recolector, re.PK_ID_Recoleccion, re.Cantidad, " +
+            "re.Estado, con.Alimentacion, re.Fecha, re.Hora, re.Fk_Configuracion, con.Precio, " +
+            "con.Precio * re.Cantidad AS result " +
+            "FROM recolectores r " +
+            "INNER JOIN Recoleccion re ON r.PK_ID_Recolector = re.Fk_recolector " +
+            "INNER JOIN Configuracion con ON re.Fk_Configuracion = con.PK_ID_Configuracion " +
+            "WHERE re.Fecha LIKE :dates ORDER BY re.Fecha DESC")
+    suspend fun getAllCollectorAndCollection(dates: String): List<allCollecionAndCollector>
 
 }
