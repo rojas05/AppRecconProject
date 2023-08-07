@@ -24,7 +24,7 @@
     <string name="price">$</string>
     <string name="update">Actualizar</string>
     <string name="settingsAliment">Configuracion de precios</string>
-    <string name="support">Soporte tecnico</string>
+    <string name="support">Ayuda</string>
 
     //txt del alert para add un Recolector
     <string name="addUser">¡Comienza a gestionar tu equipo de recolectores de manera eficiente y sin complicaciones!</string>
