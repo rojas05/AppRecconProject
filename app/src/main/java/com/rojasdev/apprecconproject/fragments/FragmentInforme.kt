@@ -1,36 +1,42 @@
 package com.rojasdev.apprecconproject.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CalendarView
-import android.widget.LinearLayout
-import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.rojasdev.apprecconproject.ActivityMainModule
+import com.rojasdev.apprecconproject.R
 import com.rojasdev.apprecconproject.adapters.adapterItemDate
 import com.rojasdev.apprecconproject.controller.animatedAlert
+import com.rojasdev.apprecconproject.controller.customSnackbar
+import com.rojasdev.apprecconproject.controller.price
 import com.rojasdev.apprecconproject.data.dataBase.AppDataBase
 import com.rojasdev.apprecconproject.data.dataModel.allCollecionAndCollector
+import com.rojasdev.apprecconproject.data.dataModel.collecionTotalCollector
+import com.rojasdev.apprecconproject.data.dataModel.collectorCollection
 import com.rojasdev.apprecconproject.databinding.FragmentInformeBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
+import java.time.Year
 import java.util.Calendar
 import java.util.Locale
 
 class FragmentInforme : Fragment() {
 
     private lateinit var adapter: adapterItemDate
-    private lateinit var colletion: List<allCollecionAndCollector>
     private var _binding: FragmentInformeBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentInformeBinding.inflate(inflater,container,false)
@@ -38,16 +44,25 @@ class FragmentInforme : Fragment() {
         requireActivity().onBackPressedDispatcher.addCallback(
                 viewLifecycleOwner,object : OnBackPressedCallback(true
             ){
-                override fun handleOnBackPressed() {
-
-                }
+                override fun handleOnBackPressed() { startActivity(Intent(requireContext(),ActivityMainModule::class.java)) }
             })
 
         binding.calendarView.setOnDateChangeListener { _, year, month, dayOfMonth ->
             val selectedDate = getDate(year, month, dayOfMonth)
-            binding.tvShowDates.text = "fecha: $selectedDate"
             showAllRecolecion(selectedDate)
         }
+
+         // Get phone date
+        val calendar = Calendar.getInstance()
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH)
+        val dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH)
+        calendar.set(year, month, dayOfMonth)
+        val dateFormat = "EEEE, MMMM dd 'del' yyyy"
+        val format = SimpleDateFormat(dateFormat, Locale("es", "ES"))
+        val date = format.format(calendar.time)
+         // Show current day data
+        showAllRecolecion(date)
 
         animatedAlert.animatedCv(binding.cardView)
 
@@ -56,13 +71,40 @@ class FragmentInforme : Fragment() {
 
     private fun showAllRecolecion(selectedDate: String) {
         CoroutineScope(Dispatchers.IO).launch{
-            val showAll = AppDataBase.getInstance(requireContext()).RecolectoresDao().getAllCollectorAndCollection(selectedDate)
+            val getAllID = AppDataBase.getInstance(requireContext()).RecolectoresDao().getAll()
+            val getTotalKg = AppDataBase.getInstance(requireContext()).RecolectoresDao().getTotalKgDate(selectedDate)
             launch(Dispatchers.Main) {
-                colletion = ArrayList(showAll)
-                adapter = adapterItemDate(showAll)
+                val showAll = mutableListOf<allCollecionAndCollector>()
+                for (item in getAllID){
+                    val query = AppDataBase.getInstance(requireContext()).RecolectoresDao().getAllCollectorAndCollectionId(selectedDate,item.toInt())
+                    if(query[0].name_recolector != null){
+                        if(query.isNotEmpty()) showAll.add(query[0])
+                    }
+                }
 
-                binding.recyclerView.adapter = adapter
-                binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+                binding.tvShowDates.text = "Total Recolectado: ${getTotalKg[0].Cantidad} Kg"
+
+                if (getTotalKg[0].Estado == "active"){
+                    price.priceSplit(getTotalKg[0].result.toInt()){
+                        binding.tvShowPay.text = "Total a Pagar: ${it}"
+                    }
+                } else {
+                    price.priceSplit(getTotalKg[0].result.toInt()){
+                        binding.tvShowPay.text = "Total Pagado: ${it}"
+                    }
+                }
+
+                if(showAll.isEmpty()) {
+                    //customSnackbar.showCustomSnackbar(requireView(),"No hay datos de ese dia")
+                    binding.recyclerView.visibility = View.GONE
+                    binding.userInfo.visibility = View.VISIBLE
+                }else{
+                    adapter = adapterItemDate(showAll)
+                    binding.recyclerView.adapter = adapter
+                    binding.userInfo.visibility = View.GONE
+                    binding.recyclerView.visibility = View.VISIBLE
+                    binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+                }
             }
         }
     }
@@ -73,6 +115,11 @@ class FragmentInforme : Fragment() {
         val dateFormat = "EEEE, MMMM dd 'del' yyyy"
         val format = SimpleDateFormat(dateFormat, Locale("es", "ES"))
         return format.format(calendar.time)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 }

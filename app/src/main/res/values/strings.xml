@@ -70,5 +70,7 @@
     <string name="finish">finalizar</string>
     <string name="collectado">pesa</string>
 
+    <string name="userInfo">No hay Recoleccion de ese Dia</string>
+
 
 </resources>

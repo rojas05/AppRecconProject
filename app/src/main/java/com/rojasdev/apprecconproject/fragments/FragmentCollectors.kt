@@ -91,8 +91,6 @@ class FragmentCollectors(
                             requireContext(), ActivityRecolectionDetail::class.java
                         ).putExtra("userId", item.id).putExtra("userName", item.name)
                         )
-                    } else {
-
                     }
                 }
             }

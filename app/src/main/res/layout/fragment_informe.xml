@@ -10,6 +10,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <View
+            android:id="@+id/viewHeaderBackground"
+            android:layout_width="match_parent"
+            android:layout_height="480dp"
+            android:background="@drawable/background_view_informe"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
@@ -35,25 +44,96 @@
             android:id="@+id/tvShowDates"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginTop="20dp"
             android:text="@string/collect"
-            android:textColor="@color/black"
-            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="35sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardView"
             app:layout_constraintVertical_bias="0.508" />
 
+        <TextView
+            android:id="@+id/tvShowPay"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="8dp"
+            android:text="@string/prince"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="35sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvShowDates"
+            app:layout_constraintVertical_bias="0.508" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvCollectionDetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:animateLayoutChanges="true"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/trasparent_background"
+            app:cardElevation="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/viewHeaderBackground">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/userInfo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/imagenCollection"
+                    android:layout_width="100dp"
+                    android:layout_height="85dp"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/ic_recolector"
+                    app:layout_constraintBottom_toBottomOf="@+id/imagenX"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/imagenX"
+                    app:tint="@color/Hippie_Green" />
+
+                <ImageView
+                    android:id="@+id/imagenX"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/ic_vacio"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/Hippie_Green" />
+
+                <TextView
+                    style="@style/tvInfoUser"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/userInfo"
+                    android:layout_marginBottom="5dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imagenX" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="0dp"
             android:layout_height="500dp"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvShowDates" />
+            app:layout_constraintTop_toBottomOf="@+id/cvCollectionDetail"
+            tools:listitem="@layout/item_rv_all_recolection_date" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -88,5 +88,13 @@
         <item name="android:textSize">20sp</item>
     </style>
 
+    <style name="tvInfoUser">
+        <item name="android:fontFamily">@font/comfortaa</item>
+        <item name="android:textColor">@color/Hippie_Green</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">25sp</item>
+    </style>
+
     <style name="Theme.AppRecconProject" parent="Base.Theme.AppRecconProject" />
 </resources>
