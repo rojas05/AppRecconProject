@@ -10,6 +10,7 @@
         android:id="@+id/bottomAppBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/gray_light"
         app:fabCradleMargin="10dp"
         app:fabCradleRoundedCornerRadius="10dp"
         app:fabCradleVerticalOffset="10dp"
@@ -23,10 +24,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
+            android:background="@drawable/trasparent_background"
             app:itemIconSize="28dp"
-            app:itemIconTint="@color/white"
-            app:itemTextColor="@color/white"
-            android:background="@drawable/background_fragment_informe"
             app:menu="@menu/bottom_nav_menu">
 
         </com.google.android.material.bottomnavigation.BottomNavigationView>

@@ -52,11 +52,11 @@ class ActivityRecolectionDetail : AppCompatActivity() {
                         // Update Collection
                         alertUpdateRecollection(it, idCollector)
                     }
-                        price.priceSplit(collection[0].result.toInt()){
-                            binding.tvTotal.text = "Total: ${it}"
+                        price.priceSplit(totalRecolection[0].price_total.toInt()){
+                            binding.tvTotal.text = "Total a Pagar: ${it}"
                         }
 
-                        binding.tvTitle.text = "Total Recolectado: ${totalRecolection[0].kg_collection}"
+                        binding.tvTitle.text = "Total Recolectado: ${totalRecolection[0].kg_collection} Kg"
                         binding.rvRecolections.adapter = adapter
                         binding.rvRecolections.layoutManager = LinearLayoutManager(this@ActivityRecolectionDetail)
 
@@ -80,7 +80,7 @@ class ActivityRecolectionDetail : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.N)
     private fun updateCollection(it:RecollectionEntity, idCollector: Int) {
         CoroutineScope(Dispatchers.IO).launch {
-            AppDataBase.getInstance(this@ActivityRecolectionDetail).RecollectionDao().updateCollection(it.ID!!,it.date,it.time,it.collector,it.total,it.setting)
+            AppDataBase.getInstance(this@ActivityRecolectionDetail).RecollectionDao().updateCollection(it.ID!!,it.date,it.collector,it.total,it.setting)
             launch(Dispatchers.Main){
                 getRecollection(idCollector)
                 Toast.makeText(this@ActivityRecolectionDetail, "Se actializo la Recoleccion", Toast.LENGTH_SHORT).show()

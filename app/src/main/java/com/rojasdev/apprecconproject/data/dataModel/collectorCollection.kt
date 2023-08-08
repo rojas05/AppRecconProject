@@ -10,6 +10,5 @@ data class collectorCollection(
     val Estado: String,
     val Alimentacion: String,
     val Fecha: String,
-    val Hora: String,
     val Fk_Configuracion: Int
 )

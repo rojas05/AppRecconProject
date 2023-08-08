@@ -41,8 +41,8 @@ interface RecolectoresDao {
     suspend fun updateCollectorState(id:Int)
 
     @Query("SELECT r.PK_ID_Recolector, r.name_recolector, re.PK_ID_Recoleccion, re.Cantidad, " +
-            "con.Precio * re.Cantidad AS result, con.Precio, "  +
-            "re.Estado, con.Alimentacion, re.Fecha, re.Hora, re.Fk_Configuracion " +
+            "(con.Precio * re.Cantidad) AS result, con.Precio, "  +
+            "re.Estado, con.Alimentacion, re.Fecha, re.Fk_Configuracion " +
             "FROM recolectores r " +
             "INNER JOIN Recoleccion re ON r.PK_ID_Recolector = re.Fk_recolector " +
             "INNER JOIN Configuracion con ON re.Fk_Configuracion = con.PK_ID_Configuracion " +
@@ -51,7 +51,7 @@ interface RecolectoresDao {
 
     @Query("SELECT r.PK_ID_Recolector, r.name_recolector, re.PK_ID_Recoleccion, SUM(re.Cantidad) AS Cantidad, " +
             "SUM(re.Cantidad * con.Precio) AS result, con.Precio, " +
-            "re.Estado, con.Alimentacion, re.Fecha, re.Hora, re.Fk_Configuracion " +
+            "re.Estado, con.Alimentacion, re.Fecha, re.Fk_Configuracion " +
             "FROM recolectores r " +
             "INNER JOIN Recoleccion re ON r.PK_ID_Recolector = re.Fk_recolector " +
             "INNER JOIN Configuracion con ON re.Fk_Configuracion = con.PK_ID_Configuracion " +
@@ -60,7 +60,7 @@ interface RecolectoresDao {
 
     @Query("SELECT r.PK_ID_Recolector, r.name_recolector, re.PK_ID_Recoleccion, SUM(re.Cantidad) AS Cantidad, " +
             "SUM(re.Cantidad * con.Precio) AS result, con.Precio, " +
-            "re.Estado, con.Alimentacion, re.Fecha, re.Hora, re.Fk_Configuracion " +
+            "re.Estado, con.Alimentacion, re.Fecha,  re.Fk_Configuracion " +
             "FROM recolectores r " +
             "INNER JOIN Recoleccion re ON r.PK_ID_Recolector = re.Fk_recolector " +
             "INNER JOIN Configuracion con ON re.Fk_Configuracion = con.PK_ID_Configuracion " +

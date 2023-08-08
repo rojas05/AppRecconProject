@@ -13,45 +13,79 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/Thunderbird">
+
+        <ImageView
+            android:id="@+id/image"
+            style="@style/itemRecolectionInfo"
+            android:layout_width="0dp"
+            android:layout_height="43dp"
+            android:src="@drawable/ic_recolector"
+            android:background="@color/Thunderbird"
+            app:layout_constraintBottom_toBottomOf="@+id/tvNameCollector"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:importantForAccessibility="no" />
 
         <TextView
             android:id="@+id/tvNameCollector"
-            style="@style/texViewAlert"
+            style="@style/itemRecolectionInfo"
+            android:background="@color/Thunderbird"
             android:layout_width="0dp"
             android:layout_height="43dp"
-            android:gravity="center"
             app:autoSizeTextType="uniform"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="cristian fabian rojas rojas" />
+            tools:text="Cristian fabian rojas rojas" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.15" />
+
+        <View
+            android:id="@+id/viewHeaderBackground"
+            android:layout_width="210dp"
+            android:layout_height="115dp"
+            android:background="@drawable/border_radius_item"
+            android:clickable="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvNameCollector" />
+
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fbAddKg"
-            style="@style/foadingButtons"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="15dp"
             android:clickable="true"
-            app:backgroundTint="@color/Dark_Tan"
+            android:focusable="true"
+            android:tint="@color/Thunderbird"
+            app:backgroundTint="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline5"
             app:layout_constraintTop_toBottomOf="@+id/tvNameCollector"
             app:srcCompat="@drawable/ic_kilogramo" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <ImageButton
             android:id="@+id/fbDeleteCollector"
-            style="@style/foadingButtons"
-            android:layout_width="wrap_content"
-            android:layout_height="56dp"
-            android:layout_marginTop="8dp"
+            android:layout_width="50dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/trasparent_background"
             android:clickable="true"
-            app:backgroundTint="@color/Dark_Tan"
+            android:focusable="true"
             app:layout_constraintEnd_toStartOf="@+id/guideline5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvNameCollector"
-            app:srcCompat="@drawable/ic_delete" />
+            app:srcCompat="@drawable/ic_delete"
+            app:tint="@color/Thunderbird" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline5"
@@ -63,34 +97,36 @@
         <TextView
             android:id="@+id/tvDeleteAndDetail"
             style="@style/tvItem"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="4dp"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
             android:layout_marginBottom="8dp"
             android:gravity="center"
             android:textAlignment="center"
+            android:textColor="@color/Thunderbird"
             app:autoSizeTextType="uniform"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/fbDeleteCollector"
-            tools:text="eliminar" />
+            tools:text="Eliminar" />
 
         <TextView
             android:id="@+id/tv"
             style="@style/tvItem"
-            android:layout_width="0dp"
+            android:layout_width="130dp"
             android:layout_height="30dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="4dp"
             android:layout_marginBottom="8dp"
             android:gravity="center"
             android:text="@string/collect"
+            android:textColor="@color/white"
             app:autoSizeTextType="uniform"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline5"
             app:layout_constraintTop_toBottomOf="@+id/fbAddKg" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.cardview.widget.CardView>

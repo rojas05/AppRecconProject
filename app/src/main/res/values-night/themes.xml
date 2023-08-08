@@ -36,8 +36,8 @@
     </style>
 
     <style name="buttons">
-        <item name="android:backgroundTint">@color/Dark_Tan</item>
-        <item name="android:textColor">@color/white</item>
+        <item name="android:backgroundTint">@color/white</item>
+        <item name="android:textColor">@color/Thunderbird</item>
         <item name="android:textStyle">bold</item>
     </style>
 

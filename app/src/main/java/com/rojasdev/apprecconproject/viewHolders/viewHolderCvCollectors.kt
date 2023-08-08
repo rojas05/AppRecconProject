@@ -35,20 +35,31 @@ class viewHolderCvCollectors( var view: View): RecyclerView.ViewHolder(view) {
         val result = item.id!!.toLong() in list
 
         if (result){
-            binding.fbDeleteCollector.setImageResource(R.drawable.ic_recolector)
+            binding.fbDeleteCollector.setImageResource(R.mipmap.ic_bolsa_cafe)
             binding.tvDeleteAndDetail.text = "Detalle"
             binding.fbDeleteCollector.setOnClickListener {
                 onClickListenerNext(item)
+                animatedAlert.animatedClick(binding.cvCollector)
+            }
+            binding.viewHeaderBackground.setOnClickListener {
+                onClickListenerNext(item)
+                animatedAlert.animatedClick(binding.cvCollector)
             }
         }else{
             binding.tvDeleteAndDetail.text = "Eliminar"
             binding.fbDeleteCollector.setOnClickListener {
                 onClickListenerDelete(item)
+                animatedAlert.animatedClick(binding.cvCollector)
+            }
+            binding.viewHeaderBackground.setOnClickListener {
+                onClickListenerDelete(item)
+                animatedAlert.animatedClick(binding.cvCollector)
             }
         }
 
         binding.fbAddKg.setOnClickListener {
             onClickListenerKg(item)
+            animatedAlert.animatedClick(binding.cvCollector)
         }
 
     }

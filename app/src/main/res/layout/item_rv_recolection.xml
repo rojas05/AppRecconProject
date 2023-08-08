@@ -13,27 +13,56 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/Thunderbird">
 
-        <View
-            android:id="@+id/imageView4"
+        <ImageView
+            android:id="@+id/image"
+            style="@style/itemRecolectionInfo"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="43dp"
+            android:src="@mipmap/ic_cafe_image"
             android:background="@color/Thunderbird"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/guideline1"
+            app:layout_constraintBottom_toBottomOf="@+id/tvNameCollector3"
+            app:layout_constraintEnd_toStartOf="@+id/guidelineImage"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:importantForAccessibility="no"
+            app:tint="@color/white" />
+
+        <TextView
+            android:id="@+id/tvNameCollector3"
+            style="@style/itemRecolectionInfo"
+            android:background="@color/Thunderbird"
+            android:layout_width="0dp"
+            android:layout_height="43dp"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guidelineImage"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Cristian fabian rojas rojas" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline1"
+            android:id="@+id/guidelineImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.023" />
+            app:layout_constraintGuide_percent="0.15" />
+
+        <View
+            android:id="@+id/viewHeaderBackground"
+            android:layout_width="225dp"
+            android:layout_height="158dp"
+            android:background="@drawable/border_radius_item"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvNameCollector3" />
 
         <TextView
             android:id="@+id/tvNameCollector"
+            style="@style/tvItem"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
@@ -42,13 +71,11 @@
             android:layout_marginBottom="8dp"
             android:fontFamily="@font/comfortaa"
             android:padding="1dp"
-            android:textColor="@color/black"
-            android:textSize="15sp"
-            android:textStyle="bold"
+            android:textSize="17sp"
             app:layout_constraintBottom_toTopOf="@+id/tvTime"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
-            app:layout_constraintStart_toStartOf="@+id/guideline1"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvNameCollector3"
             tools:text="Fecha" />
 
         <TextView
@@ -63,8 +90,7 @@
             android:textSize="17sp"
             app:layout_constraintBottom_toTopOf="@+id/tvDate"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@+id/guideline1"
+            app:layout_constraintStart_toStartOf="parent"
             tools:text="Hora" />
 
         <TextView
@@ -79,8 +105,7 @@
             android:textSize="17sp"
             app:layout_constraintBottom_toTopOf="@+id/tvFeending"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@+id/guideline1"
+            app:layout_constraintStart_toStartOf="parent"
             tools:text="Precio" />
 
         <TextView
@@ -96,7 +121,7 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
-            app:layout_constraintStart_toStartOf="@+id/guideline1"
+            app:layout_constraintStart_toStartOf="parent"
             tools:text="@string/tvFeend" />
 
         <androidx.constraintlayout.widget.Guideline
@@ -106,52 +131,43 @@
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.55" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.6" />
-
         <TextView
             android:id="@+id/tvKgDetail"
-            style="@style/texViewDescriptionInformed"
+            style="@style/texViewKg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-            android:padding="2dp"
+            android:layout_marginTop="12dp"
             android:text="@string/tvKg"
-            android:textColor="@color/black"
-            android:textSize="30sp"
+            android:textSize="32sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.489"
-            app:layout_constraintStart_toEndOf="@+id/guideline"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toEndOf="@+id/viewHeaderBackground"
+            app:layout_constraintTop_toBottomOf="@+id/tvNameCollector3" />
 
         <TextView
             android:id="@+id/tvKgTxt"
-            style="@style/texViewDescriptionInformed"
+            style="@style/texViewKg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="1dp"
+            android:layout_marginTop="5dp"
             android:text="@string/tvKgtxt"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="@+id/tvKgDetail"
-            app:layout_constraintStart_toStartOf="@+id/tvKgDetail"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/viewHeaderBackground"
             app:layout_constraintTop_toBottomOf="@+id/tvKgDetail" />
 
         <Button
             android:id="@+id/btnUpdate"
             style="@style/buttons"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:background="@drawable/border_radius_btn"
+            android:textColor="@color/Thunderbird"
+            android:text="@string/update"
             android:layout_marginTop="3dp"
             android:layout_marginBottom="3dp"
-            android:text="@string/update"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintStart_toEndOf="@+id/viewHeaderBackground"
             app:layout_constraintTop_toBottomOf="@+id/tvKgTxt" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

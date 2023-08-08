@@ -8,6 +8,7 @@ import com.rojasdev.apprecconproject.controller.price
 import com.rojasdev.apprecconproject.data.dataModel.allCollecionAndCollector
 import com.rojasdev.apprecconproject.databinding.ItemRvAllRecolectionDateBinding
 import java.text.SimpleDateFormat
+import java.util.Date
 import java.util.Locale
 
 class viewHolderItemDate( var view: View ): RecyclerView.ViewHolder(view) {
@@ -20,7 +21,15 @@ class viewHolderItemDate( var view: View ): RecyclerView.ViewHolder(view) {
 
         binding.cvCollectionDetail.animation = AnimationUtils.loadAnimation(view.context, R.anim.recycler_transition)
 
-            binding.tvDate.text = itemDetail.Hora
+        val getDate = itemDetail.Fecha
+        val formatDate = "EEEE, MMMM dd 'del' yyyy 'Hora: ' HH:mm"
+        val formatoDate = SimpleDateFormat(formatDate, Locale("es", "CO"))
+        val formato = SimpleDateFormat("'Hora: ' HH:mm", Locale("es", "CO"))
+        val date = formatoDate.parse(getDate)
+        val timeFormat = formato.format(date)
+
+
+            binding.tvDate.text = timeFormat
             binding.tvNameCollector.text = itemDetail.name_recolector
             binding.tvKgDetail.text = "${itemDetail.Cantidad} Kg"
 

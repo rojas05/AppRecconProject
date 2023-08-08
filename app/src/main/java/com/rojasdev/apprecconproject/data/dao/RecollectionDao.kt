@@ -17,8 +17,8 @@ interface RecollectionDao {
     @Query("SELECT Fk_recolector FROM Recoleccion  WHERE Estado == 'active'")
     suspend fun getfKIdCollectors(): List<Long>
 
-    @Query("UPDATE Recoleccion SET Cantidad = :Kg, Fecha = :date, Hora = :time, Fk_Configuracion = :feed WHERE PK_ID_Recoleccion = :idCollecion AND Fk_recolector = :idCollector")
-    suspend fun updateCollection(idCollecion:Int, date:String, time:String, idCollector:Int, Kg:Double, feed:Int)
+    @Query("UPDATE Recoleccion SET Cantidad = :Kg, Fecha = :date,  Fk_Configuracion = :feed WHERE PK_ID_Recoleccion = :idCollecion AND Fk_recolector = :idCollector")
+    suspend fun updateCollection(idCollecion:Int, date:String, idCollector:Int, Kg:Double, feed:Int)
 
     @Query("UPDATE recoleccion SET estado = 'archive' WHERE Fk_recolector = :id")
     suspend fun updateCollectionState(id:Int)

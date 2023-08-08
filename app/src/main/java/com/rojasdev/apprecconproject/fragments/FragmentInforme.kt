@@ -7,6 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.cardview.widget.CardView
+import androidx.core.view.marginBottom
+import androidx.core.view.marginEnd
+import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.rojasdev.apprecconproject.ActivityMainModule
@@ -72,11 +75,11 @@ class FragmentInforme : Fragment() {
     private fun showAllRecolecion(selectedDate: String) {
         CoroutineScope(Dispatchers.IO).launch{
             val getAllID = AppDataBase.getInstance(requireContext()).RecolectoresDao().getAll()
-            val getTotalKg = AppDataBase.getInstance(requireContext()).RecolectoresDao().getTotalKgDate(selectedDate)
+            val getTotalKg = AppDataBase.getInstance(requireContext()).RecolectoresDao().getTotalKgDate("${selectedDate}%")
             launch(Dispatchers.Main) {
                 val showAll = mutableListOf<allCollecionAndCollector>()
                 for (item in getAllID){
-                    val query = AppDataBase.getInstance(requireContext()).RecolectoresDao().getAllCollectorAndCollectionId(selectedDate,item.toInt())
+                    val query = AppDataBase.getInstance(requireContext()).RecolectoresDao().getAllCollectorAndCollectionId("${selectedDate}%",item.toInt())
                     if(query[0].name_recolector != null){
                         if(query.isNotEmpty()) showAll.add(query[0])
                     }
@@ -99,6 +102,9 @@ class FragmentInforme : Fragment() {
                     binding.recyclerView.visibility = View.GONE
                     binding.userInfo.visibility = View.VISIBLE
                 }else{
+
+                    binding.nestedScrollView.smoothScrollTo(0, 744)
+
                     adapter = adapterItemDate(showAll)
                     binding.recyclerView.adapter = adapter
                     binding.userInfo.visibility = View.GONE
