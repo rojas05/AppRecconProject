@@ -3,6 +3,7 @@ package com.rojasdev.apprecconproject.data.dao
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import com.rojasdev.apprecconproject.data.dataModel.allCollecionAndCollector
 import com.rojasdev.apprecconproject.data.dataModel.collecionTotalCollector
 import com.rojasdev.apprecconproject.data.dataModel.collectorCollection
 import com.rojasdev.apprecconproject.data.dataModel.weekPdf
@@ -20,8 +21,13 @@ interface RecolectoresDao {
 
     @Query("SELECT PK_ID_Recolector FROM recolectores WHERE estado_recolector == 'active'")
     suspend fun getIDCollectors(): List<Long>
+
+    @Query("SELECT PK_ID_Recolector FROM recolectores")
+    suspend fun getAll(): List<Long>
+
     @Query("SELECT PK_ID_Recolector FROM recolectores WHERE estado_recolector == 'active' OR estado_recolector == 'archived'")
     suspend fun getAllIdCollectors(): List<Long>
+
     @Query("Delete from recolectores WHERE PK_ID_Recolector LIKE :id")
     suspend fun deleteCollectorId(id: Int)
 
@@ -47,6 +53,24 @@ interface RecolectoresDao {
             "INNER JOIN Configuracion con ON re.Fk_Configuracion = con.PK_ID_Configuracion " +
             "WHERE re.Estado == :state AND re.Fk_recolector LIKE :id  ORDER BY re.Fecha DESC")
     suspend fun getCollectorAndCollection(state: String, id: Int): List<collectorCollection>
+
+    @Query("SELECT r.PK_ID_Recolector, r.name_recolector, re.PK_ID_Recoleccion, SUM(re.Cantidad) AS Cantidad, " +
+            "SUM(re.Cantidad * con.Precio) AS result, con.Precio, " +
+            "re.Estado, con.Alimentacion, re.Fecha, re.Fk_Configuracion " +
+            "FROM recolectores r " +
+            "INNER JOIN Recoleccion re ON r.PK_ID_Recolector = re.Fk_recolector " +
+            "INNER JOIN Configuracion con ON re.Fk_Configuracion = con.PK_ID_Configuracion " +
+            "WHERE re.Fecha LIKE :dates AND r.PK_ID_Recolector == :id ORDER BY re.Fecha DESC")
+    suspend fun getAllCollectorAndCollectionId(dates: String, id: Int): List<allCollecionAndCollector>
+
+    @Query("SELECT r.PK_ID_Recolector, r.name_recolector, re.PK_ID_Recoleccion, SUM(re.Cantidad) AS Cantidad, " +
+            "SUM(re.Cantidad * con.Precio) AS result, con.Precio, " +
+            "re.Estado, con.Alimentacion, re.Fecha,  re.Fk_Configuracion " +
+            "FROM recolectores r " +
+            "INNER JOIN Recoleccion re ON r.PK_ID_Recolector = re.Fk_recolector " +
+            "INNER JOIN Configuracion con ON re.Fk_Configuracion = con.PK_ID_Configuracion " +
+            "WHERE re.Fecha LIKE :dates ORDER BY re.Fecha DESC")
+    suspend fun getTotalKgDate(dates: String): List<allCollecionAndCollector>
 
     @Query("SELECT r.PK_ID_Recolector, r.name_recolector, " +
             "sum(re.Cantidad) AS result, " +

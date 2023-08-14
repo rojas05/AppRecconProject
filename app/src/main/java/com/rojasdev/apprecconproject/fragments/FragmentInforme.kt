@@ -1,14 +1,11 @@
 package com.rojasdev.apprecconproject.fragments
 
-import android.content.pm.PackageManager
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.rojasdev.apprecconproject.ActivityMainModule
@@ -44,16 +41,20 @@ class FragmentInforme : Fragment() {
                 override fun handleOnBackPressed() { startActivity(Intent(requireContext(),ActivityMainModule::class.java)) }
             })
 
-         // Obtene la fecha del calendario
         binding.calendarView.setOnDateChangeListener { _, year, month, dayOfMonth ->
             val selectedDate = getDate(year, month, dayOfMonth)
             showAllRecolecion(selectedDate)
         }
 
          // Get phone date
-        val calendar = Calendar.getInstance().time
-        val format = SimpleDateFormat("EEEE, MMMM dd 'del' yyyy", Locale("es", "ES"))
-        val date = format.format(calendar)
+        val calendar = Calendar.getInstance()
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH)
+        val dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH)
+        calendar.set(year, month, dayOfMonth)
+        val dateFormat = "EEEE, MMMM dd 'del' yyyy"
+        val format = SimpleDateFormat(dateFormat, Locale("es", "ES"))
+        val date = format.format(calendar.time)
          // Show current day data
         showAllRecolecion(date)
 
@@ -88,11 +89,12 @@ class FragmentInforme : Fragment() {
                 }
 
                 if(showAll.isEmpty()) {
+                    //customSnackbar.showCustomSnackbar(requireView(),"No hay datos de ese dia")
                     binding.recyclerView.visibility = View.GONE
-                    binding.userInfo.visibility = View.VISIBLE // Mostrar que no hay datos
+                    binding.userInfo.visibility = View.VISIBLE
                 }else{
 
-                    binding.nestedScrollView.smoothScrollTo(0, 844) // Auto Scroll si hay datos
+                    binding.nestedScrollView.smoothScrollTo(0, 744)
 
                     adapter = adapterItemDate(showAll)
                     binding.recyclerView.adapter = adapter
@@ -104,7 +106,6 @@ class FragmentInforme : Fragment() {
         }
     }
 
-     // Obtengo el formato de fecha como la BD
     private fun getDate(year: Int, month: Int, dayOfMonth: Int): String {
         val calendar = Calendar.getInstance()
             calendar.set(year, month, dayOfMonth)
@@ -113,7 +114,6 @@ class FragmentInforme : Fragment() {
         return format.format(calendar.time)
     }
 
-     // Liberar la referencia de la vista y evitar posibles fugas de memoria.
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

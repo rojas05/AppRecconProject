@@ -2,10 +2,7 @@ package com.rojasdev.apprecconproject
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.viewpager2.widget.ViewPager2
-import com.google.android.material.tabs.TabLayout
 import com.rojasdev.apprecconproject.databinding.ActivityInformesBinding
 import com.rojasdev.apprecconproject.fragments.FragmentInforme
 import com.rojasdev.apprecconproject.fragments.FragmentPdf
