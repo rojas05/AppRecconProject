@@ -53,4 +53,7 @@ dependencies {
 
     // Coroutines
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1'
+
+    // ITextPDF5
+    implementation 'com.itextpdf:itextg:5.5.10'
 }
