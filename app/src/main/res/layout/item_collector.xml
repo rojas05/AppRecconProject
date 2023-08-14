@@ -85,7 +85,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvNameCollector"
             app:srcCompat="@drawable/ic_delete"
-            app:tint="@color/Thunderbird" />
+            app:tint="@color/black" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline5"
@@ -102,7 +102,6 @@
             android:layout_marginBottom="8dp"
             android:gravity="center"
             android:textAlignment="center"
-            android:textColor="@color/Thunderbird"
             app:autoSizeTextType="uniform"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline5"

@@ -20,7 +20,8 @@
         app:layout_constraintBottom_toTopOf="@+id/guideline11"
         app:layout_constraintEnd_toStartOf="@+id/guideline10"
         app:layout_constraintStart_toStartOf="parent"
-        tools:targetApi="o" />
+        tools:targetApi="o"
+        tools:text="$500"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline10"
@@ -55,7 +56,8 @@
         app:autoSizeTextType="uniform"
         app:layout_constraintBottom_toTopOf="@+id/guideline11"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline10" />
+        app:layout_constraintStart_toStartOf="@+id/guideline10"
+        tools:text="$800"/>
 
     <Button
         android:id="@+id/btSettings"

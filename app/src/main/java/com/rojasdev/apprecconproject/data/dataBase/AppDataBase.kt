@@ -32,8 +32,7 @@ abstract class AppDataBase : RoomDatabase() {
 
             fun getInstance(context: Context): AppDataBase {
                 if (Instance == null) {
-                 Instance = Room.databaseBuilder(context.applicationContext, AppDataBase::class.java, AppDataBase.DATABASE_NAME)
-                     .build()
+                 Instance = Room.databaseBuilder(context.applicationContext, AppDataBase::class.java, DATABASE_NAME).build()
                 }
                    return Instance!!
             }

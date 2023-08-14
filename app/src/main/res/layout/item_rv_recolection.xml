@@ -36,11 +36,11 @@
             android:background="@color/Thunderbird"
             android:layout_width="0dp"
             android:layout_height="43dp"
+            android:text="@string/cvKg"
             app:autoSizeTextType="uniform"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guidelineImage"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Cristian fabian rojas rojas" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineImage"
@@ -51,12 +51,12 @@
 
         <View
             android:id="@+id/viewHeaderBackground"
-            android:layout_width="225dp"
-            android:layout_height="158dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:background="@drawable/border_radius_item"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvNameCollector3" />
 
@@ -65,9 +65,9 @@
             style="@style/tvItem"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
+            android:layout_marginStart="15dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="12dp"
             android:layout_marginBottom="8dp"
             android:fontFamily="@font/comfortaa"
             android:padding="1dp"
@@ -129,14 +129,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.55" />
+            app:layout_constraintGuide_percent="0.58" />
 
         <TextView
             android:id="@+id/tvKgDetail"
             style="@style/texViewKg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="10dp"
             android:text="@string/tvKg"
             android:textSize="32sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -163,7 +163,7 @@
             android:background="@drawable/border_radius_btn"
             android:textColor="@color/Thunderbird"
             android:text="@string/update"
-            android:layout_marginTop="3dp"
+            android:layout_marginTop="2dp"
             android:layout_marginBottom="3dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

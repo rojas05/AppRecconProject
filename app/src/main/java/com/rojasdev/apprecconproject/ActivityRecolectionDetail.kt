@@ -31,6 +31,7 @@ class ActivityRecolectionDetail : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+         // Recibir parametros
         val idCollector = intent.getIntExtra("userId", 0)
         val userName = intent.getStringExtra("userName")
 

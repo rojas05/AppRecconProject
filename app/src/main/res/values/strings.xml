@@ -49,7 +49,7 @@
     <string name="collectionCancel">Pagar recoleccion</string>
     <string name="collectors">Recolectores</string>
 
-    <string name="cvKg">Ultima Recoleccion</string>
+    <string name="cvKg">Informacion de Recoleccion</string>
     <string name="tvKg">216 Kg</string>
     <string name="tvFeend">Alimentacion:</string>
     <string name="tvRecolcection">Total recolectado: 150 Kg</string>
@@ -70,7 +70,7 @@
     <string name="finish">finalizar</string>
     <string name="collectado">pesa</string>
 
-    <string name="userInfo">No hay Recoleccion de ese Dia</string>
+    <string name="userInfo">No se Recolecto ese Dia</string>
 
 
 </resources>

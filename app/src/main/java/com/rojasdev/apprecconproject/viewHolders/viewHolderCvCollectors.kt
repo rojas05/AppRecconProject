@@ -39,29 +39,32 @@ class viewHolderCvCollectors( var view: View): RecyclerView.ViewHolder(view) {
             binding.tvDeleteAndDetail.text = "Detalle"
             binding.fbDeleteCollector.setOnClickListener {
                 onClickListenerNext(item)
-                animatedAlert.animatedClick(binding.cvCollector)
+                animationOnCLick()
             }
             binding.viewHeaderBackground.setOnClickListener {
                 onClickListenerNext(item)
-                animatedAlert.animatedClick(binding.cvCollector)
+                animationOnCLick()
             }
         }else{
             binding.tvDeleteAndDetail.text = "Eliminar"
             binding.fbDeleteCollector.setOnClickListener {
                 onClickListenerDelete(item)
-                animatedAlert.animatedClick(binding.cvCollector)
+                animationOnCLick()
             }
             binding.viewHeaderBackground.setOnClickListener {
                 onClickListenerDelete(item)
-                animatedAlert.animatedClick(binding.cvCollector)
+                animationOnCLick()
             }
         }
 
         binding.fbAddKg.setOnClickListener {
             onClickListenerKg(item)
-            animatedAlert.animatedClick(binding.cvCollector)
+            animationOnCLick()
         }
 
     }
+
+     // Animation
+    private fun animationOnCLick() { animatedAlert.animatedClick(binding.cvCollector) }
 
 }

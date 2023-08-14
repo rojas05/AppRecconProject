@@ -64,13 +64,13 @@ class FragmentCollectors(
                     ingresosL,
                     idCollectors,
                     { item ->
-                        initDetailCollector(item)
+                        initDetailCollector(item) // Next Activity
                     },
                     {
-                        initAlertDelete(it)
+                        initAlertDelete(it) // Delete
                     },
                     {
-                        InitAlertAddCollection(it)
+                        InitAlertAddCollection(it) // Add Recolection
                     }
                 )
 
@@ -90,7 +90,7 @@ class FragmentCollectors(
                     if(getId.isNotEmpty()) {
                         startActivity(Intent(
                                 requireContext(), ActivityRecolectionDetail::class.java
-                            ).putExtra("userId", item.id).putExtra("userName", item.name)
+                            ).putExtra("userId", item.id).putExtra("userName", item.name) // Pasar parametros
                         )
                     }
                 }

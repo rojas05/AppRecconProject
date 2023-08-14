@@ -110,6 +110,7 @@
                     app:tint="@color/Hippie_Green" />
 
                 <TextView
+                    android:id="@+id/tvInformation"
                     style="@style/tvInfoUser"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"

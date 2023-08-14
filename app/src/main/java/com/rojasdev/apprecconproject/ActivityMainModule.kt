@@ -28,7 +28,7 @@ class ActivityMainModule : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        title = "Precios "
+        title = "Precios"
 
         this.onBackPressedDispatcher.addCallback(object : OnBackPressedCallback(true){
             override fun handleOnBackPressed() {

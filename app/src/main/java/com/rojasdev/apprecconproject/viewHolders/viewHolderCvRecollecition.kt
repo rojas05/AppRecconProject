@@ -23,14 +23,16 @@ class viewHolderCvRecollecition( var view: View ): RecyclerView.ViewHolder(view)
 
         binding.cvCollectionDetail.animation = AnimationUtils.loadAnimation(view.context, R.anim.recycler_transition)
 
+         // Cambiar el formato de la Fecha
         val getDate = itemDetail.Fecha
-        val formatDate = "EEEE, MMMM dd 'del' yyyy 'Hora: ' HH:mm"
-        val formatoDate = SimpleDateFormat(formatDate, Locale("es", "CO"))
-        val formato = SimpleDateFormat("'Hora: ' HH:mm", Locale("es", "CO"))
-        val date = formatoDate.parse(getDate)
-        val timeFormat = formato.format(date)
+        val formatDateOriginal = SimpleDateFormat("EEEE, MMMM dd 'del' yyyy 'Hora: ' HH:mm", Locale("es", "CO"))
+        val formatDate = SimpleDateFormat("EEEE, MMMM dd 'del' yyyy", Locale("es", "CO"))
+        val formatHour = SimpleDateFormat("'Hora: ' HH:mm", Locale("es", "CO"))
+        val date = formatDateOriginal.parse(getDate)
+        val timeFormat = formatHour.format(date) // Hora
+        val dateFormat = formatDate.format(date) // Fecha
 
-            binding.tvNameCollector.text = "Fecha: ${itemDetail.Fecha}"
+            binding.tvNameCollector.text = "Fecha: ${dateFormat}"
             binding.tvTime.text = timeFormat
             binding.tvKgDetail.text = "${itemDetail.Cantidad} Kg"
 

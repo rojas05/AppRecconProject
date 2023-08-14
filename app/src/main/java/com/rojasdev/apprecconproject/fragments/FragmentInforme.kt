@@ -6,28 +6,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
-import androidx.cardview.widget.CardView
-import androidx.core.view.marginBottom
-import androidx.core.view.marginEnd
-import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.rojasdev.apprecconproject.ActivityMainModule
-import com.rojasdev.apprecconproject.R
 import com.rojasdev.apprecconproject.adapters.adapterItemDate
 import com.rojasdev.apprecconproject.controller.animatedAlert
-import com.rojasdev.apprecconproject.controller.customSnackbar
 import com.rojasdev.apprecconproject.controller.price
 import com.rojasdev.apprecconproject.data.dataBase.AppDataBase
 import com.rojasdev.apprecconproject.data.dataModel.allCollecionAndCollector
-import com.rojasdev.apprecconproject.data.dataModel.collecionTotalCollector
-import com.rojasdev.apprecconproject.data.dataModel.collectorCollection
 import com.rojasdev.apprecconproject.databinding.FragmentInformeBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
-import java.time.Year
 import java.util.Calendar
 import java.util.Locale
 
@@ -50,20 +41,16 @@ class FragmentInforme : Fragment() {
                 override fun handleOnBackPressed() { startActivity(Intent(requireContext(),ActivityMainModule::class.java)) }
             })
 
+         // Obtene la fecha del calendario
         binding.calendarView.setOnDateChangeListener { _, year, month, dayOfMonth ->
             val selectedDate = getDate(year, month, dayOfMonth)
             showAllRecolecion(selectedDate)
         }
 
          // Get phone date
-        val calendar = Calendar.getInstance()
-        val year = calendar.get(Calendar.YEAR)
-        val month = calendar.get(Calendar.MONTH)
-        val dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH)
-        calendar.set(year, month, dayOfMonth)
-        val dateFormat = "EEEE, MMMM dd 'del' yyyy"
-        val format = SimpleDateFormat(dateFormat, Locale("es", "ES"))
-        val date = format.format(calendar.time)
+        val calendar = Calendar.getInstance().time
+        val format = SimpleDateFormat("EEEE, MMMM dd 'del' yyyy", Locale("es", "ES"))
+        val date = format.format(calendar)
          // Show current day data
         showAllRecolecion(date)
 
@@ -98,12 +85,11 @@ class FragmentInforme : Fragment() {
                 }
 
                 if(showAll.isEmpty()) {
-                    //customSnackbar.showCustomSnackbar(requireView(),"No hay datos de ese dia")
                     binding.recyclerView.visibility = View.GONE
-                    binding.userInfo.visibility = View.VISIBLE
+                    binding.userInfo.visibility = View.VISIBLE // Mostrar que no hay datos
                 }else{
 
-                    binding.nestedScrollView.smoothScrollTo(0, 744)
+                    binding.nestedScrollView.smoothScrollTo(0, 844) // Auto Scroll si hay datos
 
                     adapter = adapterItemDate(showAll)
                     binding.recyclerView.adapter = adapter
@@ -115,6 +101,7 @@ class FragmentInforme : Fragment() {
         }
     }
 
+     // Obtengo el formato de fecha como la BD
     private fun getDate(year: Int, month: Int, dayOfMonth: Int): String {
         val calendar = Calendar.getInstance()
             calendar.set(year, month, dayOfMonth)
@@ -123,6 +110,7 @@ class FragmentInforme : Fragment() {
         return format.format(calendar.time)
     }
 
+     // Liberar la referencia de la vista y evitar posibles fugas de memoria.
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
