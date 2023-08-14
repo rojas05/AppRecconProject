@@ -46,16 +46,11 @@ class FragmentInforme : Fragment() {
             showAllRecolecion(selectedDate)
         }
 
-         // Get phone date
-        val calendar = Calendar.getInstance()
-        val year = calendar.get(Calendar.YEAR)
-        val month = calendar.get(Calendar.MONTH)
-        val dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH)
-        calendar.set(year, month, dayOfMonth)
-        val dateFormat = "EEEE, MMMM dd 'del' yyyy"
-        val format = SimpleDateFormat(dateFormat, Locale("es", "ES"))
-        val date = format.format(calendar.time)
-         // Show current day data
+        // Get phone date
+        val calendar = Calendar.getInstance().time
+        val format = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale("es", "ES"))
+        val date = format.format(calendar)
+        // Show current day data
         showAllRecolecion(date)
 
         animatedAlert.animatedCv(binding.cardView)
@@ -89,12 +84,11 @@ class FragmentInforme : Fragment() {
                 }
 
                 if(showAll.isEmpty()) {
-                    //customSnackbar.showCustomSnackbar(requireView(),"No hay datos de ese dia")
                     binding.recyclerView.visibility = View.GONE
-                    binding.userInfo.visibility = View.VISIBLE
+                    binding.userInfo.visibility = View.VISIBLE // Mostrar que no hay datos
                 }else{
 
-                    binding.nestedScrollView.smoothScrollTo(0, 744)
+                    binding.nestedScrollView.smoothScrollTo(0, 844) // Auto Scroll si hay datos
 
                     adapter = adapterItemDate(showAll)
                     binding.recyclerView.adapter = adapter
@@ -106,14 +100,16 @@ class FragmentInforme : Fragment() {
         }
     }
 
+    // Obtengo el formato de fecha como la BD
     private fun getDate(year: Int, month: Int, dayOfMonth: Int): String {
         val calendar = Calendar.getInstance()
             calendar.set(year, month, dayOfMonth)
-        val dateFormat = "EEEE, MMMM dd 'del' yyyy"
+        val dateFormat = "yyyy-MM-dd HH:mm:ss"
         val format = SimpleDateFormat(dateFormat, Locale("es", "ES"))
         return format.format(calendar.time)
     }
 
+     // Liberar la referencia de la vista y evitar posibles fugas de memoria.
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
