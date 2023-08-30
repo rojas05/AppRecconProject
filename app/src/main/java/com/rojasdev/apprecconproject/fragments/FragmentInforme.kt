@@ -1,5 +1,6 @@
 package com.rojasdev.apprecconproject.fragments
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -48,7 +49,7 @@ class FragmentInforme : Fragment() {
 
         // Get phone date
         val calendar = Calendar.getInstance().time
-        val format = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale("es", "ES"))
+        val format = SimpleDateFormat("yyyy-MM-dd", Locale("es", "ES"))
         val date = format.format(calendar)
         // Show current day data
         showAllRecolecion(date)
@@ -58,6 +59,7 @@ class FragmentInforme : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("SetTextI18n")
     private fun showAllRecolecion(selectedDate: String) {
         CoroutineScope(Dispatchers.IO).launch{
             val getAllID = AppDataBase.getInstance(requireContext()).RecolectoresDao().getAll()
@@ -75,11 +77,11 @@ class FragmentInforme : Fragment() {
 
                 if (getTotalKg[0].Estado == "active"){
                     price.priceSplit(getTotalKg[0].result.toInt()){
-                        binding.tvShowPay.text = "Total a Pagar: ${it}"
+                        binding.tvShowPay.text = "Total a Pagar: $it"
                     }
                 } else {
                     price.priceSplit(getTotalKg[0].result.toInt()){
-                        binding.tvShowPay.text = "Total Pagado: ${it}"
+                        binding.tvShowPay.text = "Total Pagado: $it"
                     }
                 }
 
@@ -101,10 +103,11 @@ class FragmentInforme : Fragment() {
     }
 
     // Obtengo el formato de fecha como la BD
+    @SuppressLint("SuspiciousIndentation")
     private fun getDate(year: Int, month: Int, dayOfMonth: Int): String {
         val calendar = Calendar.getInstance()
             calendar.set(year, month, dayOfMonth)
-        val dateFormat = "yyyy-MM-dd HH:mm:ss"
+        val dateFormat = "yyyy-MM-dd"
         val format = SimpleDateFormat(dateFormat, Locale("es", "ES"))
         return format.format(calendar.time)
     }

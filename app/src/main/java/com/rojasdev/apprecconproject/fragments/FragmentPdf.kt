@@ -1,125 +1,147 @@
 package com.rojasdev.apprecconproject.fragments
 
+import android.annotation.SuppressLint
+import android.app.Activity
+import android.content.ActivityNotFoundException
 import android.content.Intent
-import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
-import android.os.Environment
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import androidx.core.content.FileProvider
+import com.rojasdev.apprecconproject.R
 import com.rojasdev.apprecconproject.alert.alert_create_pdf
 import com.rojasdev.apprecconproject.controller.animatedAlert
 import com.rojasdev.apprecconproject.databinding.FragmentPdfBinding
-import java.io.File
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 class FragmentPdf : Fragment() {
     private var _binding: FragmentPdfBinding? = null
     private val binding get() = _binding!!
 
+    private val CREATE_PDF_REQUEST_CODE = 2
+    private var clickWeek: Boolean = false
+    private var clickMonth: Boolean = false
+    private var clickYear: Boolean = false
+
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentPdfBinding.inflate(inflater,container,false)
+
+        val calendar = Calendar.getInstance().time
+        val format = SimpleDateFormat("yyyy-MM-dd", Locale("es", "CO"))
+        val date = format.format(calendar)
 
         animatedAlert.animatedCv(binding.cv)
         animatedAlert.animatedCv(binding.cv1)
         animatedAlert.animatedCv(binding.cv2)
 
 
-        //revisando el estado de los permisos
-        if(checkPermission()) {
-            //si los permisos estan concedidos
-            Toast.makeText(requireContext(),"bienvenido", Toast.LENGTH_SHORT).show()
-        } else {
-            //si los permisos NO estan concedidos los solicitamos
-            requestPermissions()
+        binding.btIWeek.setOnClickListener {
+            clickWeek = true
+            clickMonth = false
+            clickYear = false
+            createPdf(getString(R.string.week), date)
         }
 
-        binding.btIWeek.setOnClickListener {
-            //llamada del alert para generara el pdf
-            alert_create_pdf(
-                //que pfd deve generar
-                "week"
-            ){
-                //abrir el pdf generado
-                openPdf(it)
-            }.show(parentFragmentManager,"dialog")
+        binding.btnInforme.setOnClickListener {
+            clickMonth = true
+            clickWeek = false
+            clickYear = false
+            createPdf(getString(R.string.month), date)
+        }
+
+        binding.btCreateYear.setOnClickListener{
+            clickYear = true
+            clickMonth = false
+            clickWeek = false
+            createPdf(getString(R.string.year), date)
         }
 
         return binding.root
     }
 
+    @Deprecated("Deprecated in Java")
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
 
-//pedida de permisos
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<String?>,
-        grantResults: IntArray
-    ) {
-        if (requestCode == 200) {
-            if (grantResults.isNotEmpty()) {
-                val writeStorage = grantResults[0] == PackageManager.PERMISSION_GRANTED
-                val readStorage = grantResults[1] == PackageManager.PERMISSION_GRANTED
-                if (writeStorage && readStorage) {
-                    Toast.makeText(requireContext(), "Permiso concedido", Toast.LENGTH_LONG).show()
+        if (requestCode == CREATE_PDF_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            data?.data?.also { uri ->
+                try {
+
+                     // Pdf Semanal
+                    if(clickWeek){
+                        alert_create_pdf(
+                            "week",
+                            uri
+                        ) {
+                            openPdfFromUri(uri)
+                        }.show(parentFragmentManager,"dialog")
+                    }
+
+                     // Pdf Mensual
+                    if (clickMonth){
+                        alert_create_pdf(
+                            "month",
+                            uri
+                        ) {
+                            openPdfFromUri(uri)
+                        }.show(parentFragmentManager,"dialog")
+                    }
+
+                     // Pdf Anual
+                    if (clickYear){
+                        alert_create_pdf(
+                            "year",
+                            uri
+                        ) {
+                            openPdfFromUri(uri)
+                        }.show(parentFragmentManager, "dialog")
+                    }
+
+                } catch (e: Exception) {
+                    e.printStackTrace()
                 }
             }
         }
     }
 
-    //verificacion de permisos
-    private fun checkPermission(): Boolean {
-        val permission1 =
-            ContextCompat.checkSelfPermission(requireContext(),
-                android.Manifest.permission.WRITE_EXTERNAL_STORAGE
-            )
-        val permission2 =
-            ContextCompat.checkSelfPermission(requireContext(),
-                android.Manifest.permission.READ_EXTERNAL_STORAGE
-            )
-        return permission1 == PackageManager.PERMISSION_GRANTED && permission2 == PackageManager.PERMISSION_GRANTED
-    }
+   @SuppressLint("SuspiciousIndentation")
+   private fun createPdf(classPdf: String, date: String) {
+        val fileName = "informe_$classPdf($date).pdf"
 
-    //llamada de permisos
-    private fun requestPermissions() {
-        ActivityCompat.requestPermissions(
-            requireActivity(),
-            arrayOf(
-                android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                android.Manifest.permission.READ_EXTERNAL_STORAGE
-            ),
-            200
-        )
-    }
-
-    //abrir pdf
-    private fun openPdf(file: String) {
-        Toast.makeText(requireContext(), "Abriendo $file", Toast.LENGTH_LONG).show()
-
-        val pdfFile = File(Environment.getExternalStorageDirectory(), file)
-        val selectedUri = FileProvider.getUriForFile(
-            requireContext(),
-            "com.rojasdev.apprecconproject.fileprovider",
-            pdfFile
-        )
-
-        val intent = Intent(Intent.ACTION_VIEW)
-        intent.setDataAndType(selectedUri, "application/pdf")
-        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+         // Crear una instancia de la class PdfGenerator selecionar donde save
+        val intent = Intent(Intent.ACTION_CREATE_DOCUMENT)
+            intent.addCategory(Intent.CATEGORY_OPENABLE)
+            intent.type = "application/pdf"
+            intent.putExtra(Intent.EXTRA_TITLE, fileName)
 
         try {
-            startActivity(intent)
-        } catch (e: Exception) {
-            // Maneja la excepción si no hay una aplicación adecuada para abrir el PDF
+            startActivityForResult(intent, CREATE_PDF_REQUEST_CODE)
+        } catch (e: ActivityNotFoundException){
             e.printStackTrace()
         }
     }
 
+     // Abrir PDF
+    private fun openPdfFromUri(uri: Uri) {
+        val intent = Intent(Intent.ACTION_VIEW).apply {
+            setDataAndType(uri, "application/pdf")
+            addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+        }
+        startActivity(intent)
+    }
+
+     // Liberar memoria
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 
 }

@@ -1,5 +1,6 @@
 package com.rojasdev.apprecconproject.viewHolders
 
+import android.annotation.SuppressLint
 import android.view.View
 import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.RecyclerView
@@ -14,6 +15,7 @@ class viewHolderCvRecollecition( var view: View ): RecyclerView.ViewHolder(view)
 
     private val binding = ItemRvRecolectionBinding.bind(view)
 
+    @SuppressLint("SetTextI18n")
     fun render(
         itemDetail: collectorCollection,
         onClickListenerUpdate: (collectorCollection) -> Unit
@@ -27,10 +29,10 @@ class viewHolderCvRecollecition( var view: View ): RecyclerView.ViewHolder(view)
         val formatDate = SimpleDateFormat("EEEE, MMMM dd 'del' yyyy", Locale("es", "CO"))
         val formatHour = SimpleDateFormat("'Hora: ' HH:mm", Locale("es", "CO"))
         val date = formatDateOriginal.parse(getDate)
-        val timeFormat = formatHour.format(date) // Hora
+        val timeFormat = formatHour.format(date!!) // Hora
         val dateFormat = formatDate.format(date) // Fecha
 
-            binding.tvNameCollector.text = "Fecha: ${dateFormat}"
+            binding.tvNameCollector.text = "Fecha: $dateFormat"
             binding.tvTime.text = timeFormat
             binding.tvKgDetail.text = "${itemDetail.Cantidad} Kg"
 
@@ -39,7 +41,7 @@ class viewHolderCvRecollecition( var view: View ): RecyclerView.ViewHolder(view)
         }
 
         price.priceSplit(itemDetail.Precio.toInt()){
-            binding.tvDate.text = "Precio: ${it}"
+            binding.tvDate.text = "Precio: $it"
         }
 
         if (itemDetail.Alimentacion == "yes") {

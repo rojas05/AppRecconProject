@@ -121,7 +121,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
                 <Button
-                    android:id="@+id/btUpdateYesAliment"
+                    android:id="@+id/btnInforme"
                     style="@style/buttonsInformed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

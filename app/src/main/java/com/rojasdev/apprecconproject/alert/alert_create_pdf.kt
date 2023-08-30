@@ -3,9 +3,9 @@ package com.rojasdev.apprecconproject.alert
 import android.animation.ObjectAnimator
 import android.app.AlertDialog
 import android.app.Dialog
-import android.content.IntentSender.OnFinished
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.net.Uri
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.LayoutInflater
@@ -13,13 +13,14 @@ import androidx.fragment.app.DialogFragment
 import com.rojasdev.apprecconproject.R
 import com.rojasdev.apprecconproject.controller.animatedAlert
 import com.rojasdev.apprecconproject.databinding.AlertCreatePdfBinding
-import com.rojasdev.apprecconproject.databinding.AlertWelcomeBinding
+import com.rojasdev.apprecconproject.pdf.generateMonthPDF
 import com.rojasdev.apprecconproject.pdf.generatePdfSemanal
-import java.io.File
+import com.rojasdev.apprecconproject.pdf.generateYearPDF
 
 class alert_create_pdf(
-    var pdf: String,
-    var finished: (String) -> Unit
+    private var pdf: String,
+    private var uri: Uri,
+    var finished: () -> Unit
 ): DialogFragment() {
     private lateinit var binding: AlertCreatePdfBinding
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -40,21 +41,33 @@ class alert_create_pdf(
         when (pdf) {
             "year" -> {
                 //GENERAR PDF ANUAL
-                binding.textView.text = ""
+                binding.textView.text = getString(R.string.yearLoadingPdf)
+                starTimer {
+                    generateYearPDF(requireContext(), resources){
+                        dismiss()
+                        finished()
+                    }.generateYearPdf(uri)
+                }
             }
-            "month" -> {
+            "week" -> {
                 //GENERAR PDF MENSUAL
-                binding.textView.text = ""
-            }
-            else -> {
                 binding.textView.text = getString(R.string.weekLoadingPdf)
                 starTimer {
                     //llamada para generar el pdf
-                    generatePdfSemanal(requireContext(),resources){
+                    generatePdfSemanal(requireContext(), resources){
                         dismiss()
                         //it correcponde a la ruta en la cual esta el pdf
-                        finished(it)
-                    }.generate()
+                        finished()
+                    }.generate(uri)
+                }
+            }
+            else -> {
+                binding.textView.text = getString(R.string.monthLoadingPdf)
+                starTimer {
+                    generateMonthPDF(requireContext(), resources){
+                        dismiss()
+                        finished()
+                    }.generatePfd(uri)
                 }
             }
         }
@@ -68,8 +81,7 @@ class alert_create_pdf(
 
     fun starTimer(ready : () -> Unit) {
         object: CountDownTimer(900,1){
-            override fun onTick(p0: Long) {
-            }
+            override fun onTick(p0: Long) {}
             override fun onFinish() {
                ready()
             }

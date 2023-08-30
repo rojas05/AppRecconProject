@@ -129,4 +129,9 @@ class FragmentCollecion(
             }
         }.start()
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

@@ -1,5 +1,6 @@
 package com.rojasdev.apprecconproject.viewHolders
 
+import android.annotation.SuppressLint
 import android.view.View
 import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.RecyclerView
@@ -14,6 +15,7 @@ class viewHolderItemDate( var view: View ): RecyclerView.ViewHolder(view) {
 
     private val binding = ItemRvAllRecolectionDateBinding.bind(view)
 
+    @SuppressLint("SetTextI18n")
     fun render (
         itemDetail: allCollecionAndCollector
     ) {
@@ -24,8 +26,8 @@ class viewHolderItemDate( var view: View ): RecyclerView.ViewHolder(view) {
         val getDate = itemDetail.Fecha
         val formatDateOriginal = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale("es", "CO"))
         val format = SimpleDateFormat("'Hora: ' HH:mm", Locale("es", "CO"))
-        val date = formatDateOriginal.parse(getDate) // Fecha
-        val timeFormat = format.format(date) // Hora
+        val date = formatDateOriginal.parse(getDate.toString()) // Fecha
+        val timeFormat = format.format(date!!) // Hora
 
 
             binding.tvDate.text = timeFormat
@@ -33,7 +35,7 @@ class viewHolderItemDate( var view: View ): RecyclerView.ViewHolder(view) {
             binding.tvKgDetail.text = "${itemDetail.Cantidad} Kg"
 
             price.priceSplit(itemDetail.Precio.toInt()){
-                binding.tvPrice.text = "Precio: ${it}"
+                binding.tvPrice.text = "Precio: $it"
             }
 
             if (itemDetail.Alimentacion == "yes") {
@@ -44,11 +46,11 @@ class viewHolderItemDate( var view: View ): RecyclerView.ViewHolder(view) {
 
             if (itemDetail.Estado == "active"){
                 price.priceSplit(itemDetail.result.toInt()){
-                    binding.tvPaid.text = "Total a Pagar: ${it}"
+                    binding.tvPaid.text = "Total a Pagar: $it"
                 }
             } else {
                 price.priceSplit(itemDetail.result.toInt()){
-                    binding.tvPaid.text = "Total Pagado: ${it}"
+                    binding.tvPaid.text = "Total Pagado: $it"
                 }
             }
 
