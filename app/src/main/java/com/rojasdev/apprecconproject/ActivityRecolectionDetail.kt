@@ -22,11 +22,11 @@ import kotlinx.coroutines.launch
 class ActivityRecolectionDetail : AppCompatActivity() {
 
     lateinit var binding: ActivityRecolectionDetailBinding
-        private lateinit var adapter: adpaterRvRecolection
-        private lateinit var collectionUpdate: List<collectorCollection>
-        private lateinit var collectionTotal: List<collecionTotalCollector>
-        private var idCollector: Int? = null
-        private var userName: String? = null
+    private lateinit var adapter: adpaterRvRecolection
+    private lateinit var collectionUpdate: List<collectorCollection>
+    private lateinit var collectionTotal: List<collecionTotalCollector>
+    private var idCollector: Int? = null
+    private var userName: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityRecolectionDetailBinding.inflate(layoutInflater)
@@ -49,21 +49,21 @@ class ActivityRecolectionDetail : AppCompatActivity() {
 
             val totalRecolection = AppDataBase.getInstance(this@ActivityRecolectionDetail).RecolectoresDao().getCollectorAndCollectionTotal(idCollector)
             launch(Dispatchers.Main) {
-                    collectionUpdate = listOf(collection[0])
-                    collectionTotal = listOf(totalRecolection[0])
-                    adapter = adpaterRvRecolection(collection) {
-                        // Update Collection
-                        alertUpdateRecollection(it, idCollector)
-                    }
-                        price.priceSplit(totalRecolection[0].price_total.toInt()){
-                            binding.tvTotal.text = "Total a Pagar:\n${it}"
-                        }
-
-                        binding.tvTitle.text = "Total Recolectado:\n${totalRecolection[0].kg_collection.toFloat()} Kg"
-                        binding.rvRecolections.adapter = adapter
-                        binding.rvRecolections.layoutManager = LinearLayoutManager(this@ActivityRecolectionDetail)
-
+                collectionUpdate = listOf(collection[0])
+                collectionTotal = listOf(totalRecolection[0])
+                adapter = adpaterRvRecolection(collection) {
+                    // Update Collection
+                    alertUpdateRecollection(it, idCollector)
                 }
+                price.priceSplit(totalRecolection[0].price_total.toInt()){
+                    binding.tvTotal.text = "Total a Pagar:\n${it}"
+                }
+
+                binding.tvTitle.text = "Total Recolectado:\n${totalRecolection[0].kg_collection.toFloat()} Kg"
+                binding.rvRecolections.adapter = adapter
+                binding.rvRecolections.layoutManager = LinearLayoutManager(this@ActivityRecolectionDetail)
+
+            }
         }
     }
 

@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.rojasdev.apprecconproject.ActivityMainModule
@@ -15,8 +16,8 @@ import com.rojasdev.apprecconproject.adapters.adapterRvCollectors
 import com.rojasdev.apprecconproject.alert.alertCollection
 import com.rojasdev.apprecconproject.alert.alertDeleteCollector
 import com.rojasdev.apprecconproject.alert.alertMessage
+import com.rojasdev.apprecconproject.controller.animatedAlert
 import com.rojasdev.apprecconproject.controller.customSnackbar
-import com.rojasdev.apprecconproject.controller.timer
 import com.rojasdev.apprecconproject.data.dataBase.AppDataBase
 import com.rojasdev.apprecconproject.data.entities.RecolectoresEntity
 import com.rojasdev.apprecconproject.data.entities.RecollectionEntity
@@ -141,7 +142,7 @@ class FragmentCollectors(
                     ){
                         if(it == "yes"){
                             preferences()
-                           startActivity(Intent(requireContext(),ActivityMainModule::class.java))
+                            startActivity(Intent(requireContext(),ActivityMainModule::class.java))
                         }else{
                             preferences()
                             startActivity(Intent(requireContext(),ActivityMainModule::class.java))
