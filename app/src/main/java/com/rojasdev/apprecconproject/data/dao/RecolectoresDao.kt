@@ -45,6 +45,9 @@ interface RecolectoresDao {
     @Query("UPDATE Recolectores SET  estado_recolector = 'archive' WHERE PK_ID_Recolector = :id")
     suspend fun updateCollectorState(id:Int)
 
+    @Query("UPDATE Recolectores SET  name_recolector = :name WHERE PK_ID_Recolector = :id")
+    suspend fun updateCollectorName(id:Int, name:String)
+
     @Query("SELECT r.PK_ID_Recolector, r.name_recolector, re.PK_ID_Recoleccion, re.Cantidad, " +
             "con.Precio * re.Cantidad AS result, con.Precio, "  +
             "re.Estado, con.Alimentacion, re.Fecha, re.Fk_Configuracion " +
@@ -60,11 +63,12 @@ interface RecolectoresDao {
             "FROM recolectores r " +
             "INNER JOIN Recoleccion re ON r.PK_ID_Recolector = re.Fk_recolector " +
             "INNER JOIN Configuracion con ON re.Fk_Configuracion = con.PK_ID_Configuracion " +
-            "WHERE re.Fecha LIKE :dates AND r.PK_ID_Recolector == :id ORDER BY re.Fecha DESC")
+            "WHERE re.Fecha LIKE :dates AND r.PK_ID_Recolector == :id " +
+            "ORDER BY re.Fecha DESC")
     suspend fun getAllCollectorAndCollectionId(dates: String, id: Int): List<allCollecionAndCollector>
 
-    @Query("SELECT r.PK_ID_Recolector, r.name_recolector, re.PK_ID_Recoleccion, SUM(re.Cantidad) AS Cantidad, " +
-            "SUM(re.Cantidad * con.Precio) AS result, con.Precio, " +
+    @Query("SELECT r.PK_ID_Recolector, r.name_recolector, re.PK_ID_Recoleccion, sum(re.Cantidad) AS Cantidad, " +
+            "sum(re.Cantidad * con.Precio) AS result, con.Precio, " +
             "re.Estado, con.Alimentacion, re.Fecha,  re.Fk_Configuracion " +
             "FROM recolectores r " +
             "INNER JOIN Recoleccion re ON r.PK_ID_Recolector = re.Fk_recolector " +

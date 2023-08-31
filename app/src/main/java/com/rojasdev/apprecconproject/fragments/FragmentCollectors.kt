@@ -6,16 +6,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.rojasdev.apprecconproject.ActivityMainModule
 import com.rojasdev.apprecconproject.ActivityRecolectionDetail
+import com.rojasdev.apprecconproject.R
 import com.rojasdev.apprecconproject.adapters.adapterRvCollectors
 import com.rojasdev.apprecconproject.alert.alertCollection
 import com.rojasdev.apprecconproject.alert.alertDeleteCollector
-import com.rojasdev.apprecconproject.controller.animatedAlert
+import com.rojasdev.apprecconproject.alert.alertMessage
 import com.rojasdev.apprecconproject.controller.customSnackbar
+import com.rojasdev.apprecconproject.controller.timer
 import com.rojasdev.apprecconproject.data.dataBase.AppDataBase
 import com.rojasdev.apprecconproject.data.entities.RecolectoresEntity
 import com.rojasdev.apprecconproject.data.entities.RecollectionEntity
@@ -25,7 +26,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class FragmentCollectors(
-    var scroll:(String)-> Unit) : Fragment() {
+    var scroll:(String)-> Unit,
+    var preferences:()-> Unit) : Fragment() {
     private var _binding: FragmentCollectorsAndCollecionBinding? = null
     private val binding get() = _binding!!
     private lateinit var adapter: adapterRvCollectors
@@ -36,13 +38,13 @@ class FragmentCollectors(
     ): View {
         _binding = FragmentCollectorsAndCollecionBinding.inflate(inflater,container,false)
 
+        binding.lyTotal.visibility = View.GONE
+
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,object : OnBackPressedCallback(true){
             override fun handleOnBackPressed() {
                 startActivity(Intent(requireContext(),ActivityMainModule::class.java))
             }
         })
-
-
 
         CoroutineScope(Dispatchers.IO).launch {
             dates()
@@ -58,45 +60,43 @@ class FragmentCollectors(
     private suspend fun dates(){
         CoroutineScope(Dispatchers.IO).launch{
             val idCollectors = AppDataBase.getInstance((requireContext())).RecollectionDao().getfKIdCollectors()
-            val ingresosL = AppDataBase.getInstance(requireContext()).RecolectoresDao().getAllRecolector()
+            val collectors = AppDataBase.getInstance(requireContext()).RecolectoresDao().getAllRecolector()
             launch(Dispatchers.Main) {
-                adapter = adapterRvCollectors(
-                    ingresosL,
-                    idCollectors,
-                    { item ->
-                        initDetailCollector(item) // Next Activity
-                    },
-                    {
-                        initAlertDelete(it) // Delete
-                    },
-                    {
-                        InitAlertAddCollection(it) // Add Recolection
-                    }
-                )
-
-                binding.rvCollectors.adapter = adapter
-                binding.rvCollectors.layoutManager = LinearLayoutManager(requireContext())
-
-            }
-        }
-    }
-
-    private fun initDetailCollector(item: RecolectoresEntity) {
-        val id:Int? = item.id
-        if (id != null) {
-            CoroutineScope(Dispatchers.IO).launch {
-                val getId = AppDataBase.getInstance(requireContext()).RecollectionDao().getCollectionIdCollector(id)
-                launch(Dispatchers.Main) {
-                    if(getId.isNotEmpty()) {
-                        startActivity(Intent(
-                                requireContext(), ActivityRecolectionDetail::class.java
-                            ).putExtra("userId", item.id).putExtra("userName", item.name) // Pasar parametros
-                        )
-                    }
+                if (collectors.isNotEmpty()){
+                    initRv(idCollectors,collectors)
+                }else{
+                    preferencesUpdate()
                 }
             }
         }
     }
+
+    private fun initRv(idCollectors: List<Long>, collectors: List<RecolectoresEntity>) {
+        adapter = adapterRvCollectors(
+            collectors,
+            idCollectors,
+            { item ->
+                initDetailCollector(item) // Next Activity
+            },
+            {
+                initAlertDelete(it) // Delete
+            },
+            {
+                InitAlertAddCollection(it) // Add collection
+            }
+        )
+
+        binding.rvCollectors.adapter = adapter
+        binding.rvCollectors.layoutManager = LinearLayoutManager(requireContext())
+    }
+
+    private fun initDetailCollector(item: RecolectoresEntity) {
+        startActivity(Intent(
+            requireContext(), ActivityRecolectionDetail::class.java
+        ).putExtra("userId", item.id).putExtra("userName", item.name))
+    }
+
+
 
     private fun initAlertDelete(it: RecolectoresEntity) {
         alertDeleteCollector(
@@ -118,11 +118,36 @@ class FragmentCollectors(
     }
 
     private fun insertCollection(recollection: RecollectionEntity) {
-        customSnackbar.showCustomSnackbar(binding.fragmentCollectors,"Recoleccion guardada")
+        customSnackbar.showCustomSnackbar(binding.fragmentCollectors,getString(R.string.addCollectionFinish))
         CoroutineScope(Dispatchers.IO).launch {
             AppDataBase.getInstance(requireContext()).RecollectionDao().addRecoleccion(recollection)
             launch {
                 dates()
+            }
+        }
+    }
+
+    private fun preferencesUpdate(){
+        CoroutineScope(Dispatchers.IO).launch{
+            val idCollectors = AppDataBase.getInstance((requireContext())).RecollectionDao().getfKIdCollectors()
+            launch(Dispatchers.Main) {
+                if(idCollectors.isEmpty()){
+                    alertMessage(
+                        getString(R.string.requireCollectors),
+                        "1-Inicia una nueva recoleccion",
+                        "2-Registra todo tu equipo de recolectores",
+                        "iniciar la recoleccion",
+                        "cancelar"
+                    ){
+                        if(it == "yes"){
+                            preferences()
+                           startActivity(Intent(requireContext(),ActivityMainModule::class.java))
+                        }else{
+                            preferences()
+                            startActivity(Intent(requireContext(),ActivityMainModule::class.java))
+                        }
+                    }.show(parentFragmentManager,"dialog")
+                }
             }
         }
     }

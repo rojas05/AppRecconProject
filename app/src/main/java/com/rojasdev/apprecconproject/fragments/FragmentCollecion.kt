@@ -2,18 +2,22 @@ package com.rojasdev.apprecconproject.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.CountDownTimer
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.rojasdev.apprecconproject.ActivityInformes
 import com.rojasdev.apprecconproject.ActivityMainModule
+import com.rojasdev.apprecconproject.R
 import com.rojasdev.apprecconproject.adapters.adapterRvColleccionTotal
 import com.rojasdev.apprecconproject.alert.alertCancelCollection
+import com.rojasdev.apprecconproject.alert.alertMessage
 import com.rojasdev.apprecconproject.controller.customSnackbar
+import com.rojasdev.apprecconproject.controller.price
 import com.rojasdev.apprecconproject.controller.scrolling
+import com.rojasdev.apprecconproject.controller.timer
 import com.rojasdev.apprecconproject.data.dataBase.AppDataBase
 import com.rojasdev.apprecconproject.data.dataModel.collecionTotalCollector
 import com.rojasdev.apprecconproject.databinding.FragmentCollectorsAndCollecionBinding
@@ -47,6 +51,8 @@ class FragmentCollecion(
         scrolling.scrolling(binding.rvCollectors) {
             scroll(it)
         }
+
+        getTotalCollection()
 
 
         return binding.root
@@ -112,21 +118,40 @@ class FragmentCollecion(
             val idCollectors = AppDataBase.getInstance((requireContext())).RecollectionDao().getfKIdCollectors()
             launch(Dispatchers.Main) {
                 if(idCollectors.isEmpty()){
-                    preferences()
-                    customSnackbar.showCustomSnackbar(requireView(),"Recoleccion terminada")
-                    starTimer()
+                    alertMessage(
+                        "¡Recolección completada con éxito!",
+                        "Generar nuevo informe.",
+                        "Explorar calendario recolección.",
+                        "Ir a informes",
+                        "Volver a inicio"
+                    ){
+                        if(it == "yes"){
+                            preferences()
+                            startActivity(Intent(requireContext(),ActivityInformes::class.java))
+                        }else{
+                            preferences()
+                            startActivity(Intent(requireContext(),ActivityMainModule::class.java))
+                        }
+                    }.show(parentFragmentManager,"dialog")
                 }
             }
         }
     }
 
-    fun starTimer() {
-        object: CountDownTimer(1000,1){
-            override fun onTick(p0: Long) {
+    private fun getTotalCollection(){
+        CoroutineScope(Dispatchers.IO).launch{
+            val collectionTotal = AppDataBase.getInstance((requireContext())).SettingDao().getTotalCollectionActive()
+            launch(Dispatchers.Main) {
+                if(collectionTotal.isNotEmpty()){
+                    binding.lyTotal.visibility = View.VISIBLE
+                    binding.tvCollection.text = "Total recolectado\n${collectionTotal[0].cantidad.toFloat()}Kg"
+                    price.priceSplit(collectionTotal[0].total.toInt()){
+                        binding.tvTotal.text = "Total a pagar\n$it"
+                    }
+                }
             }
-            override fun onFinish() {
-                startActivity(Intent(requireContext(),ActivityMainModule::class.java))
-            }
-        }.start()
+        }
     }
+
+
 }

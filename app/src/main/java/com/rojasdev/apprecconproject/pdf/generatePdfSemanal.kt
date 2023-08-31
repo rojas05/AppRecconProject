@@ -5,7 +5,6 @@ import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Environment
-import androidx.room.util.query
 import com.itextpdf.text.BaseColor
 import com.itextpdf.text.Document
 import com.itextpdf.text.DocumentException
@@ -43,34 +42,21 @@ class generatePdfSemanal(
     //fol der el nombre de la carpeta para almacenar los pdf
     private lateinit var dateWeek: Pair<String,String>
     private lateinit var fileName: String
-    private lateinit var folder : String
+    private lateinit var outputPath: File
 
 
     fun generate() {
         //llamada de la funcion que retorna la fecha de inicio y fin de la semana
         dateWeek = getStarAndEndWeek()
 
-        //nomombre de la carpeta para generar
-        folder = "/Informes_Semanales_de_Recoleccion"
-
-        //ubicando la carpeta en el directorio general
-        val path = Environment.getExternalStorageDirectory().absolutePath + folder
-
-        //generando la carpeta en caso de no existir
-        val dir = File(path)
-        if (!dir.exists()) {
-            dir.mkdirs()
-        }
+        fileName = "Semana$dateWeek"
 
         try {
-            //nombre del pdf
-            fileName = "informe_semana_${dateWeek.first.replace("0","")}.pdf"
-            val file = File(dir, fileName )
-            val fileOutputStream = FileOutputStream(file)
-
-            //creando el documento
             val document = Document()
-            PdfWriter.getInstance(document, fileOutputStream)
+            outputPath = File(context.filesDir, fileName)
+
+            PdfWriter.getInstance(document, FileOutputStream(outputPath))
+
             document.open()
 
 
@@ -95,7 +81,7 @@ class generatePdfSemanal(
                 createTableAliment("archived",context,"Precios anteriores",document){
                     createTableWeek("Recolección sin alimentación",document,"no"){
                         createTableWeek("Recolección con alimentación",document,"yes"){
-                            finish(document)
+                                  finish(document)
                         }
                     }
                 }
@@ -209,20 +195,28 @@ class generatePdfSemanal(
         val diaSemanaActual = calendar.get(Calendar.DAY_OF_WEEK)
 
         // Calcular la cantidad de días para llegar al lunes anterior (considerando que domingo es 1 y lunes es 2)
-        val days = if (diaSemanaActual == Calendar.MONDAY) {
-            0
-        } else if (diaSemanaActual == Calendar.TUESDAY){
-            1
-        } else if (diaSemanaActual == Calendar.WEDNESDAY){
-            2
-        } else if (diaSemanaActual == Calendar.THURSDAY){
-            3
-        } else if (diaSemanaActual == Calendar.FRIDAY){
-            4
-        } else if (diaSemanaActual == Calendar.SATURDAY){
-            5
-        } else {
-            6
+        val days = when (diaSemanaActual) {
+            Calendar.MONDAY -> {
+                0
+            }
+            Calendar.TUESDAY -> {
+                1
+            }
+            Calendar.WEDNESDAY -> {
+                2
+            }
+            Calendar.THURSDAY -> {
+                3
+            }
+            Calendar.FRIDAY -> {
+                4
+            }
+            Calendar.SATURDAY -> {
+                5
+            }
+            else -> {
+                6
+            }
         }
 
         val dateFormat = SimpleDateFormat("yyyy-MM-dd ",Locale.getDefault())
@@ -331,7 +325,7 @@ class generatePdfSemanal(
         titlePdf.alignment = Element.ALIGN_CENTER
         document.add(titlePdf)
         document.close()
-        location("$folder/$fileName")
+        location(fileName)
     }
 
 

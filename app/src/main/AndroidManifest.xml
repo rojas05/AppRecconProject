@@ -3,11 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
-                     tools:ignore="ScopedStorage" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-                     tools:ignore="ScopedStorage" />
-
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -22,34 +17,39 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.rojasdev.apprecconproject"
+            android:authorities="com.rojasdev.apprecconproject.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths" />
+                android:resource="@xml/provider_paths"/>
         </provider>
 
         <activity
             android:name=".ActivityRecolectionDetail"
             android:exported="false"
-            android:parentActivityName=".ActivityRecolection" />
+            android:parentActivityName=".ActivityRecolection"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".ActivitySettings"
             android:exported="false"
-            android:parentActivityName=".ActivityMainModule" />
+            android:parentActivityName=".ActivityMainModule"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".ActivityMainModule"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".ActivityRecolection"
             android:exported="false"
-            android:parentActivityName=".ActivityMainModule" />
+            android:parentActivityName=".ActivityMainModule"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".ActivityInformes"
             android:exported="false"
             android:parentActivityName=".ActivityMainModule"
-            android:theme="@style/Theme.AppRecconProject.informes">
+            android:theme="@style/Theme.AppRecconProject.informes"
+            android:screenOrientation="portrait">
 
             <meta-data
                 android:name="android.app.lib_name"
@@ -59,7 +59,8 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.AppRecconProject.splash">
+            android:theme="@style/Theme.AppRecconProject.splash"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

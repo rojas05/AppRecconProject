@@ -100,25 +100,17 @@ class FragmentPdf : Fragment() {
 
     //abrir pdf
     private fun openPdf(file: String) {
-        Toast.makeText(requireContext(), "Abriendo $file", Toast.LENGTH_LONG).show()
+        val pdfFile = File(requireContext().filesDir, file)
+        val pdfUri = FileProvider.getUriForFile(requireContext(), "com.rojasdev.apprecconproject.fileprovider", pdfFile)
 
-        val pdfFile = File(Environment.getExternalStorageDirectory(), file)
-        val selectedUri = FileProvider.getUriForFile(
-            requireContext(),
-            "com.rojasdev.apprecconproject.fileprovider",
-            pdfFile
-        )
 
-        val intent = Intent(Intent.ACTION_VIEW)
-        intent.setDataAndType(selectedUri, "application/pdf")
-        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-
-        try {
-            startActivity(intent)
-        } catch (e: Exception) {
-            // Maneja la excepción si no hay una aplicación adecuada para abrir el PDF
-            e.printStackTrace()
+        val intent = Intent(Intent.ACTION_VIEW).apply {
+            setDataAndType(pdfUri, "application/pdf")
+            addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
         }
+
+        startActivity(Intent.createChooser(intent, "Compartir PDF"))
+
     }
 
 
