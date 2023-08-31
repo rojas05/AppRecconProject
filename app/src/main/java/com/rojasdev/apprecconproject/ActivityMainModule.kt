@@ -81,7 +81,7 @@ class ActivityMainModule : AppCompatActivity() {
     private fun insertSettings(settings: SettingEntity){
         preferences()
         CoroutineScope(Dispatchers.IO).launch{
-            AppDataBase.getInstance(this@ActivityMainModule).SettingDao().Insertconfig(settings)
+            AppDataBase.getInstance(this@ActivityMainModule).SettingDao().insertConfig(settings)
             launch {
                 checkRegister()
             }

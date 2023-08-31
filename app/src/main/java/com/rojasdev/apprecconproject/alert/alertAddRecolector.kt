@@ -2,34 +2,19 @@ package com.rojasdev.apprecconproject.alert
 
 import android.app.AlertDialog
 import android.app.Dialog
-import android.content.Intent
-import android.content.IntentSender.OnFinished
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextUtils
-import android.text.TextWatcher
-import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.Toast
-import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.DialogFragment
-import com.google.android.material.snackbar.BaseTransientBottomBar.ContentViewCallback
-import com.rojasdev.apprecconproject.ActivityRecolection
 import com.rojasdev.apprecconproject.R
 import com.rojasdev.apprecconproject.controller.animatedAlert
 import com.rojasdev.apprecconproject.controller.customSnackbar
 import com.rojasdev.apprecconproject.controller.requireInput
 import com.rojasdev.apprecconproject.controller.textListener
-import com.rojasdev.apprecconproject.data.dataBase.AppDataBase
 import com.rojasdev.apprecconproject.data.entities.RecolectoresEntity
 import com.rojasdev.apprecconproject.databinding.AlertRecolectonBinding
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class alertAddRecolector(
     val onClickListener: (RecolectoresEntity) -> Unit,
@@ -71,7 +56,7 @@ class alertAddRecolector(
             recolector,
             "active"
         )
-        customSnackbar.showCustomSnackbar(view,"Recolector ${recolector} guardado")
+        customSnackbar.showCustomSnackbar(view,"Recolector $recolector guardado")
         onClickListener(addUser)
     }
 

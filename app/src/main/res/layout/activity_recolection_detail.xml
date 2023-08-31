@@ -41,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="16dp"
-                android:text="@string/tvRecolcection"
+                android:text="@string/tvPriceTotal"
                 android:textColor="@color/white"
                 android:textSize="30sp"
                 android:gravity="center"

@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.rojasdev.apprecconproject.ActivityMainModule
@@ -16,7 +15,6 @@ import com.rojasdev.apprecconproject.adapters.adapterRvCollectors
 import com.rojasdev.apprecconproject.alert.alertCollection
 import com.rojasdev.apprecconproject.alert.alertDeleteCollector
 import com.rojasdev.apprecconproject.alert.alertMessage
-import com.rojasdev.apprecconproject.controller.animatedAlert
 import com.rojasdev.apprecconproject.controller.customSnackbar
 import com.rojasdev.apprecconproject.data.dataBase.AppDataBase
 import com.rojasdev.apprecconproject.data.entities.RecolectoresEntity
@@ -83,7 +81,7 @@ class FragmentCollectors(
                 initAlertDelete(it) // Delete
             },
             {
-                InitAlertAddCollection(it) // Add collection
+                initAlertAddCollection(it) // Add collection
             }
         )
 
@@ -112,7 +110,7 @@ class FragmentCollectors(
         }.show(parentFragmentManager,"dialog")
     }
 
-    private fun InitAlertAddCollection(it: RecolectoresEntity) {
+    private fun initAlertAddCollection(it: RecolectoresEntity) {
         alertCollection(it){
             insertCollection(it)
         }.show(parentFragmentManager,"dialog")
@@ -151,6 +149,11 @@ class FragmentCollectors(
                 }
             }
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 }

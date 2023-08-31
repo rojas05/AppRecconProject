@@ -199,7 +199,7 @@
             android:gravity="center"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
-            android:text="@string/settingsActive"
+            android:text="@string/actualPrice"
             android:textColor="@color/black"
             android:textSize="60sp"
             android:textStyle="bold"

@@ -163,7 +163,7 @@ class generateYearPDF(
 
                     val listCell = listOf(
                         context.getString(R.string.aliment),
-                        context.getString(R.string.prince)
+                        context.getString(R.string.princeTotal)
                     )
 
                     for(item in listCell){
@@ -315,7 +315,7 @@ class generateYearPDF(
     private fun itemsTable(columns: PdfPTable, header: PdfPCell){
         val listCell = listOf(
             context.getString(R.string.name),
-            context.getString(R.string.tvKgtxt),
+            context.getString(R.string.recolection),
             context.getString(R.string.totalPrince),
             context.getString(R.string.state)
         )

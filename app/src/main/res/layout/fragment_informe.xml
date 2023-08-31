@@ -248,7 +248,8 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toStartOf="@+id/guideline5"
                             app:layout_constraintStart_toStartOf="@+id/guideline4"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:ignore="HardcodedText" />
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/saturday"
@@ -313,7 +314,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvShowDates"
-                tools:text="recoleccion: \n $109,000" />
+                tools:text="Recoleccion: \n $109,000" />
 
             <TextView
                 android:id="@+id/tvShowDates"
@@ -329,7 +330,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cardView"
-                tools:text="recoleccion: \n 298.2kg" />
+                tools:text="Recoleccion: \n 298.2kg" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

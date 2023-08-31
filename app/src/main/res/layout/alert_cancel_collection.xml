@@ -108,15 +108,16 @@
                     style="@style/buttons"
                     android:layout_width="155dp"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/border_radius_btn"
-                    android:backgroundTint="@color/Thunderbird"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="20dp"
                     android:layout_marginBottom="16dp"
+                    android:background="@drawable/border_radius_btn"
+                    android:backgroundTint="@color/Thunderbird"
                     android:text="@string/collectionCancel"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvKg" />
+                    app:layout_constraintTop_toBottomOf="@+id/tvKg"
+                    tools:ignore="TextSizeCheck" />
 
                 <Button
                     android:id="@+id/btnFinish"
@@ -141,7 +142,8 @@
                     android:gravity="center"
                     android:text="TextView"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/rv" />
+                    app:layout_constraintTop_toBottomOf="@+id/rv"
+                    tools:ignore="HardcodedText" />
 
                 <TextView
                     android:id="@+id/tvTotalPrice"
@@ -153,7 +155,8 @@
                     android:gravity="center"
                     android:text="TextView"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/rv" />
+                    app:layout_constraintTop_toBottomOf="@+id/rv"
+                    tools:ignore="HardcodedText" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -172,7 +175,8 @@
         app:layout_constraintBottom_toTopOf="@+id/cvRecolector"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_close" />
+        app:srcCompat="@drawable/ic_close"
+        tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

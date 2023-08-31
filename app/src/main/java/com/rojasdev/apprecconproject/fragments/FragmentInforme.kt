@@ -1,19 +1,17 @@
 package com.rojasdev.apprecconproject.fragments
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.rojasdev.apprecconproject.ActivityMainModule
 import com.rojasdev.apprecconproject.R
 import com.rojasdev.apprecconproject.adapters.adapterItemDate
-import com.rojasdev.apprecconproject.controller.animatedAlert
 import com.rojasdev.apprecconproject.controller.price
 import com.rojasdev.apprecconproject.customCalendar.adapter
 import com.rojasdev.apprecconproject.customCalendar.dataModelDay
@@ -28,7 +26,6 @@ import java.util.Calendar
 import java.util.GregorianCalendar
 import java.util.Locale
 
-@Suppress("ASSIGNED_BUT_NEVER_ACCESSED_VARIABLE")
 class FragmentInforme : Fragment() {
 
     private lateinit var adapter: adapterItemDate
@@ -74,6 +71,7 @@ class FragmentInforme : Fragment() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun showAllRecolecion(selectedDate: String) {
         CoroutineScope(Dispatchers.IO).launch{
             val getAllID = AppDataBase.getInstance(requireContext()).RecolectoresDao().getAll()
@@ -119,10 +117,11 @@ class FragmentInforme : Fragment() {
         }
     }
 
+    @SuppressLint("SuspiciousIndentation")
     fun obtenerDiasDelMes(year: Int, month: Int): List<List<dataModelDay>> {
         val diasDelMes = mutableListOf<List<dataModelDay>>()
         val calendar = Calendar.getInstance()
-        calendar.set(year, month - 1, 1)
+            calendar.set(year, month - 1, 1)
         val ultimoDiaDelMes = calendar.getActualMaximum(Calendar.DAY_OF_MONTH)
         var semana = mutableListOf<dataModelDay>()
         val formatoFecha = SimpleDateFormat("yyyy-MM-dd", Locale("es", "ES"))
@@ -133,7 +132,7 @@ class FragmentInforme : Fragment() {
             val fechaActual = calendar.time
             val diaDeLaSemana = formatoDiaSemana.format(fechaActual)
 
-            val day = dataModelDay("${formatoFecha.format(fechaActual)}",dia.toString(),diaDeLaSemana)
+            val day = dataModelDay(formatoFecha.format(fechaActual),dia.toString(),diaDeLaSemana)
 
             semana.add(day)
 
@@ -146,6 +145,7 @@ class FragmentInforme : Fragment() {
         return diasDelMes
     }
 
+    @SuppressLint("SetTextI18n")
     fun monthSelected(){
         val calendar = Calendar.getInstance()
         val formatMontNum = SimpleDateFormat("MM", Locale.getDefault())
@@ -191,12 +191,13 @@ class FragmentInforme : Fragment() {
         initCalendar(monthCalendar)
     }
 
+    @SuppressLint("SimpleDateFormat")
     fun obtenerMesAnterior(fecha: String): Triple<String,Int,Int> {
         val formatoFecha = SimpleDateFormat("yyyy-MM")
         val fechaEspecifica = formatoFecha.parse(fecha)
         val calendario: Calendar = GregorianCalendar()
-        calendario.time = fechaEspecifica
-        calendario.add(Calendar.MONTH, -1)
+            calendario.time = fechaEspecifica!!
+            calendario.add(Calendar.MONTH, -1)
         val formatoMes = SimpleDateFormat("MMMM", Locale("es", "ES"))
         val mesCompleto = formatoMes.format(calendario.time)
         val anio = calendario.get(Calendar.YEAR)
@@ -204,30 +205,31 @@ class FragmentInforme : Fragment() {
         return Triple(mesCompleto, anio, monthInt+1)
     }
 
+    @SuppressLint("SimpleDateFormat")
     fun obtenerMesSiguiente(fecha: String): Triple<String,Int,Int> {
         val formatoFecha = SimpleDateFormat("yyyy-MM")
         val fechaEspecifica = formatoFecha.parse(fecha)
         val calendario: Calendar = GregorianCalendar()
-        calendario.time = fechaEspecifica
-        calendario.add(Calendar.MONTH, +1)
+            calendario.time = fechaEspecifica!!
+            calendario.add(Calendar.MONTH, + 1)
         val formatoMes = SimpleDateFormat("MMMM", Locale("es", "ES"))
         val mesCompleto = formatoMes.format(calendario.time)
         val anio = calendario.get(Calendar.YEAR)
         val monthInt = calendario.get(Calendar.MONTH)
-        return Triple(mesCompleto, anio, monthInt+1)
+        return Triple(mesCompleto, anio, monthInt+ 1)
     }
 
 
 
     // Obtengo el formato de fecha como la BD
-    private fun getDate(year: Int, month: Int, dayOfMonth: Int): String {
+    /*private fun getDate(year: Int, month: Int, dayOfMonth: Int): String {
         val calendar = Calendar.getInstance()
 
         calendar.set(year, month, dayOfMonth)
         val dateFormat = "yyyy-MM-dd"
         val format = SimpleDateFormat(dateFormat, Locale("es", "ES"))
         return format.format(calendar.time)
-    }
+    }*/
 
      // Liberar la referencia de la vista y evitar posibles fugas de memoria.
     override fun onDestroyView() {

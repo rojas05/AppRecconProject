@@ -1,5 +1,6 @@
 package com.rojasdev.apprecconproject.fragments
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,14 +11,11 @@ import androidx.activity.OnBackPressedCallback
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.rojasdev.apprecconproject.ActivityInformes
 import com.rojasdev.apprecconproject.ActivityMainModule
-import com.rojasdev.apprecconproject.R
 import com.rojasdev.apprecconproject.adapters.adapterRvColleccionTotal
 import com.rojasdev.apprecconproject.alert.alertCancelCollection
 import com.rojasdev.apprecconproject.alert.alertMessage
-import com.rojasdev.apprecconproject.controller.customSnackbar
 import com.rojasdev.apprecconproject.controller.price
 import com.rojasdev.apprecconproject.controller.scrolling
-import com.rojasdev.apprecconproject.controller.timer
 import com.rojasdev.apprecconproject.data.dataBase.AppDataBase
 import com.rojasdev.apprecconproject.data.dataModel.collecionTotalCollector
 import com.rojasdev.apprecconproject.databinding.FragmentCollectorsAndCollecionBinding
@@ -58,7 +56,7 @@ class FragmentCollecion(
         return binding.root
     }
 
-    fun totalCollectionCollector(){
+    private fun totalCollectionCollector(){
         CoroutineScope(Dispatchers.IO).launch{
             val idCollectors = AppDataBase.getInstance((requireContext())).RecolectoresDao().getIDCollectors()
             launch(Dispatchers.Main) {
@@ -100,11 +98,11 @@ class FragmentCollecion(
         }
     }
 
-    private fun updateCollection(idUPdate: Int) {
+    private fun updateCollection(idUpdate: Int) {
         CoroutineScope(Dispatchers.IO).launch{
             launch(Dispatchers.Main) {
-                AppDataBase.getInstance((requireContext())).RecolectoresDao().updateCollectorState(idUPdate)
-                AppDataBase.getInstance((requireContext())).RecollectionDao().updateCollectionState(idUPdate)
+                AppDataBase.getInstance((requireContext())).RecolectoresDao().updateCollectorState(idUpdate)
+                AppDataBase.getInstance((requireContext())).RecollectionDao().updateCollectionState(idUpdate)
                 launch {
                     totalCollectionCollector()
                     preferencesUpdate()
@@ -138,6 +136,7 @@ class FragmentCollecion(
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun getTotalCollection(){
         CoroutineScope(Dispatchers.IO).launch{
             val collectionTotal = AppDataBase.getInstance((requireContext())).SettingDao().getTotalCollectionActive()
@@ -145,6 +144,7 @@ class FragmentCollecion(
                 if(collectionTotal.isNotEmpty()){
                     binding.lyTotal.visibility = View.VISIBLE
                     binding.tvCollection.text = "Total recolectado\n${collectionTotal[0].cantidad.toFloat()}Kg"
+
                     price.priceSplit(collectionTotal[0].total.toInt()){
                         binding.tvTotal.text = "Total a pagar\n$it"
                     }
@@ -153,5 +153,9 @@ class FragmentCollecion(
         }
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 
 }

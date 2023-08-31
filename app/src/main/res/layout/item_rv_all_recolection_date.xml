@@ -97,7 +97,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/guideline"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvPrice"
-                tools:text="@string/tvFeend" />
+                tools:text="@string/aliment" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvPaid"
@@ -143,12 +143,11 @@
             style="@style/texViewKg"
             android:layout_width="0dp"
             android:layout_height="30sp"
-            android:text="@string/tvKgtxt"
+            android:text="@string/recolection"
             app:autoSizeTextType="uniform"
             app:layout_constraintEnd_toEndOf="@+id/tvKgDetail"
             app:layout_constraintStart_toStartOf="@+id/tvKgDetail"
             app:layout_constraintTop_toBottomOf="@+id/tvKgDetail" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

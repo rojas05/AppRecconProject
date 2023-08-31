@@ -105,7 +105,8 @@
                         android:layout_gravity="start"
                         android:layout_margin="3dp"
                         android:paddingEnd="8dp"
-                        android:text="@string/no" />
+                        android:text="@string/no"
+                        tools:ignore="RtlSymmetry" />
 
                     <CheckBox
                         android:id="@+id/cbYes"
@@ -114,7 +115,8 @@
                         android:layout_gravity="end"
                         android:layout_margin="3dp"
                         android:paddingEnd="8dp"
-                        android:text="@string/yes" />
+                        android:text="@string/yes"
+                        tools:ignore="RtlSymmetry" />
 
                 </androidx.cardview.widget.CardView>
 
@@ -148,7 +150,8 @@
         app:layout_constraintBottom_toTopOf="@+id/cvRecolector"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_close" />
+        app:srcCompat="@drawable/ic_close"
+        tools:ignore="ContentDescription" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

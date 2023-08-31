@@ -1,6 +1,7 @@
 package com.rojasdev.apprecconproject.alert
 
 import android.animation.ObjectAnimator
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.Dialog
 import android.graphics.Color
@@ -17,6 +18,7 @@ import com.rojasdev.apprecconproject.databinding.AlertCreatePdfBinding
 import com.rojasdev.apprecconproject.pdf.generateMonthPDF
 import com.rojasdev.apprecconproject.pdf.generatePdfSemanal
 import com.rojasdev.apprecconproject.pdf.generateYearPDF
+import java.io.File
 
 class alert_create_pdf(
     private var pdf: String,
@@ -24,6 +26,8 @@ class alert_create_pdf(
     var finished: () -> Unit
 ): DialogFragment() {
     private lateinit var binding: AlertCreatePdfBinding
+
+    @SuppressLint("SuspiciousIndentation")
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
 
         binding = AlertCreatePdfBinding.inflate(LayoutInflater.from(context))
@@ -75,9 +79,10 @@ class alert_create_pdf(
         }
 
         val dialog = builder.create()
-        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialog.setCanceledOnTouchOutside(false)
+            dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            dialog.setCanceledOnTouchOutside(false)
         animatedAlert.onBackAlert(dialog,requireContext(),"")
+
         return dialog
     }
 
@@ -90,13 +95,14 @@ class alert_create_pdf(
         }.start()
     }
 
+    @SuppressLint("SetWorldReadable", "SetWorldWritable", "SuspiciousIndentation")
     private fun createFolderPermission() {
         // Ruta donde se creará la carpeta
         val pdfFolderPath = "/Users/Cristian/AndroidStudioProjects/AppRecconProject/mica"
 
         // Crea la carpeta si no existe
         val pdfFolder = File(pdfFolderPath)
-        pdfFolder.mkdirs()
+            pdfFolder.mkdirs()
 
         // Otorga permisos de lectura y escritura a la carpeta
         pdfFolder.setReadable(true, false)

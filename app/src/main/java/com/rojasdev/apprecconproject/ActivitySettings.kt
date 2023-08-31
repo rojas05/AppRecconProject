@@ -2,9 +2,7 @@ package com.rojasdev.apprecconproject
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.DisplayMetrics
 import android.view.View
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.rojasdev.apprecconproject.adapters.adapterRvSettings
 import com.rojasdev.apprecconproject.alert.alertSettingsUpdate
@@ -20,16 +18,16 @@ import kotlinx.coroutines.launch
 
 class ActivitySettings : AppCompatActivity() {
     lateinit var binding : ActivitySettingsBinding
-    var idNoAliment : Int? = null
-    var idYesAliment : Int? = null
-    var priceYesAliment : Int? = null
-    var priceNoAliment : Int? = null
+    private var idNoAliment : Int? = null
+    private var idYesAliment : Int? = null
+    private var priceYesAliment : Int? = null
+    private var priceNoAliment : Int? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivitySettingsBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        title = getString(R.string.historySettings )
+        title = getString(R.string.previousPrice)
 
         getNoAliment()
         getYesAliment()
@@ -103,8 +101,8 @@ class ActivitySettings : AppCompatActivity() {
             "active"
         )
         CoroutineScope(Dispatchers.IO).launch{
-            AppDataBase.getInstance(this@ActivitySettings).SettingDao().Insertconfig(newSetting)
-            AppDataBase.getInstance(this@ActivitySettings).SettingDao().UpdateConfig(setting.Id,"archived")
+            AppDataBase.getInstance(this@ActivitySettings).SettingDao().insertConfig(newSetting)
+            AppDataBase.getInstance(this@ActivitySettings).SettingDao().updateConfig(setting.Id,"archived")
             launch(Dispatchers.Main) {
                 ready()
             }
@@ -130,13 +128,13 @@ class ActivitySettings : AppCompatActivity() {
     }
 
     private fun noHystory() {
-        title = "configuracion de precios"
+        title = getString(R.string.settingsAliment)
         binding.btViewAlimentArchived.visibility = View.GONE
         binding.btExit.visibility = View.GONE
     }
 
     private fun visibilityButon(size: Int) {
-        title = "precios anteriores"
+        title = getString(R.string.previousPrice)
         binding.btExit.visibility = View.GONE
         if(size > 4)
             binding.btViewAlimentArchived.visibility = View.VISIBLE
@@ -152,7 +150,7 @@ class ActivitySettings : AppCompatActivity() {
             val query = AppDataBase.getInstance(this@ActivitySettings).SettingDao().getAlimentArchived()
             launch(Dispatchers.Main) {
                 binding.rvSetTingHistory.apply {
-                    title = "todos los precios anteriores"
+                    title = getString(R.string.todo)
                     binding.btViewAlimentArchived.visibility = View.GONE
                     binding.btExit.visibility = View.VISIBLE
                     layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
@@ -165,12 +163,11 @@ class ActivitySettings : AppCompatActivity() {
     }
 
     private fun mensagge(it: SettingEntity) {
-        val mensagge: String
-        if(it.feeding == "yes")
-            mensagge = getString(R.string.si_alimentacion)
+        val menssage: String = if(it.feeding == "yes")
+            getString(R.string.si_alimentacion)
         else
-            mensagge = getString(R.string.no_alimentacion)
-        customSnackbar.showCustomSnackbar(binding.rvSetTingHistory,"$mensagge\n${it.cost}" )
+            getString(R.string.no_alimentacion)
+        customSnackbar.showCustomSnackbar(binding.rvSetTingHistory,"$menssage\n${it.cost}" )
     }
 
 

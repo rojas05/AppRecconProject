@@ -62,7 +62,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/guideline13"
-                tools:text="si" />
+                tools:text="@string/yes" />
 
             <Button
                 android:id="@+id/btNo"
@@ -75,7 +75,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/guideline13"
                 app:layout_constraintStart_toStartOf="parent"
-                tools:text="no" />
+                tools:text="@string/no" />
 
             <TextView
                 android:id="@+id/tvMessageA"
