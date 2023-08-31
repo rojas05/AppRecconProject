@@ -5,6 +5,7 @@ import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.text.InputType
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.textclassifier.TextClassifier.EntityConfig

@@ -9,6 +9,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.LayoutInflater
+import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import com.rojasdev.apprecconproject.R
 import com.rojasdev.apprecconproject.controller.animatedAlert
@@ -28,6 +29,7 @@ class alert_create_pdf(
         binding = AlertCreatePdfBinding.inflate(LayoutInflater.from(context))
 
         animatedAlert.animatedInit(binding.cvWelcome)
+        createFolderPermission()
 
         val builder = AlertDialog.Builder(requireActivity())
         builder.setView(binding.root)
@@ -86,5 +88,20 @@ class alert_create_pdf(
                ready()
             }
         }.start()
+    }
+
+    private fun createFolderPermission() {
+        // Ruta donde se creará la carpeta
+        val pdfFolderPath = "/Users/Cristian/AndroidStudioProjects/AppRecconProject/mica"
+
+        // Crea la carpeta si no existe
+        val pdfFolder = File(pdfFolderPath)
+        pdfFolder.mkdirs()
+
+        // Otorga permisos de lectura y escritura a la carpeta
+        pdfFolder.setReadable(true, false)
+        pdfFolder.setWritable(true, false)
+
+        Toast.makeText(requireContext(), "echo", Toast.LENGTH_SHORT).show()
     }
 }

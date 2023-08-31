@@ -35,6 +35,7 @@ android {
     buildFeatures {
         viewBinding true
     }
+
 }
 
 dependencies {
@@ -56,4 +57,5 @@ dependencies {
 
     // ITextPDF5
     implementation 'com.itextpdf:itextg:5.5.10'
+
 }

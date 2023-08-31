@@ -35,7 +35,7 @@ class viewHolderCvCollectors( var view: View): RecyclerView.ViewHolder(view) {
         val result = item.id!!.toLong() in list
 
         if (result){
-            binding.fbDeleteCollector.setImageResource(R.mipmap.ic_bolsa_cafe)
+            binding.fbDeleteCollector.setImageResource(R.drawable.ic_bolsa_de_cafe)
             binding.tvDeleteAndDetail.text = "Detalle"
             binding.fbDeleteCollector.setOnClickListener {
                 onClickListenerNext(item)

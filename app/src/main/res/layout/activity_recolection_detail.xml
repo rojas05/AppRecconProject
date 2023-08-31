@@ -44,11 +44,13 @@
                 android:text="@string/tvRecolcection"
                 android:textColor="@color/white"
                 android:textSize="30sp"
+                android:gravity="center"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvTitle"
-                tools:text="Total: $216" />
+                tools:text="Total a pagar:
+                $21635454654234" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

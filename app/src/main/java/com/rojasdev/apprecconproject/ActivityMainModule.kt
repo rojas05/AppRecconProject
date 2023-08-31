@@ -9,6 +9,7 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import com.rojasdev.apprecconproject.alert.alertAddRecolector
+import com.rojasdev.apprecconproject.alert.alertMessage
 import com.rojasdev.apprecconproject.alert.alertSettings
 import com.rojasdev.apprecconproject.alert.alertWelcome
 import com.rojasdev.apprecconproject.controller.animatedAlert
@@ -131,7 +132,19 @@ class ActivityMainModule : AppCompatActivity() {
         val preferences = getSharedPreferences( "register", Context.MODE_PRIVATE)
         val collection = preferences.getString("collection","")
         if(collection != "true"){
-            alertAddRecolcetor()
+            alertMessage(
+                "¡Verifica la precisión de los precios a pagar!",
+                "${binding.tvNoAliment.text}\nSin alimentación",
+                "${binding.tvYesAliment.text}\nCon alimentación",
+                "Son\ncorrectos",
+                "Cambiar\nprecios"
+            ){
+                if(it == "yes"){
+                    alertAddRecolcetor()
+                }else{
+                    startActivity(Intent(this,ActivitySettings::class.java))
+                }
+            }.show(supportFragmentManager,"dialog")
         }else{
             startActivity(Intent(this,ActivityRecolection::class.java))
         }
@@ -143,7 +156,11 @@ class ActivityMainModule : AppCompatActivity() {
                 insertRecolector(it)
             },
             {
-                startActivity(Intent(this,ActivityRecolection::class.java))
+                if(it){
+                    startActivity(Intent(this,ActivityRecolection::class.java))
+                }else{
+                    startActivity(Intent(this,ActivityMainModule::class.java))
+                }
             }
         ).show(supportFragmentManager, "dialog")
     }

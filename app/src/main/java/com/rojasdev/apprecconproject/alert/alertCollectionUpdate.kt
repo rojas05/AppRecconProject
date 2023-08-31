@@ -31,8 +31,8 @@ class alertCollectionUpdate(
     private var settingsId: Int? = null
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         binding = AlertCollectionBinding.inflate(LayoutInflater.from(context))
-            val builder = AlertDialog.Builder(requireActivity())
-                builder.setView(binding.root)
+        val builder = AlertDialog.Builder(requireActivity())
+        builder.setView(binding.root)
 
         animatedAlert.animatedInit(binding.cvRecolector)
 

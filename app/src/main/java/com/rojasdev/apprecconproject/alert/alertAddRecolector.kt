@@ -22,6 +22,7 @@ import com.rojasdev.apprecconproject.R
 import com.rojasdev.apprecconproject.controller.animatedAlert
 import com.rojasdev.apprecconproject.controller.customSnackbar
 import com.rojasdev.apprecconproject.controller.requireInput
+import com.rojasdev.apprecconproject.controller.textListener
 import com.rojasdev.apprecconproject.data.dataBase.AppDataBase
 import com.rojasdev.apprecconproject.data.entities.RecolectoresEntity
 import com.rojasdev.apprecconproject.databinding.AlertRecolectonBinding
@@ -32,7 +33,7 @@ import kotlinx.coroutines.withContext
 
 class alertAddRecolector(
     val onClickListener: (RecolectoresEntity) -> Unit,
-    val finished: () -> Unit
+    val finished: (Boolean) -> Unit
 ): DialogFragment() {
 
     private lateinit var binding: AlertRecolectonBinding
@@ -45,38 +46,24 @@ class alertAddRecolector(
         animatedAlert.animatedInit(binding.cvRecolector)
 
         binding.btnClose.setOnClickListener{
-            finished()
+            finished(false)
             dismiss()
         }
 
-        binding.yesAddRecolector.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                finish()
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                addCollector()
-            }
-
-            override fun afterTextChanged(s: Editable?) {
-               if (binding.yesAddRecolector.text!!.isEmpty()){
-                   finish()
-               }else{
-                   addCollector()
-               }
-            }
-
-        })
+        textListener.lister(
+            binding.yesAddRecolector,
+            {addCollector()},
+            {finish()}
+        )
 
         finish()
 
         val dialog = builder.create()
-            dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                return dialog
+        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        return dialog
     }
 
     private fun dates(view: View) {
-
         insertCollector = true
         val recolector = binding.yesAddRecolector.text.toString()
         val addUser = RecolectoresEntity(
@@ -90,7 +77,7 @@ class alertAddRecolector(
 
     private fun allUser() {
         if (insertCollector) {
-            finished()
+            finished(true)
             dismiss()
         } else {
             dismiss()

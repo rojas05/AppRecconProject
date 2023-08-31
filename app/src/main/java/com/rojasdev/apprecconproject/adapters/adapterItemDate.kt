@@ -16,7 +16,7 @@ class adapterItemDate(
 
     override fun onBindViewHolder(holder: viewHolderItemDate, position: Int) {
         val item = itemDetail[position]
-            holder.render(item)
+        holder.render(item)
     }
 
     override fun getItemCount(): Int = itemDetail.size

@@ -1,11 +1,11 @@
 package com.rojasdev.apprecconproject.pdf
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.net.Uri
+import android.os.Environment
+import androidx.room.util.query
 import com.itextpdf.text.BaseColor
 import com.itextpdf.text.Document
 import com.itextpdf.text.DocumentException
@@ -13,10 +13,8 @@ import com.itextpdf.text.Element
 import com.itextpdf.text.Font
 import com.itextpdf.text.FontFactory
 import com.itextpdf.text.Image
-import com.itextpdf.text.PageSize
 import com.itextpdf.text.Paragraph
 import com.itextpdf.text.Phrase
-import com.itextpdf.text.pdf.PdfContentByte
 import com.itextpdf.text.pdf.PdfPCell
 import com.itextpdf.text.pdf.PdfPTable
 import com.itextpdf.text.pdf.PdfWriter
@@ -27,6 +25,8 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.io.ByteArrayOutputStream
+import java.io.File
+import java.io.FileOutputStream
 import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -36,110 +36,70 @@ import java.util.Locale
 class generatePdfSemanal(
     var context: Context,
     var resources: Resources,
-    var location: () -> Unit
+    var location: (String) -> Unit
 ) {
-
+    //dateWeek me guarda la fecha de inicio y de fin de la semana
+    //file name el nombre del pdf
+    //fol der el nombre de la carpeta para almacenar los pdf
     private lateinit var dateWeek: Pair<String,String>
+    private lateinit var fileName: String
+    private lateinit var folder : String
 
 
-    @SuppressLint("SuspiciousIndentation")
-    fun generate(uri: Uri) {
+    fun generate() {
         //llamada de la funcion que retorna la fecha de inicio y fin de la semana
         dateWeek = getStarAndEndWeek()
 
+        //nomombre de la carpeta para generar
+        folder = "/Informes_Semanales_de_Recoleccion"
+
+        //ubicando la carpeta en el directorio general
+        val path = Environment.getExternalStorageDirectory().absolutePath + folder
+
+        //generando la carpeta en caso de no existir
+        val dir = File(path)
+        if (!dir.exists()) {
+            dir.mkdirs()
+        }
+
         try {
+            //nombre del pdf
+            fileName = "informe_semana_${dateWeek.first.replace("0","")}.pdf"
+            val file = File(dir, fileName )
+            val fileOutputStream = FileOutputStream(file)
 
+            //creando el documento
             val document = Document()
-            val outputStream = context.contentResolver.openOutputStream(uri)
-            val writer = PdfWriter.getInstance(document, outputStream)
-                document.open()
+            PdfWriter.getInstance(document, fileOutputStream)
+            document.open()
 
-            val contentByte: PdfContentByte = writer.directContentUnder
-            val byte: PdfContentByte = writer.directContentUnder
-            val circle: PdfContentByte = writer.directContentUnder
 
-            // Background del encabezado
-            byte.setColorFill(BaseColor(74, 120, 74))
-            byte.roundRectangle(0f, PageSize.A4.height * 7 / 8, PageSize.A4.width, PageSize.A4.height / 8, 0f)
-            byte.fill()
-
-            // Background del encabezado
-            contentByte.setColorFill(BaseColor(74, 120, 74))
-            contentByte.roundRectangle(0f, PageSize.A4.height * 4 / 5, PageSize.A4.width, PageSize.A4.height / 5, 35f)
-            contentByte.fill()
-
-            // Circulo
-            circle.setColorFill(BaseColor.WHITE)
-            circle.circle(PageSize.A4.width - 121.0, PageSize.A4.height - 98.0, 62.0)
-            circle.fill()
-
-            val table = PdfPTable(3)
-            table.widthPercentage = 100f
-
-            // Logo Image
-            val drawableImageLogo = BitmapFactory.decodeResource(resources, R.drawable.reccon_pdf)
+            // Agrega una imagen al PDF desde la carpeta "drawable"
+            val drawableImage = BitmapFactory.decodeResource(resources, R.drawable.reccon_pdf)
             val byteArrayOutputStream = ByteArrayOutputStream()
-            drawableImageLogo.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream)
+            drawableImage.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream)
             val byteArray = byteArrayOutputStream.toByteArray()
             val image = Image.getInstance(byteArray)
-            image.scaleToFit(130f, 130f)
+            image.scaleToFit(150f, 150f)
+            image.alignment = Element.ALIGN_CENTER
+            document.add(image)
 
-            // Pdf Title
-            val titleFont: Font = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 21F, BaseColor.WHITE)
-            val titlePdf = Paragraph("\n${context.getString(R.string.titlePdfWeek)}\n", titleFont)
-
-            val cellText = PdfPCell(titlePdf)
-                cellText.verticalAlignment = PdfPCell.ALIGN_CENTER
-                cellText.horizontalAlignment = PdfPCell.ALIGN_LEFT
-                cellText.borderWidth = 0f
-                cellText.paddingRight = 8f
-                cellText.colspan = 2
-
-            val cellImage = PdfPCell(image)
-                cellImage.verticalAlignment = PdfPCell.ALIGN_TOP
-                cellImage.horizontalAlignment = PdfPCell.ALIGN_CENTER
-                cellImage.borderWidth = 0f
-                cellImage.colspan = 1
-
-            table.addCell(cellText)
-            table.addCell(cellImage)
-            document.add(table)
-
-            document.add(Phrase("\n"))
-
-            val tableInfo = PdfPTable(1)
-            tableInfo.horizontalAlignment = Element.ALIGN_LEFT
-            tableInfo.widthPercentage = 75f
-
-            val infoFont: Font = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 18F, BaseColor.BLACK)
-            val infoPdf = Paragraph("${context.getString(R.string.txtPdfWeek)}\n", infoFont)
-
-            val cellInfo = PdfPCell(infoPdf)
-                cellInfo.verticalAlignment = PdfPCell.ALIGN_LEFT
-                cellInfo.horizontalAlignment = PdfPCell.ALIGN_LEFT
-                cellInfo.borderWidth = 0f
-
-            tableInfo.addCell(cellInfo)
-            document.add(tableInfo)
+            // Título
+            val titleFont: Font = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 24f, BaseColor.BLACK)
+            val titlePdf = Paragraph("Resumen Semanal de Recolección Cafetera", titleFont)
+            titlePdf.alignment = Element.ALIGN_CENTER
+            document.add(titlePdf)
 
             //ejecutando las funciones en cadena para que al terminar el pdf se cierre
             createTableAliment("active",context,"Precios vigentes",document){
                 createTableAliment("archived",context,"Precios anteriores",document){
-
-                    val txtInfo = Paragraph(context.getString(R.string.infoPdfYearRecolection), infoFont)
-                    txtInfo.alignment = Element.ALIGN_LEFT
-
-                    document.add(txtInfo)
-
                     createTableWeek("Recolección sin alimentación",document,"no"){
                         createTableWeek("Recolección con alimentación",document,"yes"){
                             finish(document)
-                            writer.close()
                         }
                     }
                 }
             }
-
         } catch (e: DocumentException) {
             e.printStackTrace()
         } catch (e: IOException) {
@@ -147,8 +107,7 @@ class generatePdfSemanal(
         }
     }
 
-    @SuppressLint("SuspiciousIndentation")
-    private fun createTableWeek(title: String, document: Document, aliment: String, ready: () -> Unit) {
+    private fun createTableWeek(title: String,document: Document, aliment: String,ready: () -> Unit) {
         CoroutineScope(Dispatchers.IO).launch{
            val query = AppDataBase.getInstance(context).RecolectoresDao()
                 .getWeekPdf(
@@ -160,53 +119,34 @@ class generatePdfSemanal(
                 if (query.isNotEmpty()){
                     //pdf table permite crear una tabla donde numColumns es el numero de columnas que organizara automaticamente
                     val table = PdfPTable(4)
-                        table.horizontalAlignment = Element.ALIGN_LEFT
-                        table.widthPercentage = 100f
-                    val header = PdfPCell()
-                        header.horizontalAlignment = Element.ALIGN_CENTER
+                    //tamano
+                    table.widthPercentage = 100f
+                    val headerNo = PdfPCell()
 
                     //funcion para crear un titulo a la tabla
-                    titleTable(title,100f, document)
+                    titleTable(title,100f,document)
 
                     //funcion para crear items de la tabla
-                    itemsTable(table,header)
+                    itemsTable(table,headerNo)
 
                     //de esta manera se pintyan cada uno de los resultados
                     for (item in query){
-                        header.phrase = Phrase(item.name_recolector)
-                            table.addCell(header)
-                        header.phrase = Phrase("${item.result} Kg")
-                            table.addCell(header)
-
+                        table.addCell(item.name_recolector)
+                        table.addCell("${item.result}Kg")
                         price.priceSplit(item.total.toInt()){
-                            header.phrase = Phrase(it)
-                                table.addCell(header)
+                            table.addCell(it)
                         }
-
-                        if (item.Estado == "active"){
-                            header.phrase = Phrase(context.getString(R.string.stateActive))
-                                table.addCell(header)
-                        } else {
-                            header.phrase = Phrase(context.getString(R.string.stateArchive))
-                                table.addCell(header)
-                        }
+                        table.addCell(item.Estado)
                     }
 
                     //pintando la tabla en documento
                     document.add(table)
-
-                    val txtInfoFont: Font = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 18F, BaseColor.BLACK)
-                    val txtInfo =  Paragraph("${context.getString(R.string.totalInfoYear)} \n\n", txtInfoFont)
-                        txtInfo.alignment = Element.ALIGN_LEFT
-
-                    document.add(txtInfo)
 
                     //generando una tabla nueva para el total
                     createTotal(document,aliment){
                         //respondiendo de que se finalizo para generar la siguiente tabla
                         ready()
                     }
-
                 }else{
                     // en caso de no tener datos de respuesta de la base de datos pintamos un texto en el pdf para que el documento no falle
                     noData(title,document){
@@ -230,44 +170,24 @@ class generatePdfSemanal(
             launch(Dispatchers.Main) {
                 if (query.isNotEmpty()){
                     // de estamanera se pueden dar un poco de estilos a las tablas
-                    val table = PdfPTable(4)
-                        table.widthPercentage = 100f
+                    val table = PdfPTable(3)
+                    table.widthPercentage = 100f
                     val header = PdfPCell()
-                        header.horizontalAlignment = Element.ALIGN_CENTER
-                    header.borderWidth = 0f
-
-                    val listCell = listOf(
-                        context.getString(R.string.princeTotal),
-                        context.getString(R.string.tvRecolcection),
-                        context.getString(R.string.valorTotal),
-                        context.getString(R.string.total)
-                    )
-
-                    val txtFont: Font = FontFactory.getFont("arial", 12f, Font.BOLD, BaseColor.WHITE)
-
-                    header.phrase = Phrase("")
-                        table.addCell(header)
-                    header.borderWidth = 1f
-                    header.backgroundColor = BaseColor(74, 120, 74)
-
-                    for (item in listCell){
-                        header.horizontalAlignment = Element.ALIGN_CENTER
-                        header.phrase = Phrase(item, txtFont)
-                            table.addCell(header)
-                    }
+                    header.horizontalAlignment = Element.ALIGN_CENTER
+                    header.backgroundColor = BaseColor.LIGHT_GRAY
 
 
-                    header.backgroundColor = BaseColor.WHITE
                     price.priceSplit(query[0].Precio){
-                        header.phrase = Phrase(it)
+                        //al hacer ersto se agrega el contenido de esta manera
+                        header.phrase = Phrase("PRECIO:\n$it")
                         table.addCell(header)
                     }
 
-                    header.phrase = Phrase("${query[0].cantidad} Kg")
+                    header.phrase = Phrase("TOTAL RECOLECTADO:\n${query[0].cantidad}")
                     table.addCell(header)
 
                     price.priceSplit(query[0].total.toInt()){
-                        header.phrase = Phrase(it)
+                        header.phrase = Phrase("VALOR POR PAGAR:\n$it")
                         table.addCell(header)
                     }
 
@@ -279,35 +199,30 @@ class generatePdfSemanal(
         }
     }
 
-    private fun getStarAndEndWeek(): Pair<String, String> {
+    fun getStarAndEndWeek(): Pair<String, String> {
         val calendar = Calendar.getInstance()
+
+        // Obtener la fecha del día actual
+        val fechaActual = calendar.time
 
         // Encontrar el día de la semana actual
         val diaSemanaActual = calendar.get(Calendar.DAY_OF_WEEK)
 
         // Calcular la cantidad de días para llegar al lunes anterior (considerando que domingo es 1 y lunes es 2)
-        val days = when (diaSemanaActual) {
-            Calendar.MONDAY -> {
-                0
-            }
-            Calendar.TUESDAY -> {
-                1
-            }
-            Calendar.WEDNESDAY -> {
-                2
-            }
-            Calendar.THURSDAY -> {
-                3
-            }
-            Calendar.FRIDAY -> {
-                4
-            }
-            Calendar.SATURDAY -> {
-                5
-            }
-            else -> {
-                6
-            }
+        val days = if (diaSemanaActual == Calendar.MONDAY) {
+            0
+        } else if (diaSemanaActual == Calendar.TUESDAY){
+            1
+        } else if (diaSemanaActual == Calendar.WEDNESDAY){
+            2
+        } else if (diaSemanaActual == Calendar.THURSDAY){
+            3
+        } else if (diaSemanaActual == Calendar.FRIDAY){
+            4
+        } else if (diaSemanaActual == Calendar.SATURDAY){
+            5
+        } else {
+            6
         }
 
         val dateFormat = SimpleDateFormat("yyyy-MM-dd ",Locale.getDefault())
@@ -326,23 +241,20 @@ class generatePdfSemanal(
 
     private fun titleTable(title: String, width: Float,document : Document){
         val tableTitle = PdfPTable(1)
-        tableTitle.horizontalAlignment = Element.ALIGN_LEFT
         tableTitle.widthPercentage = width
         tableTitle.spacingBefore = 20f
 
-        val titleFont = FontFactory.getFont("arial", 16f, Font.BOLD, BaseColor.WHITE)
+        val titleFont = FontFactory.getFont("arial", 14f, Font.BOLD, BaseColor.BLACK)
         val titlePrice = Paragraph(title,titleFont)
         val header = PdfPCell()
-
-            header.horizontalAlignment = Element.ALIGN_CENTER
-            header.backgroundColor = BaseColor(74, 120, 74)
-            header.phrase = Phrase(titlePrice)
-            tableTitle.addCell(header)
+        header.horizontalAlignment = Element.ALIGN_CENTER
+        header.backgroundColor = BaseColor.LIGHT_GRAY
+        header.phrase = Phrase(titlePrice)
+        tableTitle.addCell(header)
 
         document.add(tableTitle)
     }
 
-    @SuppressLint("SuspiciousIndentation")
     private fun createTableAliment(
         state: String,
         context: Context,
@@ -359,15 +271,14 @@ class generatePdfSemanal(
                     }
                 }else{
                     val tablePrices = PdfPTable(2)
-                        tablePrices.horizontalAlignment = Element.ALIGN_LEFT
-                        tablePrices.widthPercentage = 50f
+                    tablePrices.widthPercentage = 50f
                     val header = PdfPCell()
 
                     titleTable(title,50f,document)
 
                     val cell = listOf(
-                        context.getString(R.string.aliment),
-                        context.getString(R.string.prince)
+                        "ALIMENTACIÓN",
+                        "PRECIO"
                     )
 
                     for(item in cell) {
@@ -378,18 +289,16 @@ class generatePdfSemanal(
 
                     for(item in query){
                         header.horizontalAlignment = Element.ALIGN_CENTER
-                        if (item.feeding == "yes"){
-                            header.backgroundColor = BaseColor(140, 224, 130)
-                            header.phrase = Phrase("Si")
-                                tablePrices.addCell(header)
+                        if (item.feeding.equals("yes")){
+                            header.phrase = Phrase("si")
+                            tablePrices.addCell(header)
                         }else{
-                            header.backgroundColor = BaseColor.WHITE
-                            header.phrase = Phrase("No")
-                                tablePrices.addCell(header)
+                            header.phrase = Phrase("no")
+                            tablePrices.addCell(header)
                         }
                         price.priceSplit(item.cost){
                             header.phrase = Phrase(it)
-                                tablePrices.addCell(header)
+                            tablePrices.addCell(header)
                         }
                     }
                     document.add(tablePrices)
@@ -402,10 +311,10 @@ class generatePdfSemanal(
 
     private fun itemsTable(table: PdfPTable,header: PdfPCell) {
         val cell = listOf(
-            context.getString(R.string.name),
-            context.getString(R.string.tvKgtxt),
-            context.getString(R.string.totalPrince),
-            context.getString(R.string.state)
+            "NOMBRE",
+            "RECOLECTADO",
+            "TOTAL A PAGAR",
+            "ESTADO",
         )
 
         for(it in cell) {
@@ -417,19 +326,19 @@ class generatePdfSemanal(
 
 
     private fun finish(document: Document) {
-        val titleFont: Font = FontFactory.getFont(FontFactory.HELVETICA, 16f, BaseColor.BLACK)
-        val titlePdf = Paragraph("\n${context.getString(R.string.pdfFinish)}", titleFont)
-            titlePdf.alignment = Element.ALIGN_CENTER
+        val titleFont: Font = FontFactory.getFont(FontFactory.HELVETICA, 15f, BaseColor.GRAY)
+        val titlePdf = Paragraph("Con cada semana de recolección, avanzamos hacia la excelencia en nuestra producción cafetera. ¡Sigamos cosechando éxitos juntos!", titleFont)
+        titlePdf.alignment = Element.ALIGN_CENTER
         document.add(titlePdf)
         document.close()
-        location()
+        location("$folder/$fileName")
     }
 
 
     private fun noData(message:String,document: Document,ready : () -> Unit) {
         val titleFont: Font = FontFactory.getFont(FontFactory.HELVETICA, 20f, BaseColor.GRAY)
-        val titlePdf = Paragraph("No se registraron $message", titleFont)
-            titlePdf.alignment = Element.ALIGN_CENTER
+        val titlePdf = Paragraph("No se registraron ${message}", titleFont)
+        titlePdf.alignment = Element.ALIGN_CENTER
         document.add(titlePdf)
         ready()
     }

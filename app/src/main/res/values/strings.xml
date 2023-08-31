@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <string name="app_name">AppReccon</string>
 
     <string name="si_alimentacion">Precio por kilo con alimentación</string>
@@ -33,7 +33,7 @@
     <string name="save">Guardado</string>
     <string name="btnFinish">Cancelar</string>
 
-    <string name="IYear" tools:ignore="Typos">Informe anual</string>
+    <string name="IYear">Informe anual</string>
     <string name="IYearDescription">Utiliza este informe para tomar decisiones informadas y maximizar tu éxito en el sector cafetero.</string>
 
     <string name="IWeek">Informe semanal</string>
@@ -52,7 +52,7 @@
     <string name="cvKg">Informacion de Recoleccion</string>
     <string name="tvKg">216 Kg</string>
     <string name="tvFeend">Alimentacion:</string>
-    <string name="tvRecolcection">Total Recolectado: </string>
+    <string name="tvRecolcection">Total recolectado: 150</string>
     <string name="total">Total</string>
 
     <string name="aliment">Alimentacion</string>
@@ -70,47 +70,17 @@
     <string name="finish">finalizar</string>
     <string name="collectado">pesa</string>
 
-    <string name="weekLoadingPdf">Generando tu informe Semanal de recolección cafetera. ¡Gracias por tu paciencia, valdrá la pena la espera!</string>
-    <string name="monthLoadingPdf">Generando tu informe Mensual de recolección cafetera. ¡Gracias por tu paciencia, valdrá la pena la espera!</string>
-    <string name="yearLoadingPdf" tools:ignore="Typos">Generando tu informe Anual de recolección cafetera. ¡Gracias por tu paciencia, valdrá la pena la espera!</string>
-    <string name="userInfo">No se Recolecto ese Dia</string>
+    <string name="weekLoadingPdf">Generando tu informe semanal de recolección cafetera. ¡Gracias por tu paciencia, valdrá la pena la espera!</string>
+    <string name="userInfo">Selecciona una fecha en el calendario de recolección para generar un informe detallado de ese día</string>
+    <string name="todo">ver todos los precios anteriores</string>
+    <string name="historySettings">precios anteriores</string>
+    <string name="settingsActive">precios vigentes</string>
+    <string name="todoExit">volver al modulo de configuracion</string>
 
-    <string name="titlePdfMonth">¡Bienvenido a los Informes Mesuales sobre Administración de la Recolección de Café!</string>
-    <string name="txtPdfMonth">Resumen Mensual de los precios de la Alimentacion de </string>
-    <string name="infoPdfMonth">Informacion de lo recolectado durante el Mes de </string>
-    <string name="infoPdfYearRecolection">Informacion de lo recolectado durante el Año </string>
-    <string name="infoPdfYear">Informacion de los Precios establecidos durante el Año del </string>
-    <string name="titlePdfYear" tools:ignore="Typos">Bienvenido a al Informe Anual sobre la Administración de la Recolección de Café!</string>
-    <string name="actualPrice">Precios vigentes</string>
-    <string name="previousPrice">Precios Anteriores</string>
+    <string name="requireCollectors">¡Solo con un equipo completo podremos lograr una recolección exitosa!</string>
+    <string name="updateName">cambiar nombre de recolector</string>
 
-    <string name="totalInfoYear">Informacion Total: </string>
-
-    <string name="notAliment">Recolección sin alimentación</string>
-    <string name="yesAliment">Recolección con alimentación</string>
-
-    <string name="titlePdfWeek">¡Bienvenido a los Informes Semanales sobre Administración de la Recolección de Café!</string>
-    <string name="txtPdfWeek">Resumen Semanal de los precios de la Alimentacion</string>
-
-    <string name="feding">Alimentacion</string>
-    <string name="notfeding">Sin Alimentacion</string>
-
-    <string name="stateActive">Trabajando</string>
-    <string name="stateArchive">Descansando</string>
-
-    <string name="name">Nombre</string>
-    <string name="recolection">Recolectado</string>
-    <string name="totalPrince">Total Pagado</string>
-    <string name="state">Estado</string>
-
-    <string name="week">Semanal</string>
-    <string name="month">Mensual</string>
-    <string name="year" tools:ignore="Typos">Anual</string>
-
-    <string name="princeTotal">Precio: </string>
-    <string name="valorTotal">Valor Pagado: </string>
-
-    <string name="pdfFinish">Con cada semana de recolección, avanzamos hacia la excelencia en nuestra producción cafetera. ¡Sigamos cosechando éxitos juntos!</string>
-
-
+    <string name="updateFinish">¡Recolección actualizada con éxito! 👍</string>
+    <string name="addCollectionFinish">\¡Nueva recolección agregada! 👍</string>
+    <string name="calendarCollection">Calendario de recoleccion</string>
 </resources>

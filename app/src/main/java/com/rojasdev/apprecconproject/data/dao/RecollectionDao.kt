@@ -14,6 +14,9 @@ interface RecollectionDao {
     @Query("SELECT * FROM Recoleccion  WHERE Fk_recolector like :idCollector AND Estado = 'active'")
     suspend fun getCollectionIdCollector(idCollector: Int): List<RecollectionEntity>
 
+    @Query("SELECT Fecha FROM Recoleccion")
+    suspend fun getDateCollection(): List<String>
+
     @Query("SELECT Fk_recolector FROM Recoleccion  WHERE Estado == 'active'")
     suspend fun getfKIdCollectors(): List<Long>
 

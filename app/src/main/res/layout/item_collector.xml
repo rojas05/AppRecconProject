@@ -19,44 +19,77 @@
         <ImageView
             android:id="@+id/image"
             style="@style/itemRecolectionInfo"
-            android:layout_width="0dp"
-            android:layout_height="43dp"
-            android:src="@drawable/ic_recolector"
+            android:layout_width="59dp"
+            android:layout_height="50dp"
             android:background="@color/Thunderbird"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_recolector"
             app:layout_constraintBottom_toBottomOf="@+id/tvNameCollector"
-            app:layout_constraintEnd_toStartOf="@+id/guideline"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:importantForAccessibility="no" />
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvNameCollector"
             style="@style/itemRecolectionInfo"
-            android:background="@color/Thunderbird"
             android:layout_width="0dp"
-            android:layout_height="43dp"
+            android:layout_height="50dp"
+            android:background="@color/Thunderbird"
             app:autoSizeTextType="uniform"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintStart_toEndOf="@+id/image"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Cristian fabian rojas rojas" />
+            tools:text="Cristian fabian rojas" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.15" />
-
-        <View
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/viewHeaderBackground"
-            android:layout_width="210dp"
-            android:layout_height="115dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:background="@drawable/border_radius_item"
             android:clickable="true"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvNameCollector" />
+            app:layout_constraintTop_toBottomOf="@+id/tvNameCollector">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.8" />
+
+            <ImageButton
+                android:id="@+id/fbDeleteCollector"
+                android:layout_width="50dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/trasparent_background"
+                android:clickable="true"
+                android:focusable="true"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_delete"
+                app:tint="@color/black"
+                tools:srcCompat="@drawable/ic_bolsa_de_cafe"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvDeleteAndDetail"
+                style="@style/tvItem"
+                android:layout_width="0dp"
+                android:layout_height="30sp"
+                android:layout_marginBottom="8dp"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                app:autoSizeTextType="uniform"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fbDeleteCollector"
+                tools:text="Eliminar" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -73,19 +106,6 @@
             app:layout_constraintTop_toBottomOf="@+id/tvNameCollector"
             app:srcCompat="@drawable/ic_kilogramo" />
 
-        <ImageButton
-            android:id="@+id/fbDeleteCollector"
-            android:layout_width="50dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/trasparent_background"
-            android:clickable="true"
-            android:focusable="true"
-            app:layout_constraintEnd_toStartOf="@+id/guideline5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvNameCollector"
-            app:srcCompat="@drawable/ic_delete"
-            app:tint="@color/black" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline5"
@@ -94,28 +114,13 @@
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.5" />
 
-        <TextView
-            android:id="@+id/tvDeleteAndDetail"
-            style="@style/tvItem"
-            android:layout_width="100dp"
-            android:layout_height="30dp"
-            android:layout_marginBottom="8dp"
-            android:gravity="center"
-            android:textAlignment="center"
-            app:autoSizeTextType="uniform"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/guideline5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fbDeleteCollector"
-            tools:text="Eliminar" />
-
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv"
             style="@style/tvItem"
-            android:layout_width="130dp"
+            android:layout_width="0dp"
             android:layout_height="30dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="4dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginBottom="8dp"
             android:gravity="center"
             android:text="@string/collect"
