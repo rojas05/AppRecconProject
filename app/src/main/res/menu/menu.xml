@@ -6,4 +6,10 @@
         android:title="@string/support"
         android:icon="@drawable/ic_kilogramo"
         android:visible="true"/>
+
+    <item
+        android:id="@+id/assistant"
+        android:title="@string/assistant"
+        android:icon="@drawable/ic_close"
+        android:visible="true"/>
 </menu>

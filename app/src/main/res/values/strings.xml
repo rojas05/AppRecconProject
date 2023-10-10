@@ -2,7 +2,7 @@
     <string name="app_name">AppReccon</string>
 
     // Setting
-    <string name="require">¡Importante! Para que RECCON funcione correctamente, asegúrate de proporcionar los precios por kilogramo recolectado. ¡Optimiza tu contabilidad cafetera con nosotros!</string>
+    <string name="require">¡Importante! Para que Reccon funcione correctamente, asegúrate de proporcionar los precios por kilogramo recolectado. ¡Optimiza tu contabilidad cafetera con nosotros!</string>
     <string name="si_alimentacion">Precio por kilo con alimentación</string>
     <string name="no_alimentacion">Precio por kilo sin alimentación</string>
     <string name="todoExit">Volver al modulo de configuracion</string>
@@ -22,7 +22,7 @@
     // Recoleccion
     <string name="collection">Recolección</string>
     <string name="descriptionCollection">Registra cada detalle y mantén un control preciso de tu actividad cafetera. ¡Optimiza tus procesos y maximiza tu productividad!</string>
-    <string name="deleteCollection">¿Estás seguro de que deseas eliminar este recolector? Esta acción eliminará permanentemente a este recolector. Por favor, confirma tu decisión para proceder.</string>
+    <string name="deleteCollection">¿Estás seguro de que deseas eliminar este recolector?</string>
     <string name="finish_collection">¡Recolección finalizada!</string>
     <string name="tvRecolcection">Total recolectado:</string>
     <string name="hintUser">Nombre del Recolector</string>
@@ -41,6 +41,7 @@
     <string name="go">Presiona el botón \"Empecemos\" para comenzar. ¡Estamos emocionados de tener a bordo!</string>
     <string name="hello">Hello</string>
     <string name="support">Ayuda</string>
+    <string name="assistant">Asistente de voz</string>
 
     // Year information
     <string name="year" tools:ignore="Typos">Anual</string>
@@ -110,7 +111,23 @@
     <string name="requireCollectors">¡Solo con un equipo completo podremos lograr una recolección exitosa!</string>
     <string name="updateName">Cambiar nombre de recolector</string>
 
-    <string name="updateFinish">¡Recolección actualizada con éxito! 👍</string>
-    <string name="addCollectionFinish">\¡Nueva recolección agregada! 👍</string>
+    <string name="updateFinish">¡Recolección actualizada con éxito!</string>
+    <string name="addCollectionFinish">\¡Nueva recolección agregada! </string>
+    <string name="help">Tienes una pregunta? ¡Estamos aquí para ayudarte! Escríbenos en WhatsApp de soporte</string>
+    <string name="chat">¡Conversemos en WhatsApp!</string>
+
+    // Dialog assistant
+    <string name="assistantWelcome">¡Bienvenido a Reccon, soy tu asistente de confianza en la gestión de la recolección de café! Si mi ayuda no es necesaria, puedes suspender esta función en el módulo principal… para continuar Presiona el botón “Empecemos”</string>
+    <string name="assistantRequire">¡Importante! Para que Reccon funcione correctamente, asegúrate de proporcionar los precios por kilogramo recolectado… y Luego presiona el botón "listo"</string>
+    <string name="assistantPrices">Para cambiar los precios presiona "cambiar precios"… Para continuar presiona "son correctos" </string>
+    <string name="assistantAddCollection">Ingresa los kilos recolectados de name y selecciona la alimentación</string>
+    <string name="assistantAddCollector">Ingresa el nombre del recolector y presiona el botón "añadir recolector"</string>
+    <string name="assistantCancelCollection">Recolección de</string>
+    <string name="assistantCancelCollectionTotal">Total a pagar</string>
+    <string name="deleteCollector">Recolector eliminado</string>
+    <string name="collectionCanceled">Recolección pagada</string>
+    <string name="editNameRedy">Nombre actualizado</string>
+    <string name="settingsUpdate">Nuevo precio guardado</string>
+
 
 </resources>

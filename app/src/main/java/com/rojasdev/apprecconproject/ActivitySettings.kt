@@ -105,6 +105,7 @@ class ActivitySettings : AppCompatActivity() {
             AppDataBase.getInstance(this@ActivitySettings).SettingDao().updateConfig(setting.Id,"archived")
             launch(Dispatchers.Main) {
                 ready()
+                customSnackbar.showCustomSnackbar(binding.textView,getString(R.string.settingsUpdate))
             }
         }
     }

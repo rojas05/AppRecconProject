@@ -14,7 +14,7 @@ object animatedAlert {
     fun animatedInit(cv: CardView){
         cv.alpha = 0f
         val animator = ValueAnimator.ofFloat(0f,1f)
-        animator.duration = 800
+        animator.duration = 500
         animator.interpolator = AccelerateDecelerateInterpolator()
         animator.addUpdateListener { valueAnimator ->
             val animatedValues = valueAnimator.animatedValue as Float

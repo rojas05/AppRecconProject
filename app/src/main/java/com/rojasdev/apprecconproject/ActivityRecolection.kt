@@ -1,15 +1,12 @@
 package com.rojasdev.apprecconproject
 
 import android.content.Context
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.VIEW_MODEL_STORE_OWNER_KEY
 import com.rojasdev.apprecconproject.alert.alertAddRecolector
+import com.rojasdev.apprecconproject.controller.textToSpeech
 import com.rojasdev.apprecconproject.data.dataBase.AppDataBase
 import com.rojasdev.apprecconproject.data.entities.RecolectoresEntity
 import com.rojasdev.apprecconproject.databinding.ActivityRecolectionBinding
@@ -121,7 +118,6 @@ class ActivityRecolection : AppCompatActivity() {
     }
 
     private fun initAlertAddRecolcetor() {
-
         alertAddRecolector(
             {
                 insertRecolector(it)

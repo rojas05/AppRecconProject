@@ -14,10 +14,14 @@ import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import com.rojasdev.apprecconproject.R
 import com.rojasdev.apprecconproject.controller.animatedAlert
+import com.rojasdev.apprecconproject.controller.textToSpeech
 import com.rojasdev.apprecconproject.databinding.AlertCreatePdfBinding
 import com.rojasdev.apprecconproject.pdf.generateMonthPDF
 import com.rojasdev.apprecconproject.pdf.generatePdfSemanal
 import com.rojasdev.apprecconproject.pdf.generateYearPDF
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.io.File
 
 class alert_create_pdf(
@@ -47,6 +51,12 @@ class alert_create_pdf(
         when (pdf) {
             "year" -> {
                 //GENERAR PDF ANUAL
+                CoroutineScope(Dispatchers.IO).launch {
+                    textToSpeech().start(
+                        requireContext(),
+                        getString(R.string.weekLoadingPdf)
+                    ){}
+                }
                 binding.textView.text = getString(R.string.yearLoadingPdf)
                 starTimer {
                     generateYearPDF(requireContext(), resources){
@@ -57,6 +67,10 @@ class alert_create_pdf(
             }
             "week" -> {
                 //GENERAR PDF MENSUAL
+                CoroutineScope(Dispatchers.IO).launch {
+                    textToSpeech().start(requireContext(),
+                        getString(R.string.weekLoadingPdf)){}
+                }
                 binding.textView.text = getString(R.string.weekLoadingPdf)
                 starTimer {
                     //llamada para generar el pdf
@@ -68,6 +82,12 @@ class alert_create_pdf(
                 }
             }
             else -> {
+                CoroutineScope(Dispatchers.IO).launch {
+                    textToSpeech().start(
+                        requireContext(),
+                        getString(R.string.weekLoadingPdf)
+                    ){}
+                }
                 binding.textView.text = getString(R.string.monthLoadingPdf)
                 starTimer {
                     generateMonthPDF(requireContext(), resources){

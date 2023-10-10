@@ -5,12 +5,16 @@ import android.os.Build
 import android.os.VibrationEffect
 import android.os.Vibrator
 import com.google.android.material.textfield.TextInputEditText
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 object requireInput {
     fun validate(inputList: List<TextInputEditText>,context: Context ):Boolean{
         for (item in inputList){
             if (item.text!!.isEmpty()){
                 item.error = "¡Campo obligatorio!"
+                assitant("¡Campo obligatorio!",context)
                 item.requestFocus()
                 vibratePhone(context)
                 return false
@@ -27,4 +31,11 @@ object requireInput {
             vibrator.vibrate(200)
         }
     }
+
+   private fun assitant(message: String,context: Context){
+       CoroutineScope(Dispatchers.IO).launch {
+           textToSpeech().start(context,message){}
+       }
+
+   }
 }

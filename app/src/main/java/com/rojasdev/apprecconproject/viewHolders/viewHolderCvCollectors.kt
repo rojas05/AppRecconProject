@@ -46,6 +46,7 @@ class viewHolderCvCollectors( var view: View): RecyclerView.ViewHolder(view) {
                 animationOnCLick()
             }
         }else{
+            binding.fbDeleteCollector.setImageResource(R.drawable.ic_delete)
             binding.tvDeleteAndDetail.text = "Eliminar"
             binding.fbDeleteCollector.setOnClickListener {
                 onClickListenerDelete(item)

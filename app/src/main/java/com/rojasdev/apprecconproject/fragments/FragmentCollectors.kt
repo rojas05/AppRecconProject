@@ -16,6 +16,7 @@ import com.rojasdev.apprecconproject.alert.alertCollection
 import com.rojasdev.apprecconproject.alert.alertDeleteCollector
 import com.rojasdev.apprecconproject.alert.alertMessage
 import com.rojasdev.apprecconproject.controller.customSnackbar
+import com.rojasdev.apprecconproject.controller.textToSpeech
 import com.rojasdev.apprecconproject.data.dataBase.AppDataBase
 import com.rojasdev.apprecconproject.data.entities.RecolectoresEntity
 import com.rojasdev.apprecconproject.data.entities.RecollectionEntity
@@ -101,6 +102,7 @@ class FragmentCollectors(
         alertDeleteCollector(
             it.name
         ){
+            customSnackbar.showCustomSnackbar(requireView(),getString(R.string.deleteCollector))
             CoroutineScope(Dispatchers.IO).launch {
                 AppDataBase.getInstance(requireContext()).RecolectoresDao().deleteCollectorId(it.id!!)
                 launch {

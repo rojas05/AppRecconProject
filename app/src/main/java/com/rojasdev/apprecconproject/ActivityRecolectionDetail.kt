@@ -110,6 +110,9 @@ class ActivityRecolectionDetail : AppCompatActivity() {
         ){
             CoroutineScope(Dispatchers.IO).launch {
                 AppDataBase.getInstance(this@ActivityRecolectionDetail).RecolectoresDao().updateCollectorName(it.id!!,it.name)
+                launch(Dispatchers.Main) {
+                    customSnackbar.showCustomSnackbar(binding.rvRecolections,getString(R.string.editNameRedy))
+                }
             }
         }.show(supportFragmentManager,"dialog")
     }

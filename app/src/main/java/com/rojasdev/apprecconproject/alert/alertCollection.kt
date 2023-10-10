@@ -5,17 +5,23 @@ import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.speech.tts.TextToSpeech
 import android.view.LayoutInflater
 import androidx.fragment.app.DialogFragment
+import com.rojasdev.apprecconproject.R
 import com.rojasdev.apprecconproject.controller.animatedAlert
 import com.rojasdev.apprecconproject.controller.controllerCheckBox
 import com.rojasdev.apprecconproject.controller.requireInput
+import com.rojasdev.apprecconproject.controller.textToSpeech
 import com.rojasdev.apprecconproject.data.entities.RecolectoresEntity
 import com.rojasdev.apprecconproject.data.entities.RecollectionEntity
 import com.rojasdev.apprecconproject.databinding.AlertCollectionBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import nl.marc_apps.tts.TextToSpeechInstance
 import java.text.SimpleDateFormat
 import java.util.Calendar
-import java.util.Date
 import java.util.Locale
 
 class alertCollection (
@@ -24,17 +30,15 @@ class alertCollection (
 ): DialogFragment() {
     private var settingsId: Int? = null
     private lateinit var binding: AlertCollectionBinding
+    private lateinit var tts: TextToSpeech
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         binding = AlertCollectionBinding.inflate(LayoutInflater.from(context))
+        tts = TextToSpeech(context){}
 
         animatedAlert.animatedInit(binding.cvRecolector)
 
         val builder = AlertDialog.Builder(requireActivity())
         builder.setView(binding.root)
-
-        val myListInput = listOf(
-            binding.etKg
-        )
 
         binding.tvDescription.text = collector.name
 
@@ -50,34 +54,75 @@ class alertCollection (
             }
         }
 
-        binding.btReady.setOnClickListener {
-            val require = requireInput.validate(myListInput,requireContext())
-            if (require){
-                controllerCheckBox.checkBoxFun(
-                    binding.cbNo,
-                    binding.cbYes,
-                    binding.tvAliment,
-                    requireContext()
-                ){
-                    settingsId = it
-                    dates()
-                }
+        CoroutineScope(Dispatchers.IO).launch {
+            textToSpeech().start(
+                requireContext(),
+                getString(R.string.assistantAddCollection).replace("name", collector.name)
+            ){
+                butons(it)
             }
         }
 
-        binding.btnClose.setOnClickListener {
-            dismiss()
-        }
+        butons(null)
 
         val dialog = builder.create()
         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         return dialog
     }
 
+    private fun butons(tts: TextToSpeechInstance?) {
+        if (tts == null){
+            binding.btnClose.setOnClickListener {
+                dismiss()
+            }
 
+            binding.btReady.setOnClickListener {
+                val myListInput = listOf(
+                    binding.etKg
+                )
+                val require = requireInput.validate(myListInput,requireContext())
+                if (require){
+                    controllerCheckBox.checkBoxFun(
+                        binding.cbNo,
+                        binding.cbYes,
+                        binding.tvAliment,
+                        requireContext()
+                    ){
+                        settingsId = it
+                        dates()
+                        dismiss()
+                    }
+                }
+            }
+        }else{
+            binding.btnClose.setOnClickListener {
+                dismiss()
+                tts.close()
+            }
+
+            binding.btReady.setOnClickListener {
+                val myListInput = listOf(
+                    binding.etKg
+                )
+                val require = requireInput.validate(myListInput,requireContext())
+                if (require){
+                    controllerCheckBox.checkBoxFun(
+                        binding.cbNo,
+                        binding.cbYes,
+                        binding.tvAliment,
+                        requireContext()
+                    ){
+                        settingsId = it
+                        dates()
+                        tts.close()
+                        dismiss()
+                    }
+                }
+            }
+        }
+    }
 
     private fun dates() {
-        dismiss()
         val kg = binding.etKg.text.toString()
         val date = Calendar.getInstance().time
         val formatDate = "yyyy-MM-dd HH:mm:ss"
