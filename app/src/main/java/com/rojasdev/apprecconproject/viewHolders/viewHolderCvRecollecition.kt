@@ -5,6 +5,7 @@ import android.view.View
 import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.RecyclerView
 import com.rojasdev.apprecconproject.R
+import com.rojasdev.apprecconproject.controller.dateFormat
 import com.rojasdev.apprecconproject.controller.price
 import com.rojasdev.apprecconproject.data.dataModel.collectorCollection
 import com.rojasdev.apprecconproject.databinding.ItemRvRecolectionBinding
@@ -20,21 +21,13 @@ class viewHolderCvRecollecition( var view: View ): RecyclerView.ViewHolder(view)
         itemDetail: collectorCollection,
         onClickListenerUpdate: (collectorCollection) -> Unit
     ) {
-
         binding.cvCollectionDetail.animation = AnimationUtils.loadAnimation(view.context, R.anim.recycler_transition)
 
-         // Cambiar el formato de la Fecha
-        val getDate = itemDetail.Fecha
-        val formatDateOriginal = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale("es", "CO"))
-        val formatDate = SimpleDateFormat("EEEE, MMMM dd 'del' yyyy", Locale("es", "CO"))
-        val formatHour = SimpleDateFormat("'Hora: ' HH:mm", Locale("es", "CO"))
-        val date = formatDateOriginal.parse(getDate)
-        val timeFormat = formatHour.format(date!!) // Hora
-        val dateFormat = formatDate.format(date) // Fecha
+        val date = dateFormat.format(itemDetail.Fecha)
 
-            binding.tvDate.text = dateFormat
-            binding.tvTime.text = timeFormat
-            binding.tvKgDetail.text = "${itemDetail.Cantidad} Kg"
+        binding.tvDate.text = date.first
+        binding.tvTime.text = date.second
+        binding.tvKgDetail.text = "${itemDetail.Cantidad} Kg"
 
         binding.btnUpdate.setOnClickListener {
             onClickListenerUpdate(itemDetail)

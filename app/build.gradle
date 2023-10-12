@@ -58,4 +58,5 @@ dependencies {
     // ITextPDF5
     implementation 'com.itextpdf:itextg:5.5.10'
 
+    implementation "nl.marc-apps:tts:1.0.0"
 }

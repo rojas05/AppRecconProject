@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.rojasdev.apprecconproject.alert.alertAddRecolector
+import com.rojasdev.apprecconproject.controller.textToSpeech
 import com.rojasdev.apprecconproject.data.dataBase.AppDataBase
 import com.rojasdev.apprecconproject.data.entities.RecolectoresEntity
 import com.rojasdev.apprecconproject.databinding.ActivityRecolectionBinding
@@ -117,7 +118,6 @@ class ActivityRecolection : AppCompatActivity() {
     }
 
     private fun initAlertAddRecolcetor() {
-
         alertAddRecolector(
             {
                 insertRecolector(it)

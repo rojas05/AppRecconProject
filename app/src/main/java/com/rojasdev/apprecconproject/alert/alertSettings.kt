@@ -5,19 +5,24 @@ import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.text.InputType
-import android.view.KeyEvent
 import android.view.LayoutInflater
-import android.view.textclassifier.TextClassifier.EntityConfig
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
-import com.google.android.material.textfield.TextInputEditText
-import com.google.android.material.textfield.TextInputLayout
 import com.rojasdev.apprecconproject.R
 import com.rojasdev.apprecconproject.controller.animatedAlert
+import com.rojasdev.apprecconproject.controller.dateFormat
 import com.rojasdev.apprecconproject.controller.requireInput
+import com.rojasdev.apprecconproject.controller.textToSpeech
 import com.rojasdev.apprecconproject.data.entities.SettingEntity
 import com.rojasdev.apprecconproject.databinding.AlertSettinsBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import nl.marc_apps.tts.TextToSpeechInstance
+import nl.marc_apps.tts.errors.TextToSpeechSynthesisInterruptedError
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 class alertSettings(
     var onClickListener: (SettingEntity) -> Unit
@@ -31,16 +36,12 @@ class alertSettings(
         val builder = AlertDialog.Builder(requireActivity())
         builder.setView(binding.root)
 
-        val myListInput = listOf(
-            binding.yesAliment,
-            binding.nowAliment
-        )
-
-        binding.btReady.setOnClickListener {
-            val require = requireInput.validate(myListInput,requireContext())
-            if (require){
-                dates()
-                dismiss()
+        CoroutineScope(Dispatchers.IO).launch {
+            textToSpeech().start(
+                requireContext(),
+                getString(R.string.assistantRequire)
+            ){
+                buttons(it)
             }
         }
 
@@ -51,6 +52,35 @@ class alertSettings(
         return dialog
     }
 
+    private fun buttons (tts: TextToSpeechInstance?){
+        val myListInput = listOf(
+            binding.yesAliment,
+            binding.nowAliment
+        )
+        if (tts == null){
+            binding.btReady.setOnClickListener {
+                val require = requireInput.validate(myListInput,requireContext())
+                if (require){
+                    dates()
+                    dismiss()
+                }
+            }
+        } else {
+            binding.btReady.setOnClickListener {
+                val require = requireInput.validate(myListInput,requireContext())
+                if (require){
+                    dates()
+                    dismiss()
+                }
+                try {
+                    tts.close()
+                } catch (e: TextToSpeechSynthesisInterruptedError) {
+                    Toast.makeText(requireContext(), e.toString(), Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
     private fun dates() {
         val yesAliment = binding.yesAliment.text.toString()
         val nowAliment = binding.nowAliment.text.toString()
@@ -59,13 +89,15 @@ class alertSettings(
             null,
             "yes",
             yesAliment.toInt(),
-            "active"
+            "active",
+            dateFormat.main()
         )
         val configAlimentNow = SettingEntity(
             null,
             "no",
             nowAliment.toInt(),
-            "active"
+            "active",
+            dateFormat.main()
         )
         onClickListener(configAlimentNow)
         onClickListener(configAlimentYes)

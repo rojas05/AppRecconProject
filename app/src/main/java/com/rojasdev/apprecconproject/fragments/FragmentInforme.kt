@@ -13,6 +13,8 @@ import com.rojasdev.apprecconproject.ActivityMainModule
 import com.rojasdev.apprecconproject.R
 import com.rojasdev.apprecconproject.adapters.adapterItemDate
 import com.rojasdev.apprecconproject.controller.price
+import com.rojasdev.apprecconproject.controller.textToSpeech
+import com.rojasdev.apprecconproject.controller.timer
 import com.rojasdev.apprecconproject.customCalendar.adapter
 import com.rojasdev.apprecconproject.customCalendar.dataModelDay
 import com.rojasdev.apprecconproject.data.dataBase.AppDataBase
@@ -47,6 +49,7 @@ class FragmentInforme : Fragment() {
             })
 
         binding.tvShowPay.visibility = View.GONE
+        binding.fbSpeech.visibility = View.GONE
 
 
         monthSelected()
@@ -104,7 +107,11 @@ class FragmentInforme : Fragment() {
                     binding.recyclerView.visibility = View.GONE
                     binding.userInfo.visibility = View.VISIBLE // Mostrar que no hay datos
                 }else{
-
+                    binding.fbSpeech.visibility = View.VISIBLE
+                    binding.fbSpeech.isClickable = true
+                    binding.fbSpeech.setOnClickListener {
+                        speechInformed(selectedDate,getTotalKg[0].Cantidad,getTotalKg[0].result.toInt())
+                    }
                     binding.nestedScrollView.smoothScrollTo(0, 900) // Auto Scroll si hay datos
 
                     adapter = adapterItemDate(showAll)
@@ -114,6 +121,23 @@ class FragmentInforme : Fragment() {
                     binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
                 }
             }
+        }
+    }
+
+    private fun speechInformed(selectedDate: String,kg: Double, price : Int) {
+
+        val formatDateOriginal = SimpleDateFormat("yyyy-MM-dd", Locale("es", "CO"))
+        val formatDate = SimpleDateFormat("EEEE, dd MMMM 'del' yyyy", Locale("es", "CO"))
+        val date = formatDateOriginal.parse(selectedDate)
+        val dateFormat = date?.let { formatDate.format(it) }
+
+        CoroutineScope(Dispatchers.IO).launch {
+            textToSpeech().start(
+                requireContext(),
+                "${getString(R.string.collection)} del $dateFormat \n" +
+                        "${getString(R.string.recolection)} $kg Kilogramos\n" +
+                        "${getString(R.string.valorTotal)} $price COP"
+            ){}
         }
     }
 

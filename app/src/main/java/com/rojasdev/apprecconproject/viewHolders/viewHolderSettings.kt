@@ -5,6 +5,7 @@ import android.view.View
 import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.RecyclerView
 import com.rojasdev.apprecconproject.R
+import com.rojasdev.apprecconproject.controller.dateFormat
 import com.rojasdev.apprecconproject.controller.price
 import com.rojasdev.apprecconproject.data.entities.RecolectoresEntity
 import com.rojasdev.apprecconproject.data.entities.SettingEntity
@@ -20,6 +21,8 @@ class viewHolderSettings( var view: View): RecyclerView.ViewHolder(view) {
         onClickListenerNext: (SettingEntity) -> Unit,
     ){
         binding.lyItem.animation = AnimationUtils.loadAnimation(view.context, R.anim.recycler_transition)
+
+        binding.tvDate.text = item.date.substring(0,item.date.length - 9)
 
         if(item.feeding == "yes"){
             binding.tvAliment.text = "precio por kilograco con alimentacion"

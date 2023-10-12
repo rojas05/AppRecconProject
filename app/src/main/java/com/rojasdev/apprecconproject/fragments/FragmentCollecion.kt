@@ -11,9 +11,11 @@ import androidx.activity.OnBackPressedCallback
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.rojasdev.apprecconproject.ActivityInformes
 import com.rojasdev.apprecconproject.ActivityMainModule
+import com.rojasdev.apprecconproject.R
 import com.rojasdev.apprecconproject.adapters.adapterRvColleccionTotal
 import com.rojasdev.apprecconproject.alert.alertCancelCollection
 import com.rojasdev.apprecconproject.alert.alertMessage
+import com.rojasdev.apprecconproject.controller.customSnackbar
 import com.rojasdev.apprecconproject.controller.price
 import com.rojasdev.apprecconproject.controller.scrolling
 import com.rojasdev.apprecconproject.data.dataBase.AppDataBase
@@ -103,6 +105,7 @@ class FragmentCollecion(
             launch(Dispatchers.Main) {
                 AppDataBase.getInstance((requireContext())).RecolectoresDao().updateCollectorState(idUpdate)
                 AppDataBase.getInstance((requireContext())).RecollectionDao().updateCollectionState(idUpdate)
+                customSnackbar.showCustomSnackbar(requireView(),getString(R.string.collectionCanceled))
                 launch {
                     totalCollectionCollector()
                     preferencesUpdate()

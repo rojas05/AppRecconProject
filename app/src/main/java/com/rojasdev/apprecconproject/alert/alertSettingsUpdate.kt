@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import androidx.fragment.app.DialogFragment
 import com.rojasdev.apprecconproject.R
 import com.rojasdev.apprecconproject.controller.animatedAlert
+import com.rojasdev.apprecconproject.controller.dateFormat
 import com.rojasdev.apprecconproject.controller.requireInput
 import com.rojasdev.apprecconproject.data.entities.SettingEntity
 import com.rojasdev.apprecconproject.databinding.AlertUpdateSettingBinding
@@ -73,7 +74,8 @@ class alertSettingsUpdate(
             idSetting,
             feending,
             yesAliment.toInt(),
-            "active"
+            "active",
+            dateFormat.main()
         )
 
         onClickListener(configAlimentYes)
