@@ -6,15 +6,18 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.rojasdev.apprecconproject.data.dao.RecolectoresDao
 import com.rojasdev.apprecconproject.data.dao.RecollectionDao
+import com.rojasdev.apprecconproject.data.dao.ReportHistoryDao
 import com.rojasdev.apprecconproject.data.dao.SettingDao
 import com.rojasdev.apprecconproject.data.entities.RecollectionEntity
 import com.rojasdev.apprecconproject.data.entities.RecolectoresEntity
+import com.rojasdev.apprecconproject.data.entities.ReportHistoryEntity
 import com.rojasdev.apprecconproject.data.entities.SettingEntity
 
 @Database(
     entities = [RecolectoresEntity::class,
                 RecollectionEntity::class,
-                SettingEntity::class
+                ReportHistoryEntity::class,
+                SettingEntity::class,
                ],
     version = 1
 )
@@ -23,6 +26,7 @@ abstract class AppDataBase : RoomDatabase() {
     abstract fun RecolectoresDao(): RecolectoresDao
     abstract fun RecollectionDao(): RecollectionDao
     abstract fun SettingDao(): SettingDao
+    abstract fun ReportHistoryDao(): ReportHistoryDao
 
     companion object{
         private const val DATABASE_NAME: String = "DB_Reccon"

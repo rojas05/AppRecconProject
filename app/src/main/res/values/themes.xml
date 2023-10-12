@@ -48,11 +48,10 @@
     </style>
 
     <style name="texViewAlertInformed">
-        <item name="android:background">@color/Hippie_Green</item>
-        <item name="android:padding">18dp</item>
+        <item name="android:padding">2dp</item>
         <item name="android:fontFamily">@font/comfortaa</item>
         <item name="android:gravity">center</item>
-        <item name="android:textColor">@color/white</item>
+        <item name="android:textColor">@color/black</item>
         <item name="android:textStyle">bold</item>
     </style>
 
@@ -68,7 +67,6 @@
 
     <style name="texViewDescriptionInformed">
         <item name="android:fontFamily">@font/comfortaa</item>
-        <item name="android:gravity">center</item>
         <item name="android:textColor">@color/gray</item>
     </style>
 
@@ -98,8 +96,7 @@
     </style>
 
     <style name="itemRecolectionInfo">
-        <item name="android:background">@color/Hippie_Green</item>
-        <item name="android:padding">8dp</item>
+        <item name="android:padding">2dp</item>
         <item name="android:fontFamily">@font/comfortaa</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:textStyle">bold</item>

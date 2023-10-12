@@ -1,7 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name">AppReccon</string>
+    <string name="app_name">Reccon</string>
 
-    // Setting
+    <!-- Setting -->
     <string name="require">¡Importante! Para que RECCON funcione correctamente, asegúrate de proporcionar los precios por kilogramo recolectado. ¡Optimiza tu contabilidad cafetera con nosotros!</string>
     <string name="si_alimentacion">Precio por kilo con alimentación</string>
     <string name="no_alimentacion">Precio por kilo sin alimentación</string>
@@ -11,7 +11,7 @@
     <string name="recolector">Recolector(a)</string>
     <string name="price">$</string>
 
-    // Informers
+    <!-- Informers -->
     <string name="report">Informe</string>
     <string name="descriptionReport">Obtén una visión completa de tu producción cafetera y toma decisiones informadas para el éxito de tu negocio.</string>
     <string name="userInfo">Selecciona una fecha en el calendario de recolección para generar un informe detallado de ese día</string>
@@ -19,7 +19,7 @@
     <string name="informed">Informe rapido</string>
     <string name="pdf">Informes en PDF</string>
 
-    // Recoleccion
+    <!-- Recoleccion -->
     <string name="collection">Recolección</string>
     <string name="descriptionCollection">Registra cada detalle y mantén un control preciso de tu actividad cafetera. ¡Optimiza tus procesos y maximiza tu productividad!</string>
     <string name="deleteCollection">¿Estás seguro de que deseas eliminar este recolector? Esta acción eliminará permanentemente a este recolector. Por favor, confirma tu decisión para proceder.</string>
@@ -31,7 +31,7 @@
     <string name="collectado">pesa</string>
     <string name="tvKg">216 Kg</string>
 
-    //txt del alert para add un Recolector
+    <!-- txt del alert para add un Recolector -->
     <string name="addUser">¡Comienza a gestionar tu equipo de recolectores de manera eficiente y sin complicaciones!</string>
     <string name="readyAddRecolector">Recolector</string>
     <string name="save">Guardado</string>
@@ -42,7 +42,7 @@
     <string name="hello">Hello</string>
     <string name="support">Ayuda</string>
 
-    // Year information
+    <!-- Year information -->
     <string name="year" tools:ignore="Typos">Anual</string>
     <string name="totalInfoYear">Informacion Total: </string>
     <string name="IYear" tools:ignore="Typos">Informe anual</string>
@@ -52,7 +52,7 @@
     <string name="infoPdfYear">Informacion de los Precios establecidos durante el Año del </string>
     <string name="infoPdfYearRecolection">Informacion de lo recolectado durante el Año </string>
 
-    // Week information
+    <!-- Week information -->
     <string name="week">Semanal</string>
     <string name="IWeek">Informe semanal</string>
     <string name="IWeekDescription">Obtén una visión precisa de tu producción semanal y toma decisiones estratégicas para optimizar tu cultivo.</string>
@@ -60,7 +60,7 @@
     <string name="titlePdfWeek">¡Bienvenido a los Informes Semanales sobre Administración de la Recolección de Café!</string>
     <string name="txtPdfWeek">Resumen Semanal de los precios de la Alimentacion</string>
 
-    // Month information
+    <!-- Month information -->
     <string name="month">Mensual</string>
     <string name="IMonth">Informe mensual</string>
     <string name="IMonthDescription">Analiza datos como la productividad y los costos.</string>
@@ -69,7 +69,7 @@
     <string name="txtPdfMonth">Resumen Mensual de los precios de la Alimentacion de </string>
     <string name="infoPdfMonth">Informacion de lo recolectado durante el Mes de </string>
 
-    // Recursos del Pdf
+    <!-- Recursos del Pdf -->
     <string name="actualPrice">Precios vigentes</string>
     <string name="previousPrice">Precios Anteriores</string>
     <string name="notAliment">Recolección sin alimentación</string>
@@ -87,7 +87,7 @@
     <string name="valorTotal">Valor Pagado: </string>
     <string name="pdfFinish">Con cada semana de recolección, avanzamos hacia la excelencia en nuestra producción cafetera. ¡Sigamos cosechando éxitos juntos!</string>
 
-    // Botones
+    <!-- Botones -->
     <string name="ready">Listo</string>
     <string name="Init">Empecemos</string>
     <string name="update">Actualizar</string>
@@ -112,5 +112,11 @@
 
     <string name="updateFinish">¡Recolección actualizada con éxito! 👍</string>
     <string name="addCollectionFinish">\¡Nueva recolección agregada! 👍</string>
+
+    <!-- Historial De Pdf -->
+    <string name="titleHistory">Historial de los Pdf Generados</string>
+    <string name="txtHistory">Historial de Pdf</string>
+    <string name="ReportType">Tipo de Informe: </string>
+    <string name="ReportDateGenerate">Fecha Generada: </string>
 
 </resources>

@@ -13,7 +13,12 @@ import android.view.ViewGroup
 import com.rojasdev.apprecconproject.R
 import com.rojasdev.apprecconproject.alert.alert_create_pdf
 import com.rojasdev.apprecconproject.controller.animatedAlert
+import com.rojasdev.apprecconproject.data.dataBase.AppDataBase
+import com.rojasdev.apprecconproject.data.entities.ReportHistoryEntity
 import com.rojasdev.apprecconproject.databinding.FragmentPdfBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -23,9 +28,7 @@ class FragmentPdf : Fragment() {
     private val binding get() = _binding!!
 
     private val CREATE_PDF_REQUEST_CODE = 2
-    private var clickWeek: Boolean = false
-    private var clickMonth: Boolean = false
-    private var clickYear: Boolean = false
+    private var reportType: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,24 +46,18 @@ class FragmentPdf : Fragment() {
         animatedAlert.animatedCv(binding.cv2)
 
         binding.btIWeek.setOnClickListener {
-            clickWeek = true
-            clickMonth = false
-            clickYear = false
-            createPdf(getString(R.string.week), date)
+            reportType = getString(R.string.week)
+            createPdf(reportType!!, date)
         }
 
         binding.btnInforme.setOnClickListener {
-            clickMonth = true
-            clickWeek = false
-            clickYear = false
-            createPdf(getString(R.string.month), date)
+            reportType = getString(R.string.month)
+            createPdf(reportType!!, date)
         }
 
         binding.btCreateYear.setOnClickListener{
-            clickYear = true
-            clickMonth = false
-            clickWeek = false
-            createPdf(getString(R.string.year), date)
+            reportType = getString(R.string.year)
+            createPdf(reportType!!, date)
         }
 
         return binding.root
@@ -75,34 +72,10 @@ class FragmentPdf : Fragment() {
             data?.data?.also { uri ->
                 try {
 
-                    // Pdf Semanal
-                    if(clickWeek){
-                        alert_create_pdf(
-                            "week",
-                            uri
-                        ) {
+                    if(reportType != null){
+                        alert_create_pdf(reportType!!, uri) {
                             openPdfFromUri(uri)
                         }.show(parentFragmentManager,"dialog")
-                    }
-
-                    // Pdf Mensual
-                    if (clickMonth){
-                        alert_create_pdf(
-                            "month",
-                            uri
-                        ) {
-                            openPdfFromUri(uri)
-                        }.show(parentFragmentManager,"dialog")
-                    }
-
-                    // Pdf Anual
-                    if (clickYear){
-                        alert_create_pdf(
-                            "year",
-                            uri
-                        ) {
-                            openPdfFromUri(uri)
-                        }.show(parentFragmentManager, "dialog")
                     }
 
                 } catch (e: Exception) {
@@ -118,14 +91,25 @@ class FragmentPdf : Fragment() {
 
         // Crear una instancia de la class PdfGenerator selecionar donde save
         val intent = Intent(Intent.ACTION_CREATE_DOCUMENT)
-        intent.addCategory(Intent.CATEGORY_OPENABLE)
-        intent.type = "application/pdf"
-        intent.putExtra(Intent.EXTRA_TITLE, fileName)
+            intent.addCategory(Intent.CATEGORY_OPENABLE)
+            intent.type = "application/pdf"
+            intent.putExtra(Intent.EXTRA_TITLE, fileName)
 
         try {
             startActivityForResult(intent, CREATE_PDF_REQUEST_CODE)
         } catch (e: ActivityNotFoundException){
             e.printStackTrace()
+        }
+
+        val information = ReportHistoryEntity(
+            null,
+            date,
+            fileName,
+            classPdf
+        )
+
+        CoroutineScope(Dispatchers.IO).launch {
+            AppDataBase.getInstance(requireContext()).ReportHistoryDao().add(information)
         }
     }
 

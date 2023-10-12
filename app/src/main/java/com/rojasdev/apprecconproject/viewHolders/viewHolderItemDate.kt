@@ -11,7 +11,7 @@ import com.rojasdev.apprecconproject.databinding.ItemRvAllRecolectionDateBinding
 import java.text.SimpleDateFormat
 import java.util.Locale
 
-class viewHolderItemDate( var view: View ): RecyclerView.ViewHolder(view) {
+class viewHolderItemDate(var view: View): RecyclerView.ViewHolder(view) {
 
     private val binding = ItemRvAllRecolectionDateBinding.bind(view)
 

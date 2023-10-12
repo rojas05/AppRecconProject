@@ -10,4 +10,9 @@
         android:title="@string/pdf"
         android:icon="@drawable/ic_pdf_24"
         android:visible="true"/>
+    <item
+        android:id="@+id/btnHistory"
+        android:title="@string/txtHistory"
+        android:icon="@drawable/baseline_history"
+        android:visible="false"/>
 </menu>

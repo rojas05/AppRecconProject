@@ -6,6 +6,7 @@ import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
+import com.itextpdf.awt.geom.Rectangle
 import com.itextpdf.text.BaseColor
 import com.itextpdf.text.Document
 import com.itextpdf.text.DocumentException
@@ -52,6 +53,8 @@ class generateMonthPDF(
                 }
     private val dateMonth = format.format(fechaParseada)
 
+    private var txtFont: Font = FontFactory.getFont("arial", 12f, Font.BOLD)
+
     @SuppressLint("SuspiciousIndentation")
     fun generatePfd(uri: Uri){
 
@@ -64,7 +67,7 @@ class generateMonthPDF(
 
             val contentByte: PdfContentByte = writer.directContentUnder
             val byte: PdfContentByte = writer.directContentUnder
-            val circle: PdfContentByte = writer.directContentUnder
+            val square: PdfContentByte = writer.directContentUnder
 
             // Background del encabezado
             byte.setColorFill(BaseColor(74, 120, 74))
@@ -76,10 +79,13 @@ class generateMonthPDF(
             contentByte.roundRectangle(0f, PageSize.A4.height * 4 / 5, PageSize.A4.width, PageSize.A4.height / 5, 35f)
             contentByte.fill()
 
-            // Circulo
-            circle.setColorFill(BaseColor.WHITE)
-            circle.circle(PageSize.A4.width - 121.0, PageSize.A4.height - 98.0, 62.0)
-            circle.fill()
+            val squarePosition = Rectangle(PageSize.A4.width - 175.0, PageSize.A4.height - 150.0, 110.0, 110.0)
+            val borderRadius = 20.0
+
+            // Cuadrado
+            square.roundRectangle(squarePosition.x, squarePosition.y, squarePosition.width, squarePosition.height, borderRadius)
+            square.setColorFill(BaseColor.WHITE)
+            square.fillStroke()
 
             val table = PdfPTable(3)
                 table.widthPercentage = 100f
@@ -169,6 +175,7 @@ class generateMonthPDF(
                         tablePrice.horizontalAlignment = Element.ALIGN_LEFT
                         tablePrice.widthPercentage = 50f
                     val header = PdfPCell()
+                        txtFont.color = BaseColor.BLACK
 
 
                     tableTitle(title,50f, document)
@@ -180,7 +187,7 @@ class generateMonthPDF(
 
                     for(item in listCell){
                         header.horizontalAlignment = Element.ALIGN_CENTER
-                        header.phrase = Phrase(item)
+                        header.phrase = Phrase(item, txtFont)
                         tablePrice.addCell(header)
                     }
 
@@ -217,6 +224,7 @@ class generateMonthPDF(
                         columns.horizontalAlignment = Element.ALIGN_LEFT
                         columns.widthPercentage = 100f
                     val header = PdfPCell()
+                        header.verticalAlignment = Element.ALIGN_CENTER
                         header.horizontalAlignment = Element.ALIGN_CENTER
 
                     tableTitle(title,100f, document) // title
@@ -272,6 +280,7 @@ class generateMonthPDF(
                     val columns = PdfPTable(4)
                         columns.widthPercentage = 100f
                     val header = PdfPCell()
+                        header.verticalAlignment = Element.ALIGN_CENTER
                         header.horizontalAlignment = Element.ALIGN_CENTER
                         header.borderWidth = 0f
 
@@ -283,11 +292,12 @@ class generateMonthPDF(
 
                     )
 
-                    val txtFont: Font = FontFactory.getFont("arial", 12f, Font.BOLD, BaseColor.WHITE)
+                    txtFont.color = BaseColor.WHITE
+                    txtFont.size = 12f
 
                     header.phrase = Phrase("")
                         columns.addCell(header)
-                    header.borderWidth = 1f
+                    header.borderWidth = 0.5f
                     header.backgroundColor = BaseColor(74, 120, 74)
 
                     for (item in listCell){
@@ -323,8 +333,9 @@ class generateMonthPDF(
             tableTitle.widthPercentage = width
             tableTitle.spacingBefore = 20f
 
-        val titleFont: Font = FontFactory.getFont("arial", 16f, Font.BOLD, BaseColor.WHITE)
-        val titlePrice = Paragraph(title, titleFont)
+            txtFont.size = 16f
+            txtFont.color = BaseColor.WHITE
+        val titlePrice = Paragraph(title, txtFont)
         val header = PdfPCell()
 
             header.horizontalAlignment = Element.ALIGN_CENTER
@@ -342,10 +353,11 @@ class generateMonthPDF(
             context.getString(R.string.totalPrince),
             context.getString(R.string.state)
         )
+        txtFont.color = BaseColor.BLACK
 
         for (it in listCell){
             header.horizontalAlignment = Element.ALIGN_CENTER
-            header.phrase = Phrase(it)
+            header.phrase = Phrase(it, txtFont)
             columns.addCell(header)
         }
     }

@@ -45,7 +45,7 @@ class alert_create_pdf(
         binding.progressBar.isIndeterminate = true
 
         when (pdf) {
-            "year" -> {
+            getString(R.string.year) -> {
                 //GENERAR PDF ANUAL
                 binding.textView.text = getString(R.string.yearLoadingPdf)
                 starTimer {
@@ -55,8 +55,8 @@ class alert_create_pdf(
                     }.generateYearPdf(uri)
                 }
             }
-            "week" -> {
-                //GENERAR PDF MENSUAL
+            getString(R.string.week) -> {
+                //GENERAR PDF Semanal
                 binding.textView.text = getString(R.string.weekLoadingPdf)
                 starTimer {
                     //llamada para generar el pdf
