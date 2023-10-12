@@ -8,6 +8,7 @@ import com.rojasdev.apprecconproject.adapters.adapterRvSettings
 import com.rojasdev.apprecconproject.alert.alertSettingsUpdate
 import com.rojasdev.apprecconproject.controller.animatedAlert
 import com.rojasdev.apprecconproject.controller.customSnackbar
+import com.rojasdev.apprecconproject.controller.dateFormat
 import com.rojasdev.apprecconproject.controller.price
 import com.rojasdev.apprecconproject.data.dataBase.AppDataBase
 import com.rojasdev.apprecconproject.data.entities.SettingEntity
@@ -98,7 +99,8 @@ class ActivitySettings : AppCompatActivity() {
             null,
             setting.feeding,
             setting.cost,
-            "active"
+            "active",
+            dateFormat.main()
         )
         CoroutineScope(Dispatchers.IO).launch{
             AppDataBase.getInstance(this@ActivitySettings).SettingDao().insertConfig(newSetting)
@@ -168,7 +170,8 @@ class ActivitySettings : AppCompatActivity() {
             getString(R.string.si_alimentacion)
         else
             getString(R.string.no_alimentacion)
-        customSnackbar.showCustomSnackbar(binding.rvSetTingHistory,"$menssage\n${it.cost}" )
+        val date = dateFormat.format(it.date)
+        customSnackbar.showCustomSnackbar(binding.rvSetTingHistory,"$menssage\n${it.cost}\n${date.first}" )
     }
 
 

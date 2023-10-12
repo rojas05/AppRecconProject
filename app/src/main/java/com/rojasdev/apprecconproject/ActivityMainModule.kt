@@ -1,5 +1,6 @@
 package com.rojasdev.apprecconproject
 
+import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -16,6 +17,7 @@ import com.rojasdev.apprecconproject.alert.alertMessage
 import com.rojasdev.apprecconproject.alert.alertSettings
 import com.rojasdev.apprecconproject.alert.alertWelcome
 import com.rojasdev.apprecconproject.controller.animatedAlert
+import com.rojasdev.apprecconproject.controller.customSnackbar
 import com.rojasdev.apprecconproject.controller.price
 import com.rojasdev.apprecconproject.controller.textToSpeech
 import com.rojasdev.apprecconproject.data.dataBase.AppDataBase
@@ -86,13 +88,17 @@ class ActivityMainModule : AppCompatActivity() {
 
     private fun help() {
         alertHelp{
-            val phone = "573170157414"
-            val message = "¡Hola amigos de RECCON! "
-            val sendIntent = Intent()
-            sendIntent.action = Intent.ACTION_VIEW
-            val uri = "whatsapp://send?phone=${phone}&text=${message}"
-            sendIntent.data = Uri.parse(uri)
-            startActivity(sendIntent)
+            try {
+                val phone = "573170157414"
+                val message = "¡Hola amigos de RECCON! "
+                val sendIntent = Intent()
+                sendIntent.action = Intent.ACTION_VIEW
+                val uri = "whatsapp://send?phone=${phone}&text=${message}"
+                sendIntent.data = Uri.parse(uri)
+                startActivity(sendIntent)
+            } catch (e: ActivityNotFoundException){
+                customSnackbar.showCustomSnackbar(binding.textView,"lo sentimos no tienes instalado whatsapp")
+            }
         }.show(supportFragmentManager,"dialog")
     }
 

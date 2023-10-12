@@ -11,6 +11,7 @@ import androidx.fragment.app.DialogFragment
 import com.rojasdev.apprecconproject.R
 import com.rojasdev.apprecconproject.controller.animatedAlert
 import com.rojasdev.apprecconproject.controller.controllerCheckBox
+import com.rojasdev.apprecconproject.controller.dateFormat
 import com.rojasdev.apprecconproject.controller.requireInput
 import com.rojasdev.apprecconproject.controller.textToSpeech
 import com.rojasdev.apprecconproject.data.entities.RecolectoresEntity
@@ -124,15 +125,11 @@ class alertCollection (
 
     private fun dates() {
         val kg = binding.etKg.text.toString()
-        val date = Calendar.getInstance().time
-        val formatDate = "yyyy-MM-dd HH:mm:ss"
-        val formato = SimpleDateFormat(formatDate, Locale("es", "CO"))
-        val dateFormat = formato.format(date)
 
         val collection = RecollectionEntity(
             null,
             kg.toDouble(),
-            dateFormat.toString(),
+            dateFormat.main(),
             "active",
             collector.id!!,
             settingsId!!

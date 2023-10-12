@@ -54,7 +54,7 @@ class alert_create_pdf(
                 CoroutineScope(Dispatchers.IO).launch {
                     textToSpeech().start(
                         requireContext(),
-                        getString(R.string.weekLoadingPdf)
+                        getString(R.string.yearLoadingPdf)
                     ){}
                 }
                 binding.textView.text = getString(R.string.yearLoadingPdf)
@@ -69,9 +69,9 @@ class alert_create_pdf(
                 //GENERAR PDF MENSUAL
                 CoroutineScope(Dispatchers.IO).launch {
                     textToSpeech().start(requireContext(),
-                        getString(R.string.weekLoadingPdf)){}
+                        getString(R.string.monthLoadingPdf)){}
                 }
-                binding.textView.text = getString(R.string.weekLoadingPdf)
+                binding.textView.text = getString(R.string.monthLoadingPdf)
                 starTimer {
                     //llamada para generar el pdf
                     generatePdfSemanal(requireContext(), resources){
@@ -88,7 +88,7 @@ class alert_create_pdf(
                         getString(R.string.weekLoadingPdf)
                     ){}
                 }
-                binding.textView.text = getString(R.string.monthLoadingPdf)
+                binding.textView.text = getString(R.string.weekLoadingPdf)
                 starTimer {
                     generateMonthPDF(requireContext(), resources){
                         dismiss()
@@ -127,7 +127,5 @@ class alert_create_pdf(
         // Otorga permisos de lectura y escritura a la carpeta
         pdfFolder.setReadable(true, false)
         pdfFolder.setWritable(true, false)
-
-        Toast.makeText(requireContext(), "echo", Toast.LENGTH_SHORT).show()
     }
 }

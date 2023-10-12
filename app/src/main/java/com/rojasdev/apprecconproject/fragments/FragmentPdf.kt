@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import com.rojasdev.apprecconproject.R
 import com.rojasdev.apprecconproject.alert.alert_create_pdf
 import com.rojasdev.apprecconproject.controller.animatedAlert
+import com.rojasdev.apprecconproject.controller.customSnackbar
 import com.rojasdev.apprecconproject.databinding.FragmentPdfBinding
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -131,11 +132,15 @@ class FragmentPdf : Fragment() {
 
     // Open PDF
     private fun openPdfFromUri(uri: Uri) {
-        val intent = Intent(Intent.ACTION_VIEW).apply {
-            setDataAndType(uri, "application/pdf")
-            addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+        try {
+            val intent = Intent(Intent.ACTION_VIEW).apply {
+                setDataAndType(uri, "application/pdf")
+                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+            }
+            startActivity(intent)
+        } catch (e: ActivityNotFoundException){
+            customSnackbar.showCustomSnackbar(binding.textView,"lo sentimos no tienes instalado un lector de pdf")
         }
-        startActivity(intent)
     }
 
     // Liberar memoria
