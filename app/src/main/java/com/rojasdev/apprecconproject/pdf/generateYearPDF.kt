@@ -164,7 +164,7 @@ class generateYearPDF(
                         tablePrice.horizontalAlignment = Element.ALIGN_LEFT
                         tablePrice.widthPercentage = 50f
                     val header = PdfPCell()
-                        txtFont.color = BaseColor.BLACK
+                    val txtFont: Font = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 12f, BaseColor.BLACK)
 
                     tableTitle(title,50f, document)
 

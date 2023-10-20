@@ -64,7 +64,7 @@
     <!-- Month information -->
     <string name="month">Mensual</string>
     <string name="IMonth">Informe mensual</string>
-    <string name="IMonthDescription">Analiza datos como la productividad y los costos.</string>
+    <string name="IMonthDescription">Analiza datos como la productividad y los costos mensuales de la recolección de cafe.</string>
     <string name="monthLoadingPdf">Generando tu informe Mensual de recolección cafetera. ¡Gracias por tu paciencia, valdrá la pena la espera!</string>
     <string name="titlePdfMonth">¡Bienvenido a los Informes Mesuales sobre Administración de la Recolección de Café!</string>
     <string name="txtPdfMonth">Resumen Mensual de los precios de la Alimentacion de </string>
@@ -131,7 +131,7 @@
 
 
     <!-- Historial De Pdf -->
-    <string name="titleHistory">Historial de los Pdf Generados</string>
+    <string name="titleHistory">Informes Generados</string>
     <string name="txtHistory">Historial de Pdf</string>
     <string name="ReportType">Tipo de Informe: </string>
     <string name="ReportDateGenerate">Fecha Generada: </string>

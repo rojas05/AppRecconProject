@@ -13,12 +13,7 @@ import android.view.ViewGroup
 import com.rojasdev.apprecconproject.R
 import com.rojasdev.apprecconproject.alert.alert_create_pdf
 import com.rojasdev.apprecconproject.controller.animatedAlert
-import com.rojasdev.apprecconproject.data.dataBase.AppDataBase
-import com.rojasdev.apprecconproject.data.entities.ReportHistoryEntity
 import com.rojasdev.apprecconproject.databinding.FragmentPdfBinding
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -27,7 +22,7 @@ class FragmentPdf : Fragment() {
     private var _binding: FragmentPdfBinding? = null
     private val binding get() = _binding!!
 
-    private val CREATE_PDF_REQUEST_CODE = 2
+    private val CREATE_PDF_REQUEST_CODE: Int = 2
     private var reportType: String? = null
 
     override fun onCreateView(
@@ -63,7 +58,6 @@ class FragmentPdf : Fragment() {
         return binding.root
     }
 
-
     @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -71,13 +65,11 @@ class FragmentPdf : Fragment() {
         if (requestCode == CREATE_PDF_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             data?.data?.also { uri ->
                 try {
-
                     if(reportType != null){
                         alert_create_pdf(reportType!!, uri) {
                             openPdfFromUri(uri)
                         }.show(parentFragmentManager,"dialog")
                     }
-
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
@@ -99,17 +91,6 @@ class FragmentPdf : Fragment() {
             startActivityForResult(intent, CREATE_PDF_REQUEST_CODE)
         } catch (e: ActivityNotFoundException){
             e.printStackTrace()
-        }
-
-        val information = ReportHistoryEntity(
-            null,
-            date,
-            fileName,
-            classPdf
-        )
-
-        CoroutineScope(Dispatchers.IO).launch {
-            AppDataBase.getInstance(requireContext()).ReportHistoryDao().add(information)
         }
     }
 

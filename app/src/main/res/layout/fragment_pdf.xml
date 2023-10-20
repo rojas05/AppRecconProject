@@ -22,7 +22,7 @@
             android:focusable="true"
             app:cardBackgroundColor="@color/gray_light"
             app:cardCornerRadius="10dp"
-            app:cardElevation="20dp"
+            app:cardElevation="4dp"
             app:cardUseCompatPadding="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.494"
@@ -79,15 +79,16 @@
                     app:layout_constraintTop_toTopOf="@+id/imgViewInfoWeek2"/>
 
 
-                <TextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvNoAliment"
                     style="@style/texViewDescriptionInformed"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="70dp"
                     android:layout_margin="8dp"
                     android:text="@string/IWeekDescription"
                     android:textColor="@color/black"
-                    android:textSize="18sp"
+                    android:gravity="center"
+                    app:autoSizeTextType="uniform"
                     app:layout_constraintTop_toBottomOf="@+id/textView"
                     app:layout_constraintStart_toStartOf="@+id/imgViewInfoWeek2"
                     app:layout_constraintEnd_toEndOf="@+id/imgViewInfoWeek2"/>
@@ -112,9 +113,10 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cv1"
-            android:layout_width="340dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:animateLayoutChanges="true"
+            android:layout_margin="16dp"
             app:cardBackgroundColor="@color/gray_light"
             app:cardCornerRadius="10dp"
             app:cardElevation="4dp"
@@ -170,15 +172,16 @@
                     app:layout_constraintStart_toStartOf="@+id/imageView1"
                     app:layout_constraintTop_toTopOf="@+id/imageView1" />
 
-                <TextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvYesAliment"
                     style="@style/texViewDescriptionInformed"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:layout_margin="8dp"
                     android:text="@string/IMonthDescription"
                     android:textColor="@color/black"
-                    android:textSize="20sp"
+                    android:gravity="center"
+                    app:autoSizeTextType="uniform"
                     app:layout_constraintEnd_toEndOf="@+id/imageView1"
                     app:layout_constraintStart_toStartOf="@+id/imageView1"
                     app:layout_constraintTop_toBottomOf="@+id/textView4" />
@@ -211,7 +214,7 @@
             android:focusable="true"
             app:cardBackgroundColor="@color/gray_light"
             app:cardCornerRadius="10dp"
-            app:cardElevation="20dp"
+            app:cardElevation="4dp"
             app:cardUseCompatPadding="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -264,15 +267,16 @@
                     app:layout_constraintStart_toStartOf="@+id/imgViewInfoYear2"
                     app:layout_constraintTop_toTopOf="@+id/imgViewInfoYear2" />
 
-                <TextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv"
                     style="@style/texViewDescriptionInformed"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="70dp"
                     android:layout_margin="8dp"
                     android:text="@string/IYearDescription"
                     android:textColor="@color/black"
-                    android:textSize="18sp"
+                    android:gravity="center"
+                    app:autoSizeTextType="uniform"
                     app:layout_constraintTop_toBottomOf="@+id/textView8"
                     app:layout_constraintEnd_toEndOf="@+id/imgViewInfoYear2"
                     app:layout_constraintStart_toStartOf="@+id/imgViewInfoYear2"/>
