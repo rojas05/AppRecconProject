@@ -12,6 +12,7 @@ import com.rojasdev.apprecconproject.R
 import com.rojasdev.apprecconproject.controller.animatedAlert
 import com.rojasdev.apprecconproject.controller.controllerCheckBox
 import com.rojasdev.apprecconproject.controller.dateFormat
+import com.rojasdev.apprecconproject.controller.keyLIstener
 import com.rojasdev.apprecconproject.controller.requireInput
 import com.rojasdev.apprecconproject.controller.textToSpeech
 import com.rojasdev.apprecconproject.data.entities.RecolectoresEntity
@@ -77,10 +78,27 @@ class alertCollection (
                 dismiss()
             }
 
+            val myListInput = listOf(
+                binding.etKg
+            )
+
+            keyLIstener.start(binding.etKg){
+                val require = requireInput.validate(myListInput,requireContext())
+                if (require){
+                    controllerCheckBox.checkBoxFun(
+                        binding.cbNo,
+                        binding.cbYes,
+                        binding.tvAliment,
+                        requireContext()
+                    ){
+                        settingsId = it
+                        dates()
+                        dismiss()
+                    }
+                }
+            }
+
             binding.btReady.setOnClickListener {
-                val myListInput = listOf(
-                    binding.etKg
-                )
                 val require = requireInput.validate(myListInput,requireContext())
                 if (require){
                     controllerCheckBox.checkBoxFun(

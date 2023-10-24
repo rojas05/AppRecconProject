@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/nestedScrollView"
+    style="@style/scroll"
     tools:context=".fragments.FragmentInforme">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,7 +17,7 @@
             android:id="@+id/viewHeaderBackground"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/background_view_informe"
+            style="@style/infoTitleInformed"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -57,7 +58,6 @@
                         style="@style/tvItem"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:background="#DCDCDC"
                         android:gravity="center"
                         app:layout_constraintBottom_toTopOf="@+id/constraintLayout3"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -69,11 +69,29 @@
                         android:id="@+id/constraintLayout3"
                         android:layout_width="0dp"
                         android:layout_height="60dp"
-                        android:background="#D3D3D3"
+                        style="@style/bar"
                         app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent">
+
+                        <View
+                            android:id="@+id/view11"
+                            android:layout_width="0dp"
+                            android:layout_height="2dp"
+                            android:background="@color/black"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <View
+                            android:id="@+id/view12"
+                            android:layout_width="0dp"
+                            android:layout_height="2dp"
+                            android:background="@color/black"
+                            app:layout_constraintBottom_toBottomOf="@+id/tvMonth"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/tvMonth"
@@ -146,10 +164,7 @@
                         android:id="@+id/constraintLayout2"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
-                        android:background="#C0C0C0"
-                        app:layout_constraintBottom_toTopOf="@+id/rvDate"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent">
+                        app:layout_constraintBottom_toTopOf="@+id/rvDate">
 
                         <androidx.constraintlayout.widget.Guideline
                             android:id="@+id/guideline1"
@@ -193,6 +208,14 @@
                             android:orientation="vertical"
                             app:layout_constraintGuide_percent="0.852" />
 
+                        <View
+                            android:id="@+id/view13"
+                            android:layout_width="2dp"
+                            android:layout_height="0dp"
+                            android:background="@color/black"
+                            app:layout_constraintEnd_toStartOf="@+id/guideline1"
+                            app:layout_constraintTop_toTopOf="parent" />
+
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/monday"
                             style="@style/tvItem"
@@ -205,6 +228,14 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toStartOf="@+id/guideline1"
                             app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <View
+                            android:id="@+id/view14"
+                            android:layout_width="2dp"
+                            android:layout_height="0dp"
+                            android:background="@color/black"
+                            app:layout_constraintEnd_toStartOf="@+id/guideline2"
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <androidx.appcompat.widget.AppCompatTextView
@@ -221,6 +252,14 @@
                             app:layout_constraintStart_toStartOf="@+id/guideline1"
                             app:layout_constraintTop_toTopOf="parent" />
 
+                        <View
+                            android:id="@+id/view15"
+                            android:layout_width="2dp"
+                            android:layout_height="0dp"
+                            android:background="@color/black"
+                            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+                            app:layout_constraintTop_toTopOf="parent" />
+
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/wednesday"
                             style="@style/tvItem"
@@ -233,6 +272,14 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toStartOf="@+id/guideline3"
                             app:layout_constraintStart_toStartOf="@+id/guideline2"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <View
+                            android:id="@+id/view16"
+                            android:layout_width="2dp"
+                            android:layout_height="0dp"
+                            android:background="@color/black"
+                            app:layout_constraintEnd_toStartOf="@+id/guideline4"
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <androidx.appcompat.widget.AppCompatTextView
@@ -249,6 +296,14 @@
                             app:layout_constraintStart_toStartOf="@+id/guideline3"
                             app:layout_constraintTop_toTopOf="parent" />
 
+                        <View
+                            android:id="@+id/view17"
+                            android:layout_width="2dp"
+                            android:layout_height="0dp"
+                            android:background="@color/black"
+                            app:layout_constraintEnd_toEndOf="@+id/friday"
+                            app:layout_constraintTop_toTopOf="parent" />
+
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/friday"
                             style="@style/tvItem"
@@ -263,6 +318,14 @@
                             app:layout_constraintStart_toStartOf="@+id/guideline4"
                             app:layout_constraintTop_toTopOf="parent"
                             tools:ignore="HardcodedText" />
+
+                        <View
+                            android:id="@+id/view18"
+                            android:layout_width="2dp"
+                            android:layout_height="0dp"
+                            android:background="@color/black"
+                            app:layout_constraintEnd_toStartOf="@+id/guideline6"
+                            app:layout_constraintTop_toTopOf="parent" />
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/saturday"
@@ -292,6 +355,15 @@
                             app:layout_constraintStart_toStartOf="@+id/guideline6"
                             app:layout_constraintTop_toTopOf="parent" />
 
+                        <View
+                            android:id="@+id/view19"
+                            android:layout_width="0dp"
+                            android:layout_height="2dp"
+                            android:background="@color/black"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
+
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -299,7 +371,6 @@
                         android:id="@+id/rvDate"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/white"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"

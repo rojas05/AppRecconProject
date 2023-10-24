@@ -5,7 +5,7 @@
     android:id="@+id/mainModule"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/Thunderbird"
+    style="@style/layout"
     tools:context=".ActivityMainModule">
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -59,17 +59,14 @@
         app:layout_constraintStart_toStartOf="@+id/guideline10"
         tools:text="$800" />
 
-    <Button
+         <Button
         android:id="@+id/btSettings"
-        style="@style/buttons"
+        style="@style/buttonMain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:background="@drawable/border_radius_btn"
         android:text="@string/update"
-        android:textColor="@color/Thunderbird"
-        android:padding="4dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -105,7 +102,7 @@
         android:id="@+id/nestedScrollView2"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@drawable/background_main"
+        style="@style/scroll"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

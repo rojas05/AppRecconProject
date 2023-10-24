@@ -94,8 +94,6 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     android:text="@string/ready"
-                    android:background="@drawable/border_radius_btn"
-                    android:backgroundTint="@color/Thunderbird"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

@@ -5,8 +5,8 @@
     <string name="require">¡Importante! Para que RECCON funcione correctamente, asegúrate de proporcionar los precios por kilogramo recolectado. ¡Optimiza tu contabilidad cafetera con nosotros!</string>
     <string name="si_alimentacion">Precio por kilo con alimentación</string>
     <string name="no_alimentacion">Precio por kilo sin alimentación</string>
-    <string name="todoExit">Volver al modulo de configuracion</string>
-    <string name="settingsAliment">Configuracion de precios</string>
+    <string name="todoExit">Volver al módulo de configuración</string>
+    <string name="settingsAliment">Configuración de precios</string>
     <string name="todo">Ver todos los precios anteriores</string>
     <string name="recolector">Recolector(a)</string>
     <string name="price">$</string>
@@ -15,8 +15,7 @@
     <string name="report">Informe</string>
     <string name="descriptionReport">Obtén una visión completa de tu producción cafetera y toma decisiones informadas para el éxito de tu negocio.</string>
     <string name="userInfo">Selecciona una fecha en el calendario de recolección para generar un informe detallado de ese día</string>
-    <string name="calendarCollection">Calendario de recoleccion</string>
-    <string name="informed">Informe rapido</string>
+    <string name="calendarCollection">Calendario de recolección</string>
     <string name="pdf">Informes en PDF</string>
 
     <!-- Recoleccion -->
@@ -34,7 +33,7 @@
     <!-- txt del alert para add un Recolector -->
     <string name="addUser">¡Comienza a gestionar tu equipo de recolectores de manera eficiente y sin complicaciones!</string>
     <string name="readyAddRecolector">Recolector</string>
-    <string name="save">Guardado</string>
+    <string name="save">Recolector</string>
 
     <string name="welcome">¡Bienvenido a RECCON, la aplicación que revolucionará la contabilidad de la recolección de café! Diseñada pensando en los productores, nuestro objetivo es simplificar tus procesos y brindarte un manejo sencillo. Surgimos en el corazón del campo, enfocados en potenciar el desarrollo tecnologico del sector agrario. ¡Únete a nuestra comunidad y descubre una nueva forma de llevar tu contabilidad cafetera!</string>
     <string name="requireDates">Por favor, completa la información para continuar. ¡Gracias!</string>
@@ -45,13 +44,13 @@
 
     <!-- Year information -->
     <string name="year" tools:ignore="Typos">Anual</string>
-    <string name="totalInfoYear">Informacion Total: </string>
+    <string name="totalInfoYear">Información Total:</string>
     <string name="IYear" tools:ignore="Typos">Informe anual</string>
     <string name="IYearDescription">Utiliza este informe para tomar decisiones informadas y maximizar tu éxito en el sector cafetero.</string>
     <string name="titlePdfYear" tools:ignore="Typos">Bienvenido a al Informe Anual sobre la Administración de la Recolección de Café!</string>
     <string name="yearLoadingPdf" tools:ignore="Typos">Generando tu informe Anual de recolección cafetera. ¡Gracias por tu paciencia, valdrá la pena la espera!</string>
-    <string name="infoPdfYear">Informacion de los Precios establecidos durante el Año del </string>
-    <string name="infoPdfYearRecolection">Informacion de lo recolectado durante el Año </string>
+    <string name="infoPdfYear">Información de los Precios establecidos durante el Año del  </string>
+    <string name="infoPdfYearRecolection">Información de lo recolectado durante el Año </string>
 
     <!-- Week information -->
     <string name="week">Semanal</string>
@@ -59,7 +58,7 @@
     <string name="IWeekDescription">Obtén una visión precisa de tu producción semanal y toma decisiones estratégicas para optimizar tu cultivo.</string>
     <string name="weekLoadingPdf">Generando tu informe Semanal de recolección cafetera. ¡Gracias por tu paciencia, valdrá la pena la espera!</string>
     <string name="titlePdfWeek">¡Bienvenido a los Informes Semanales sobre Administración de la Recolección de Café!</string>
-    <string name="txtPdfWeek">Resumen Semanal de los precios de la Alimentacion</string>
+    <string name="txtPdfWeek">Resumen Semanal de los precios de la Alimentación</string>
 
     <!-- Month information -->
     <string name="month">Mensual</string>
@@ -67,16 +66,16 @@
     <string name="IMonthDescription">Analiza datos como la productividad y los costos mensuales de la recolección de cafe.</string>
     <string name="monthLoadingPdf">Generando tu informe Mensual de recolección cafetera. ¡Gracias por tu paciencia, valdrá la pena la espera!</string>
     <string name="titlePdfMonth">¡Bienvenido a los Informes Mesuales sobre Administración de la Recolección de Café!</string>
-    <string name="txtPdfMonth">Resumen Mensual de los precios de la Alimentacion de </string>
-    <string name="infoPdfMonth">Informacion de lo recolectado durante el Mes de </string>
+    <string name="txtPdfMonth">Resumen Mensual de los precios de la Alimentación de </string>
+    <string name="infoPdfMonth">Información de lo recolectado durante el Mes de </string>
 
     <!-- Recursos del Pdf -->
     <string name="actualPrice">Precios vigentes</string>
     <string name="previousPrice">Precios Anteriores</string>
     <string name="notAliment">Recolección sin alimentación</string>
     <string name="yesAliment">Recolección con alimentación</string>
-    <string name="aliment">Alimentacion</string>
-    <string name="notfeding">Sin Alimentacion</string>
+    <string name="aliment">alimentación</string>
+    <string name="notfeding">Sin alimentación</string>
     <string name="stateActive">Trabajando</string>
     <string name="stateArchive">Descansando</string>
     <string name="name">Nombre</string>
@@ -96,7 +95,7 @@
     <string name="btnAdd">Insertar</string>
     <string name="btnAddRecolector">Añadir Recolector</string>
     <string name="btnFinish">Cancelar</string>
-    <string name="collectionCancel">Pagar recoleccion</string>
+    <string name="collectionCancel">Pager recolección</string>
     <string name="collectors">Recolectores</string>
     <string name="yes">Si</string>
     <string name="no">No</string>
@@ -105,7 +104,7 @@
     <string name="cvKg">Informacion de Recoleccion</string>
     <string name="collect">Recoleccion</string>
 
-    <string name="kgRecolectados">Añadir una Recoleccion</string>
+    <string name="kgRecolectados">Añadir una Recolección</string>
     <string name="addCollection">¡Optimiza tu contabilidad y lleva un registro detallado de cada recolección!</string>
 
     <string name="requireCollectors">¡Solo con un equipo completo podremos lograr una recolección exitosa!</string>
@@ -115,11 +114,11 @@
     <string name="addCollectionFinish">\¡Nueva recolección agregada! </string>
     <string name="help">Tienes una pregunta? ¡Estamos aquí para ayudarte! Escríbenos en WhatsApp de soporte</string>
     <string name="chat">¡Conversemos en WhatsApp!</string>
+    <string name="informed">Calendario de recoleccion</string>
 
     <!-- Dialog assistant -->
     <string name="assistantWelcome">¡Bienvenido a Reccon, soy tu asistente de confianza en la gestión de la recolección de café! Si mi ayuda no es necesaria, puedes suspender esta función en el módulo principal… para continuar Presiona el botón “Empecemos”</string>
     <string name="assistantRequire">¡Importante! Para que Reccon funcione correctamente, asegúrate de proporcionar los precios por kilogramo recolectado… y Luego presiona el botón "listo"</string>
-    <string name="assistantPrices">Para cambiar los precios presiona "cambiar precios"… Para continuar presiona "son correctos" </string>
     <string name="assistantAddCollection">Ingresa los kilos recolectados de name y selecciona la alimentación</string>
     <string name="assistantAddCollector">Ingresa el nombre del recolector y presiona el botón "añadir recolector"</string>
     <string name="assistantCancelCollection">Recolección de</string>

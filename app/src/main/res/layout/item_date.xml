@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="70dp">
+    android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline1"
@@ -50,17 +50,18 @@
     <ImageView
         android:id="@+id/ivMonday"
         android:layout_width="0dp"
-        android:layout_height="20dp"
+        android:layout_height="30dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="4dp"
         android:background="@drawable/background_date"
         android:padding="2dp"
         android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/monday"
+        android:alpha="0.6"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/monday"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/monday"
+        app:layout_constraintTop_toTopOf="@+id/monday"
         app:srcCompat="@drawable/ic_bolsa_de_cafe"
         app:tint="@color/white" />
 
@@ -90,16 +91,17 @@
     <ImageView
         android:id="@+id/ivTuesday"
         android:layout_width="0dp"
-        android:layout_height="20dp"
+        android:layout_height="30dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="4dp"
         android:background="@drawable/background_date"
         android:padding="2dp"
         android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/tuesday"
+        android:alpha="0.6"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/tuesday"
         app:layout_constraintStart_toStartOf="@+id/tuesday"
+        app:layout_constraintTop_toTopOf="@+id/tuesday"
         app:srcCompat="@drawable/ic_bolsa_de_cafe"
         app:tint="@color/white" />
 
@@ -107,13 +109,14 @@
         android:id="@+id/tuesday"
         style="@style/tvItem"
         android:layout_width="0dp"
-        android:layout_height="40dp"
+        android:layout_height="0dp"
         android:backgroundTint="@null"
         android:gravity="center"
         app:autoSizeTextType="uniform"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/view2"
         app:layout_constraintStart_toStartOf="@+id/guideline1"
+        app:layout_constraintTop_toTopOf="parent"
         tools:text="02" />
 
     <View
@@ -129,16 +132,17 @@
     <ImageView
         android:id="@+id/ivWednesday"
         android:layout_width="0dp"
-        android:layout_height="20dp"
+        android:layout_height="30dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="4dp"
+        android:alpha="0.6"
         android:background="@drawable/background_date"
         android:padding="2dp"
         android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/wednesday"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/wednesday"
         app:layout_constraintStart_toStartOf="@+id/wednesday"
+        app:layout_constraintTop_toTopOf="@+id/wednesday"
         app:srcCompat="@drawable/ic_bolsa_de_cafe"
         app:tint="@color/white" />
 
@@ -168,16 +172,17 @@
     <ImageView
         android:id="@+id/ivThursday"
         android:layout_width="0dp"
-        android:layout_height="20dp"
+        android:layout_height="30dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="4dp"
+        android:alpha="0.6"
         android:background="@drawable/background_date"
         android:padding="2dp"
         android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/thursday"
+        app:layout_constraintBottom_toBottomOf="@+id/thursday"
         app:layout_constraintEnd_toEndOf="@+id/thursday"
         app:layout_constraintStart_toStartOf="@+id/thursday"
+        app:layout_constraintTop_toTopOf="@+id/thursday"
         app:srcCompat="@drawable/ic_bolsa_de_cafe"
         app:tint="@color/white" />
 
@@ -207,16 +212,17 @@
     <ImageView
         android:id="@+id/ivFriday"
         android:layout_width="0dp"
-        android:layout_height="20dp"
+        android:layout_height="30dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="4dp"
+        android:alpha="0.6"
         android:background="@drawable/background_date"
         android:padding="2dp"
         android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/friday"
+        app:layout_constraintBottom_toBottomOf="@+id/friday"
         app:layout_constraintEnd_toEndOf="@+id/friday"
         app:layout_constraintStart_toStartOf="@+id/friday"
+        app:layout_constraintTop_toTopOf="@+id/friday"
         app:srcCompat="@drawable/ic_bolsa_de_cafe"
         app:tint="@color/white" />
 
@@ -246,16 +252,17 @@
     <ImageView
         android:id="@+id/ivSaturday"
         android:layout_width="0dp"
-        android:layout_height="20dp"
+        android:layout_height="30dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="4dp"
+        android:alpha="0.6"
         android:background="@drawable/background_date"
         android:padding="2dp"
         android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/saturday"
+        app:layout_constraintBottom_toBottomOf="@+id/saturday"
         app:layout_constraintEnd_toEndOf="@+id/saturday"
         app:layout_constraintStart_toStartOf="@+id/saturday"
+        app:layout_constraintTop_toTopOf="@+id/saturday"
         app:srcCompat="@drawable/ic_bolsa_de_cafe"
         app:tint="@color/white" />
 
@@ -285,16 +292,17 @@
     <ImageView
         android:id="@+id/ivSunday"
         android:layout_width="0dp"
-        android:layout_height="20dp"
+        android:layout_height="30dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="4dp"
+        android:alpha="0.6"
         android:background="@drawable/background_date"
         android:padding="2dp"
         android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/sunday"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/sunday"
         app:layout_constraintStart_toStartOf="@+id/sunday"
+        app:layout_constraintTop_toTopOf="@+id/sunday"
         app:srcCompat="@drawable/ic_bolsa_de_cafe"
         app:tint="@color/white" />
 

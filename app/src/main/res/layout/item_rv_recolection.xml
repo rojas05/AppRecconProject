@@ -14,14 +14,13 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/Thunderbird">
+        style="@style/layout">
 
         <ImageView
             android:id="@+id/image"
             style="@style/itemRecolectionInfo"
             android:layout_width="wrap_content"
             android:layout_height="36dp"
-            android:background="@color/Thunderbird"
             android:importantForAccessibility="no"
             app:srcCompat="@drawable/ic_bolsa_de_cafe"
             app:layout_constraintBottom_toTopOf="@+id/viewHeaderBackground"
@@ -34,7 +33,6 @@
             style="@style/itemRecolectionInfo"
             android:layout_width="0dp"
             android:layout_height="43dp"
-            android:background="@color/Thunderbird"
             app:autoSizeTextType="uniform"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/image"
@@ -45,7 +43,7 @@
             android:id="@+id/viewHeaderBackground"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@drawable/border_radius_item"
+            style="@style/infoItem"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintHorizontal_bias="0.0"
@@ -137,16 +135,14 @@
 
         <Button
             android:id="@+id/btnUpdate"
-            style="@style/buttons"
+            style="@style/buttonMain"
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="8dp"
-            android:background="@drawable/border_radius_btn"
             android:text="@string/update"
-            android:textColor="@color/Thunderbird"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/viewHeaderBackground"

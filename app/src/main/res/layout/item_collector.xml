@@ -6,22 +6,21 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:animateLayoutChanges="true"
-    app:cardCornerRadius="10dp"
+    app:cardCornerRadius="20dp"
     app:cardElevation="4dp"
-    app:cardUseCompatPadding="true"
-    app:cardBackgroundColor="@color/white">
+    app:cardUseCompatPadding="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/Thunderbird">
+        style="@style/layout">
 
         <ImageView
             android:id="@+id/image"
             style="@style/itemRecolectionInfo"
-            android:layout_width="59dp"
-            android:layout_height="50dp"
-            android:background="@color/Thunderbird"
+            android:layout_width="40dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
             android:importantForAccessibility="no"
             android:src="@drawable/ic_recolector"
             app:layout_constraintBottom_toBottomOf="@+id/tvNameCollector"
@@ -32,8 +31,7 @@
             android:id="@+id/tvNameCollector"
             style="@style/itemRecolectionInfo"
             android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:background="@color/Thunderbird"
+            android:layout_height="40dp"
             app:autoSizeTextType="uniform"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/image"
@@ -44,7 +42,7 @@
             android:id="@+id/viewHeaderBackground"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@drawable/border_radius_item"
+            style="@style/infoItem"
             android:clickable="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline5"
@@ -70,7 +68,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_delete"
-                app:tint="@color/black"
+                style="@style/image"
                 tools:srcCompat="@drawable/ic_bolsa_de_cafe"/>
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -81,7 +79,6 @@
                 android:layout_marginBottom="8dp"
                 android:gravity="center"
                 android:textAlignment="center"
-                android:textColor="@color/black"
                 app:autoSizeTextType="uniform"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/guideline"

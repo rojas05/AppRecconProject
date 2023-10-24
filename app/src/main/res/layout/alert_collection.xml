@@ -12,7 +12,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:backgroundTint="@color/Thunderbird"
         app:cardCornerRadius="15dp"
         app:cardElevation="8dp"
         app:cardUseCompatPadding="true"
@@ -35,16 +34,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="cristian fabian rojas rojas" />
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:background="@drawable/background_fragment_informe"
-                    app:layout_constraintTop_toBottomOf="@+id/tvDescription"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
-
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/tilKg"
@@ -80,8 +69,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
                     android:text="@string/ready"
-                    android:background="@drawable/border_radius_btn"
-                    android:backgroundTint="@color/Thunderbird"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
@@ -92,7 +79,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="16dp"
-                    app:cardBackgroundColor="@color/white"
                     app:layout_constraintBottom_toTopOf="@+id/btReady"
                     app:layout_constraintEnd_toEndOf="@+id/tvAliment"
                     app:layout_constraintStart_toStartOf="@+id/tvAliment"
@@ -128,8 +114,8 @@
                     android:paddingStart="20dp"
                     android:paddingEnd="20dp"
                     android:text="@string/aliment"
-                    android:textColor="@color/black"
                     android:textSize="18sp"
+                    style="@style/text"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tilKg" />
@@ -141,7 +127,7 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnClose"
-        style="@style/foadingButtons"
+        style="@style/buttons"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"

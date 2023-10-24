@@ -12,6 +12,7 @@ import androidx.fragment.app.DialogFragment
 import com.rojasdev.apprecconproject.R
 import com.rojasdev.apprecconproject.controller.animatedAlert
 import com.rojasdev.apprecconproject.controller.customSnackbar
+import com.rojasdev.apprecconproject.controller.keyLIstener
 import com.rojasdev.apprecconproject.controller.requireInput
 import com.rojasdev.apprecconproject.controller.textListener
 import com.rojasdev.apprecconproject.controller.textToSpeech
@@ -85,6 +86,14 @@ class alertAddRecolector(
         val myListInput = listOf(
             binding.yesAddRecolector
         )
+
+        keyLIstener.start(binding.yesAddRecolector){
+            val required = requireInput.validate(myListInput,requireContext())
+            if (required){
+                dates(binding.yesAddRecolector)
+                binding.yesAddRecolector.setText("")
+            }
+        }
 
         binding.btAddRecolector.setOnClickListener {
             val required = requireInput.validate(myListInput,requireContext())

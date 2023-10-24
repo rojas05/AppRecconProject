@@ -14,7 +14,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/Hippie_Green">
+        style="@style/layoutInformed">
 
         <ImageView
             android:id="@+id/image"
@@ -42,7 +42,7 @@
             android:id="@+id/viewHeaderBackground"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/border_radius_item"
+            style="@style/infoItem"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintStart_toStartOf="parent"

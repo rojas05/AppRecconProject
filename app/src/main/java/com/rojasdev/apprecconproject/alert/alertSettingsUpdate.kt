@@ -11,6 +11,7 @@ import androidx.fragment.app.DialogFragment
 import com.rojasdev.apprecconproject.R
 import com.rojasdev.apprecconproject.controller.animatedAlert
 import com.rojasdev.apprecconproject.controller.dateFormat
+import com.rojasdev.apprecconproject.controller.keyLIstener
 import com.rojasdev.apprecconproject.controller.requireInput
 import com.rojasdev.apprecconproject.data.entities.SettingEntity
 import com.rojasdev.apprecconproject.databinding.AlertUpdateSettingBinding
@@ -36,6 +37,14 @@ class alertSettingsUpdate(
         )
 
         binding.btReady.setOnClickListener {
+            val require = requireInput.validate(myListInput,requireContext())
+            if (require){
+                dates()
+                dismiss()
+            }
+        }
+
+        keyLIstener.start(binding.yesAliment){
             val require = requireInput.validate(myListInput,requireContext())
             if (require){
                 dates()

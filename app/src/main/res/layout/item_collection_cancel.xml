@@ -21,7 +21,7 @@
 
     <TextView
         android:id="@+id/tvKg"
-        style="@style/tvItem"
+        style="@style/item"
         android:layout_width="0dp"
         android:layout_height="30dp"
         android:layout_marginStart="4dp"
@@ -38,7 +38,7 @@
 
     <TextView
         android:id="@+id/tvAliment"
-        style="@style/tvItem"
+        style="@style/item"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="2dp"
@@ -56,7 +56,7 @@
 
     <TextView
         android:id="@+id/tvPrice"
-        style="@style/tvItem"
+        style="@style/item"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="2dp"
