@@ -71,5 +71,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvAliment" />
 
-
 </androidx.constraintlayout.widget.ConstraintLayout>

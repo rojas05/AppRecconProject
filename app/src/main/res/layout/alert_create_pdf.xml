@@ -12,7 +12,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="10dp"
         app:cardElevation="8dp"
         app:cardUseCompatPadding="true"
@@ -26,16 +25,14 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center">
 
-
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/textView"
-                style="@style/texViewAlert"
+                style="@style/text"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
-                android:background="@color/white"
-                android:textColor="@color/black"
+                android:gravity="center"
                 app:autoSizeTextType="uniform"
                 app:layout_constraintBottom_toTopOf="@+id/progressBar"
                 app:layout_constraintEnd_toEndOf="parent"

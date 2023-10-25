@@ -11,8 +11,7 @@
         android:id="@+id/ViewPagerCollectors"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        style="@style/layoutCollection"
-   />
+        style="@style/layoutCollection"/>
 
         <com.google.android.material.bottomappbar.BottomAppBar
             android:id="@+id/bottomAppBarCollectors"
@@ -47,6 +46,5 @@
             android:tint="@color/white"
             app:backgroundTint="@color/Dark_Tan"
             app:layout_anchor="@id/bottomAppBarCollectors" />
-
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

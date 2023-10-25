@@ -112,6 +112,7 @@ class ActivitySettings : AppCompatActivity() {
         }
     }
 
+    //muestra todas las recolecciones archivadas en toda la pantalla del dispositivo
     private fun setupRecyclerView() {
         binding.rvSetTingHistory.setPadding(0,0,0,0)
         CoroutineScope(Dispatchers.IO).launch{
@@ -145,6 +146,7 @@ class ActivitySettings : AppCompatActivity() {
             binding.btViewAlimentArchived.visibility = View.GONE
     }
 
+    //muestra los precios anteriores en usa vista previa
     private fun setupRecyclerViewArchived() {
         val heihgt = getResources().getDisplayMetrics().widthPixels
         val setPadding = heihgt.div(3.9)

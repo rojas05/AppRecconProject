@@ -108,6 +108,27 @@
         <item name="android:backgroundTint">@color/gray_light</item>
     </style>
 
+    <!--values informed-->
+    <style name="valuesInformed">
+        <item name="android:background">@color/Hippie_Green</item>
+    </style>
+
+    <!--pdf theme-->
+    <style name="pdf">
+        <item name="android:background">@color/white</item>
+    </style>
+
+    <!--pdf bar theme-->
+    <style name="pdfBar">
+        <item name="android:background">@color/gray</item>
+    </style>
+
+    <!--Buttons theme-->
+    <style name="foadingButtons">
+        <item name="android:backgroundTint">@color/Thunderbird</item>
+    </style>
+
+    <!--tvAlerts theme-->
     <style name="texViewAlert">
         <item name="android:background">@color/Thunderbird</item>
         <item name="android:padding">8dp</item>
@@ -117,6 +138,7 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <!--alert message theme-->
     <style name="texViewAlertMessague">
         <item name="android:padding">8dp</item>
         <item name="android:fontFamily">@font/comfortaa</item>
@@ -125,16 +147,14 @@
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="foadingButtons">
-        <item name="android:backgroundTint">@color/Thunderbird</item>
-    </style>
-
+    <!--textView description theme-->
     <style name="texViewDescription">
         <item name="android:fontFamily">@font/comfortaa</item>
         <item name="android:gravity">center</item>
         <item name="android:textColor">@color/gray</item>
     </style>
 
+    <!--textView alert Informed theme-->
     <style name="texViewAlertInformed">
         <item name="android:padding">2dp</item>
         <item name="android:fontFamily">@font/comfortaa</item>
@@ -143,21 +163,20 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <!--buttons Informed theme-->
     <style name="buttonsInformed">
         <item name="android:backgroundTint">@color/Hippie_Green</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="foadingButtonsInformed">
-        <item name="android:backgroundTint">@color/Hippie_Green</item>
-    </style>
-
+    <!--textView description Informed theme-->
     <style name="texViewDescriptionInformed">
         <item name="android:fontFamily">@font/comfortaa</item>
         <item name="android:textColor">@color/gray</item>
     </style>
 
+    <!--item theme-->
     <style name="tvItem">
         <item name="android:fontFamily">@font/comfortaa</item>
         <item name="android:textColor">@color/black</item>
@@ -165,10 +184,12 @@
         <item name="android:textSize">20sp</item>
     </style>
 
+    <!--progress bar theme-->
     <style name="CustomProgressBar" parent="android:Widget.ProgressBar.Horizontal">
         <item name="android:progressDrawable">@drawable/custom_progress_drawable</item>
     </style>
 
+    <!--textView info collector theme-->
     <style name="tvInfoUser">
         <item name="android:fontFamily">@font/comfortaa</item>
         <item name="android:textColor">@color/Hippie_Green</item>
@@ -177,16 +198,18 @@
         <item name="android:textSize">25sp</item>
     </style>
 
-    <style name="itemRecolectionInfo">
-        <item name="android:padding">2dp</item>
+    <!--textView KG theme-->
+    <style name="texViewKg">
         <item name="android:fontFamily">@font/comfortaa</item>
+        <item name="android:gravity">center</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="texViewKg">
+    <!--item collection info theme-->
+    <style name="itemRecolectionInfo">
+        <item name="android:padding">2dp</item>
         <item name="android:fontFamily">@font/comfortaa</item>
-        <item name="android:gravity">center</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:textStyle">bold</item>
     </style>

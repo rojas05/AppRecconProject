@@ -43,9 +43,9 @@ class ActivityRecolectionDetail : AppCompatActivity() {
 
     }
 
-    private fun getRecollection(idCollector: Int, userState: String = "active") {
+    private fun getRecollection(idCollector: Int) {
         CoroutineScope(Dispatchers.IO).launch{
-            val collection= AppDataBase.getInstance(this@ActivityRecolectionDetail).RecolectoresDao().getCollectorAndCollection(userState,idCollector)
+            val collection= AppDataBase.getInstance(this@ActivityRecolectionDetail).RecolectoresDao().getCollectorAndCollection("active",idCollector)
 
             val totalRecolection = AppDataBase.getInstance(this@ActivityRecolectionDetail).RecolectoresDao().getCollectorAndCollectionTotal(idCollector)
             launch(Dispatchers.Main) {
@@ -56,17 +56,15 @@ class ActivityRecolectionDetail : AppCompatActivity() {
                     alertUpdateRecollection(it, idCollector)
                 }
                 price.priceSplit(totalRecolection[0].price_total.toInt()){
-                    binding.tvTotal.text = "Total a Pagar:\n${it}"
+                    binding.tvTotal.text = "${getString(R.string.totalPrinceCancel)}\n${it}"
                 }
 
-                binding.tvTitle.text = "Total Recolectado:\n${totalRecolection[0].kg_collection.toFloat()} Kg"
+                binding.tvTitle.text = "${getString(R.string.recolection)}\n${totalRecolection[0].kg_collection.toFloat()} Kg"
                 binding.rvRecolections.adapter = adapter
                 binding.rvRecolections.layoutManager = LinearLayoutManager(this@ActivityRecolectionDetail)
-
             }
         }
     }
-
 
     private fun alertUpdateRecollection(it:collectorCollection, idCollector: Int){
         alertCollectionUpdate(
@@ -79,7 +77,6 @@ class ActivityRecolectionDetail : AppCompatActivity() {
             updateCollection(it, idCollector)
         }.show(supportFragmentManager,"dialog")
     }
-
 
     private fun updateCollection(it:RecollectionEntity, idCollector: Int) {
         CoroutineScope(Dispatchers.IO).launch {
@@ -116,5 +113,4 @@ class ActivityRecolectionDetail : AppCompatActivity() {
             }
         }.show(supportFragmentManager,"dialog")
     }
-
 }

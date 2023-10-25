@@ -6,7 +6,6 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.speech.tts.TextToSpeech
 import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.OnBackPressedCallback
@@ -19,7 +18,6 @@ import com.rojasdev.apprecconproject.alert.alertWelcome
 import com.rojasdev.apprecconproject.controller.animatedAlert
 import com.rojasdev.apprecconproject.controller.customSnackbar
 import com.rojasdev.apprecconproject.controller.price
-import com.rojasdev.apprecconproject.controller.textToSpeech
 import com.rojasdev.apprecconproject.data.dataBase.AppDataBase
 import com.rojasdev.apprecconproject.data.entities.RecolectoresEntity
 import com.rojasdev.apprecconproject.data.entities.SettingEntity
@@ -35,7 +33,7 @@ class ActivityMainModule : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        title = "Precios"
+        title = getString(R.string.priceTitle)
 
         this.onBackPressedDispatcher.addCallback(object : OnBackPressedCallback(true){
             override fun handleOnBackPressed() {
@@ -174,11 +172,11 @@ class ActivityMainModule : AppCompatActivity() {
         val collection = preferences.getString("collection","")
         if(collection != "true"){
             alertMessage(
-                "¡Verifica la precisión de los precios a pagar!",
-                "${binding.tvNoAliment.text}\nSin alimentación",
-                "${binding.tvYesAliment.text}\nCon alimentación",
-                "Son\ncorrectos",
-                "Cambiar\nprecios"
+                getString(R.string.checkAliment),
+                "${binding.tvNoAliment.text}\n ${getString(R.string.notAliment)}",
+                "${binding.tvYesAliment.text}\n ${getString(R.string.yesAliment)}",
+                getString(R.string.btCorrec),
+                getString(R.string.noCorrec)
             ){
                 if(it == "yes"){
                     alertAddRecolcetor()
@@ -219,7 +217,5 @@ class ActivityMainModule : AppCompatActivity() {
         editor.putString("collection","true")
         editor.apply()
     }
-
-
 
 }

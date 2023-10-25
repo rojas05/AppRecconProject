@@ -59,7 +59,7 @@
         app:layout_constraintStart_toStartOf="@+id/guideline10"
         tools:text="$800" />
 
-         <Button
+    <Button
         android:id="@+id/btSettings"
         style="@style/buttonMain"
         android:layout_width="wrap_content"
@@ -237,6 +237,7 @@
             </androidx.cardview.widget.CardView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

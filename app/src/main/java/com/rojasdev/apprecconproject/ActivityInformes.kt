@@ -15,19 +15,20 @@ class ActivityInformes : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        title = "Informe rapido"
+        title = getString(R.string.informedTitle)
         openFragment(FragmentInforme())
 
+        //configuracion de la barra de navegacion
         binding.bottonNavigationView.setOnNavigationItemSelectedListener {
             meniItem ->
             when(meniItem.itemId){
                 R.id.list ->{
-                    title = "Informe rapido"
+                    title = getString(R.string.informedTitle)
                     openFragment(FragmentInforme())
                     true
                 }
                 R.id.pdf ->{
-                    title = "Informes en PDF"
+                    title = getString(R.string.informedTitlePdf)
                     openFragment(FragmentPdf())
                     true
                 }

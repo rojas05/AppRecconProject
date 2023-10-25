@@ -20,10 +20,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -82,10 +78,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/tilInputAdd"
                     app:layout_constraintVertical_bias="0.0" />
 
-
             </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </ScrollView>
 
     </androidx.cardview.widget.CardView>
 
@@ -101,6 +94,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/ic_close" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

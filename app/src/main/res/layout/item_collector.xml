@@ -88,7 +88,6 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fbAddKg"
             android:layout_width="wrap_content"
@@ -102,7 +101,6 @@
             app:layout_constraintStart_toStartOf="@+id/guideline5"
             app:layout_constraintTop_toBottomOf="@+id/tvNameCollector"
             app:srcCompat="@drawable/ic_kilogramo" />
-
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline5"

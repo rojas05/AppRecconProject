@@ -23,7 +23,6 @@ object customSnackbar {
         // Infla el diseño de la Snackbar personalizada utilizando ViewBinding
         val binding = SnackbarBinding.inflate(LayoutInflater.from(view.context))
         binding.tv.text = message
-        binding.tv.setTextColor(Color.BLACK)
 
         // Agrega la vista personalizada a la Snackbar
         snackbarLayout.addView(binding.root)

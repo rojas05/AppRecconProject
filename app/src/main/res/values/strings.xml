@@ -10,6 +10,7 @@
     <string name="todo">Ver todos los precios anteriores</string>
     <string name="recolector">Recolector(a)</string>
     <string name="price">$</string>
+    <string name="priceTitle">precios</string>
 
     <!-- Informers -->
     <string name="report">Informe</string>
@@ -95,7 +96,7 @@
     <string name="btnAdd">Insertar</string>
     <string name="btnAddRecolector">Añadir Recolector</string>
     <string name="btnFinish">Cancelar</string>
-    <string name="collectionCancel">Pager recolección</string>
+    <string name="collectionCancel">Pagar recolección</string>
     <string name="collectors">Recolectores</string>
     <string name="yes">Si</string>
     <string name="no">No</string>
@@ -115,6 +116,8 @@
     <string name="help">Tienes una pregunta? ¡Estamos aquí para ayudarte! Escríbenos en WhatsApp de soporte</string>
     <string name="chat">¡Conversemos en WhatsApp!</string>
     <string name="informed">Calendario de recoleccion</string>
+    <string name="informedTitle">Informe rápido</string>
+    <string name="informedTitlePdf">Informe en PDF</string>
 
     <!-- Dialog assistant -->
     <string name="assistantWelcome">¡Bienvenido a Reccon, soy tu asistente de confianza en la gestión de la recolección de café! Si mi ayuda no es necesaria, puedes suspender esta función en el módulo principal… para continuar Presiona el botón “Empecemos”</string>
@@ -134,5 +137,10 @@
     <string name="txtHistory">Historial de Pdf</string>
     <string name="ReportType">Tipo de Informe: </string>
     <string name="ReportDateGenerate">Fecha Generada: </string>
+    <string name="assistantClouse">Presiona aquí para desactivar el asistente</string>
+    <string name="checkAliment">¡Verifica la precisión de los precios a pagar!</string>
+    <string name="btCorrec">Son correctos</string>
+    <string name="noCorrec">Cambiar precios</string>
+    <string name="totalPrinceCancel">Total a pagar</string>
 
 </resources>
