@@ -167,6 +167,10 @@
     <string name="btCorrec">Son correctos</string>
     <string name="noCorrec">Cambiar precios</string>
     <string name="totalPrinceCancel">Total a pagar</string>
+    <string name="noWhatsApp">Lo sentimos, no tienes instalado WhatsApp</string>
+    <string name="install">"Ve a la Play Store y descarga WhatsApp "</string>
+    <string name="message">"Escríbenos al WhatsApp de soporte 317 015 74 14"</string>
+    <string name="playSore">Ir a Play Store</string>
 
     <!-- Calendar -->
     <string name="monday">L</string>
