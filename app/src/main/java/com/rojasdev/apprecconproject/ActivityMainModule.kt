@@ -97,8 +97,8 @@ class ActivityMainModule : AppCompatActivity() {
                 alertMessage(
                     getString(R.string.install),
                     getString(R.string.message),
-                    getString(R.string.ready),
                     getString(R.string.playSore),
+                    getString(R.string.ready),
                     getString(R.string.noWhatsApp)
                 ){
                     if (it == "yes"){
