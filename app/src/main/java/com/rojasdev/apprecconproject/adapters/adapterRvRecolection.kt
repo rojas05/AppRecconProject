@@ -5,18 +5,18 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.rojasdev.apprecconproject.R
 import com.rojasdev.apprecconproject.data.dataModel.collectorCollection
-import com.rojasdev.apprecconproject.viewHolders.viewHolderCvRecollecition
+import com.rojasdev.apprecconproject.viewHolders.viewHolderCvRecollection
 
-class adpaterRvRecolection(
+class adapterRvRecolection(
                 private var item: List<collectorCollection>,
                 private var onClickListenerUpdate: (collectorCollection) -> Unit
-        ):RecyclerView.Adapter<viewHolderCvRecollecition>() {
+        ):RecyclerView.Adapter<viewHolderCvRecollection>() {
 
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): viewHolderCvRecollecition {
-                return viewHolderCvRecollecition(LayoutInflater.from(parent.context).inflate(R.layout.item_rv_recolection, parent, false))
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): viewHolderCvRecollection {
+                return viewHolderCvRecollection(LayoutInflater.from(parent.context).inflate(R.layout.item_rv_recolection, parent, false))
         }
 
-        override fun onBindViewHolder(holder: viewHolderCvRecollecition, position: Int) {
+        override fun onBindViewHolder(holder: viewHolderCvRecollection, position: Int) {
                 val item = item[position]
                 holder.render(item,onClickListenerUpdate)
         }

@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.rojasdev.apprecconproject.R
-import com.rojasdev.apprecconproject.data.entities.RecolectoresEntity
 import com.rojasdev.apprecconproject.data.entities.SettingEntity
 import com.rojasdev.apprecconproject.viewHolders.viewHolderSettings
 
@@ -13,7 +12,7 @@ class adapterRvSettings (
     private val onClickListenerNext: (SettingEntity) -> Unit ) : RecyclerView.Adapter<viewHolderSettings>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): viewHolderSettings {
-        return viewHolderSettings(LayoutInflater.from(parent.context).inflate(R.layout.item_settings,parent,false,))
+        return viewHolderSettings(LayoutInflater.from(parent.context).inflate(R.layout.item_settings, parent,false))
     }
 
     override fun onBindViewHolder(holder: viewHolderSettings, position: Int) {
@@ -21,7 +20,5 @@ class adapterRvSettings (
         holder.render(item,onClickListenerNext)
     }
 
-    override fun getItemCount(): Int {
-        return items.size
-    }
+    override fun getItemCount(): Int = items.size
 }

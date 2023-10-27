@@ -130,7 +130,6 @@
             android:layout_height="50dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="32dp"
-            android:layout_marginEnd="16dp"
             android:text="@string/tvKg"
             app:autoSizeTextType="uniform"
             app:layout_constraintEnd_toEndOf="parent"

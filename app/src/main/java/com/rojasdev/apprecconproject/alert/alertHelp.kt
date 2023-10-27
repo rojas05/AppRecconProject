@@ -1,5 +1,6 @@
 package com.rojasdev.apprecconproject.alert
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.Dialog
 import android.graphics.Color
@@ -19,11 +20,12 @@ class alertHelp(
     var onClickListener: () -> Unit
 ): DialogFragment() {
     private lateinit var binding: AlertHelpBinding
+    @SuppressLint("SuspiciousIndentation")
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         binding = AlertHelpBinding.inflate(LayoutInflater.from(context))
         animatedAlert.animatedInit(binding.cv)
         val builder = AlertDialog.Builder(requireActivity())
-        builder.setView(binding.root)
+            builder.setView(binding.root)
 
         binding.lyChat.setOnClickListener {
             onClickListener()
@@ -41,11 +43,9 @@ class alertHelp(
         }
 
         val dialog = builder.create()
-        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialog.setCanceledOnTouchOutside(false)
+            dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            dialog.setCanceledOnTouchOutside(false)
         animatedAlert.onBackAlert(dialog,requireContext(),getString(R.string.requireDates))
         return dialog
     }
-
-
 }

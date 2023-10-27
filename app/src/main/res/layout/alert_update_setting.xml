@@ -42,7 +42,9 @@
                         android:id="@+id/yesAliment"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="number|text"/>
+                        android:inputType="number|text"
+                        tools:ignore="SpeakableTextPresentCheck" />
+
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
@@ -51,10 +53,11 @@
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     android:textSize="20sp"
-                    tools:text="@string/no_alimentacion"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="TextSizeCheck"
+                    tools:text="@string/notFeeding" />
 
                 <Button
                     android:id="@+id/btReady"
@@ -75,7 +78,7 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fbClose"
-        style="@style/buttons"
+        style="@style/floadingButtons"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
@@ -83,6 +86,8 @@
         app:layout_constraintBottom_toTopOf="@+id/cvSettings"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_close" />
+        app:srcCompat="@drawable/ic_close"
+        android:contentDescription="@string/txtCancel"
+        android:focusable="true" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

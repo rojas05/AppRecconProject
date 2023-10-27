@@ -15,7 +15,7 @@ class adapterRvCollectors(
     private val onClickListenerKg: (RecolectoresEntity) -> Unit) : RecyclerView.Adapter<viewHolderCvCollectors>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): viewHolderCvCollectors {
-        return viewHolderCvCollectors(LayoutInflater.from(parent.context).inflate(R.layout.item_collector,parent,false,))
+        return viewHolderCvCollectors(LayoutInflater.from(parent.context).inflate(R.layout.item_collector, parent,false))
     }
 
     override fun onBindViewHolder(holder: viewHolderCvCollectors, position: Int) {
@@ -23,7 +23,5 @@ class adapterRvCollectors(
         holder.render(item,list,onClickListenerNext,onClickListenerDelete,onClickListenerKg)
     }
 
-    override fun getItemCount(): Int {
-        return items.size
-    }
+    override fun getItemCount(): Int = items.size
 }

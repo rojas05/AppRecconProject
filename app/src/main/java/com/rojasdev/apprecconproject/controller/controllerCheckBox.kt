@@ -25,7 +25,7 @@ object controllerCheckBox {
                 }
             }
         }else{
-            tvAliment.error = "indique la alimentacion"
+            tvAliment.error = "Indique la alimentacion"
             tvAliment.requestFocus()
             requireInput.vibratePhone(context)
         }

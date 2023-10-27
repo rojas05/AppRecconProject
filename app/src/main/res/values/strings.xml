@@ -3,14 +3,14 @@
 
     <!-- Setting -->
     <string name="require">¡Importante! Para que RECCON funcione correctamente, asegúrate de proporcionar los precios por kilogramo recolectado. ¡Optimiza tu contabilidad cafetera con nosotros!</string>
-    <string name="si_alimentacion">Precio por kilo con alimentación</string>
-    <string name="no_alimentacion">Precio por kilo sin alimentación</string>
+    <string name="yesFeeding">Precio por kilo con alimentación</string>
+    <string name="notFeeding">Precio por kilo sin alimentación</string>
     <string name="todoExit">Volver al módulo de configuración</string>
     <string name="settingsAliment">Configuración de precios</string>
     <string name="todo">Ver todos los precios anteriores</string>
     <string name="recolector">Recolector(a)</string>
     <string name="price">$</string>
-    <string name="priceTitle">precios</string>
+    <string name="priceTitle">Precios</string>
 
     <!-- Informers -->
     <string name="report">Informe</string>
@@ -24,24 +24,41 @@
     <string name="descriptionCollection">Registra cada detalle y mantén un control preciso de tu actividad cafetera. ¡Optimiza tus procesos y maximiza tu productividad!</string>
     <string name="deleteCollection">¿Estás seguro de que deseas eliminar este recolector?</string>
     <string name="finish_collection">¡Recolección finalizada!</string>
-    <string name="tvRecolcection">Total recolectado:</string>
+    <string name="tvRecolection">Total recolectado:</string>
     <string name="hintUser">Nombre del Recolector</string>
     <string name="tvPriceTotal">Total a Pagar:</string>
     <string name="priceCollection">Ganado</string>
-    <string name="collectado">pesa</string>
+    <string name="collected">pesa</string>
     <string name="tvKg">216 Kg</string>
 
-    <!-- txt del alert para add un Recolector -->
+    <!-- txt del alert -->
     <string name="addUser">¡Comienza a gestionar tu equipo de recolectores de manera eficiente y sin complicaciones!</string>
     <string name="readyAddRecolector">Recolector</string>
-    <string name="save">Recolector</string>
+    <string name="save">Guardado</string>
 
     <string name="welcome">¡Bienvenido a RECCON, la aplicación que revolucionará la contabilidad de la recolección de café! Diseñada pensando en los productores, nuestro objetivo es simplificar tus procesos y brindarte un manejo sencillo. Surgimos en el corazón del campo, enfocados en potenciar el desarrollo tecnologico del sector agrario. ¡Únete a nuestra comunidad y descubre una nueva forma de llevar tu contabilidad cafetera!</string>
     <string name="requireDates">Por favor, completa la información para continuar. ¡Gracias!</string>
     <string name="go">Presiona el botón \"Empecemos\" para comenzar. ¡Estamos emocionados de tener a bordo!</string>
     <string name="hello">Hello</string>
+    <string name="txtCancel">Cerrar</string>
+    <string name="txtImage">Imagen</string>
     <string name="support">Ayuda</string>
     <string name="assistant">Asistente de voz</string>
+    <string name="txtErrorOpen">No se encontro una aplicación para abrir el Informe generado, se recomienda Instalar una aplicación para leer archivos PDF.</string>
+    <string name="txtCloseAssistant">Desactivar el asistente</string>
+
+    <!-- txt Alert Message -->
+    <string name="txtRecolectionFull">¡Recolección completada con éxito!</string>
+    <string name="txtNewReport">Generar nuevo informe.</string>
+    <string name="txtCalendar">Explorar calendario recolección.</string>
+    <string name="txtGoReport">Ir a informes</string>
+    <string name="txtReturnMenu">Volver a inicio</string>
+    <string name="txtMessageOne">1 - Inicia una nueva recoleccion</string>
+    <string name="txtMessageTwo">2 - Registra todo tu equipo de recolectores</string>
+    <string name="txtRecolectionStart">Iniciar la recoleccion</string>
+    <string name="txtSelectAliment">Indique la alimentacion</string>
+    <string name="txtMessageOneInstall">1 - Abre la tienda de aplicaiones</string>
+    <string name="txtMessageTwoInstall">2 - Instala un lector PDF de tu preferencia</string>
 
     <!-- Year information -->
     <string name="year" tools:ignore="Typos">Anual</string>
@@ -75,8 +92,8 @@
     <string name="previousPrice">Precios Anteriores</string>
     <string name="notAliment">Recolección sin alimentación</string>
     <string name="yesAliment">Recolección con alimentación</string>
-    <string name="aliment">alimentación</string>
-    <string name="notfeding">Sin alimentación</string>
+    <string name="aliment">Alimentación</string>
+    <string name="txtNotFeding">Sin Alimentación</string>
     <string name="stateActive">Trabajando</string>
     <string name="stateArchive">Descansando</string>
     <string name="name">Nombre</string>
@@ -89,21 +106,25 @@
     <string name="pdfFinish">Con cada semana de recolección, avanzamos hacia la excelencia en nuestra producción cafetera. ¡Sigamos cosechando éxitos juntos!</string>
 
     <!-- Botones -->
+    <string name="btnAccept">Aceptar</string>
+    <string name="btnFinish">Cancelar</string>
+    <string name="btnAdd">Insertar</string>
+    <string name="btnOpenShop">Ir a la Play Store</string>
+    <string name="btnAddRecolector">Añadir Recolector</string>
     <string name="ready">Listo</string>
     <string name="Init">Empecemos</string>
     <string name="update">Actualizar</string>
     <string name="create">Generar</string>
-    <string name="btnAdd">Insertar</string>
-    <string name="btnAddRecolector">Añadir Recolector</string>
-    <string name="btnFinish">Cancelar</string>
     <string name="collectionCancel">Pagar recolección</string>
     <string name="collectors">Recolectores</string>
     <string name="yes">Si</string>
     <string name="no">No</string>
     <string name="finish">Finalizar</string>
+    <string name="read">leer</string>
 
     <string name="cvKg">Informacion de Recoleccion</string>
     <string name="collect">Recoleccion</string>
+    <string name="txtNotPermissions">No tienes permiso para abrir el PDF</string>
 
     <string name="kgRecolectados">Añadir una Recolección</string>
     <string name="addCollection">¡Optimiza tu contabilidad y lleva un registro detallado de cada recolección!</string>
@@ -128,19 +149,32 @@
     <string name="assistantCancelCollectionTotal">Total a pagar</string>
     <string name="deleteCollector">Recolector eliminado</string>
     <string name="collectionCanceled">Recolección pagada</string>
-    <string name="editNameRedy">Nombre actualizado</string>
+    <string name="editNameReady">Nombre actualizado</string>
     <string name="settingsUpdate">Nuevo precio guardado</string>
 
+    <string name="txtOnAssistant">Activar el assistente</string>
+    <string name="txtOffAssistant">Desactivar el assistente</string>
+    <string name="txtActiveAssistant">Assistente activado</string>
+    <string name="txtStartAssistant">Iniciando el assitente</string>
 
     <!-- Historial De Pdf -->
     <string name="titleHistory">Informes Generados</string>
     <string name="txtHistory">Historial de Pdf</string>
     <string name="ReportType">Tipo de Informe: </string>
     <string name="ReportDateGenerate">Fecha Generada: </string>
-    <string name="assistantClouse">Presiona aquí para desactivar el asistente</string>
+    <string name="assistantClose">Presiona aquí para desactivar el asistente</string>
     <string name="checkAliment">¡Verifica la precisión de los precios a pagar!</string>
     <string name="btCorrec">Son correctos</string>
     <string name="noCorrec">Cambiar precios</string>
     <string name="totalPrinceCancel">Total a pagar</string>
+
+    <!-- Calendar -->
+    <string name="monday">L</string>
+    <string name="tuesday">M</string>
+    <string name="wednesday">M</string>
+    <string name="thursday">J</string>
+    <string name="friday">V</string>
+    <string name="saturday">S</string>
+    <string name="sunday">D</string>
 
 </resources>

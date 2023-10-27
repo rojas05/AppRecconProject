@@ -11,8 +11,7 @@ import java.util.Calendar
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-      checkAssistant.start(
-          this,
+      checkAssistant.start(this,
           {
               CoroutineScope(Dispatchers.IO).launch {
                   textToSpeech().start(this@MainActivity,greet()){
@@ -23,7 +22,7 @@ class MainActivity : AppCompatActivity() {
               startActivity(Intent(this@MainActivity,ActivityMainModule::class.java))
           })
     }
-    fun greet():String{
+    private fun greet():String{
         val hour = Calendar.getInstance()
         val hourCycle = hour.get(Calendar.HOUR_OF_DAY)
         return when {

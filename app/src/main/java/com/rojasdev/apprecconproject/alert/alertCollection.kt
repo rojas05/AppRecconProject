@@ -22,23 +22,19 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import nl.marc_apps.tts.TextToSpeechInstance
-import java.text.SimpleDateFormat
-import java.util.Calendar
-import java.util.Locale
 
 class alertCollection (
-    var collector: RecolectoresEntity,
+    private var collector: RecolectoresEntity,
     var onClickListener: (RecollectionEntity) -> Unit
 ): DialogFragment() {
     private var settingsId: Int? = null
     private lateinit var binding: AlertCollectionBinding
     private lateinit var tts: TextToSpeech
+
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         binding = AlertCollectionBinding.inflate(LayoutInflater.from(context))
         tts = TextToSpeech(context){}
-
         animatedAlert.animatedInit(binding.cvRecolector)
-
         val builder = AlertDialog.Builder(requireActivity())
         builder.setView(binding.root)
 
@@ -61,18 +57,18 @@ class alertCollection (
                 requireContext(),
                 getString(R.string.assistantAddCollection).replace("name", collector.name)
             ){
-                butons(it)
+                buttons(it)
             }
         }
 
-        butons(null)
+        buttons(null)
 
         val dialog = builder.create()
         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         return dialog
     }
 
-    private fun butons(tts: TextToSpeechInstance?) {
+    private fun buttons(tts: TextToSpeechInstance?) {
         if (tts == null){
             binding.btnClose.setOnClickListener {
                 dismiss()
@@ -113,7 +109,7 @@ class alertCollection (
                     }
                 }
             }
-        }else{
+        } else{
             binding.btnClose.setOnClickListener {
                 dismiss()
                 tts.close()
@@ -123,6 +119,7 @@ class alertCollection (
                 val myListInput = listOf(
                     binding.etKg
                 )
+
                 val require = requireInput.validate(myListInput,requireContext())
                 if (require){
                     controllerCheckBox.checkBoxFun(

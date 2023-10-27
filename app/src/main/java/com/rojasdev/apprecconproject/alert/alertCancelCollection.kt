@@ -1,5 +1,6 @@
 package com.rojasdev.apprecconproject.alert
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.Dialog
 import android.graphics.Color
@@ -10,7 +11,7 @@ import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.rojasdev.apprecconproject.R
-import com.rojasdev.apprecconproject.adapters.adapterRvcancelCollection
+import com.rojasdev.apprecconproject.adapters.adapterRvCancelCollection
 import com.rojasdev.apprecconproject.controller.animatedAlert
 import com.rojasdev.apprecconproject.controller.price
 import com.rojasdev.apprecconproject.controller.textToSpeech
@@ -24,17 +25,16 @@ import nl.marc_apps.tts.TextToSpeechInstance
 import nl.marc_apps.tts.errors.TextToSpeechSynthesisInterruptedError
 
 class alertCancelCollection (
-    var collectionTotal: List<collecionTotalCollector>,
+    private var collectionTotal: List<collecionTotalCollector>,
     val collection: List<collectorCollection>,
     var onClickListener: (Int) -> Unit
 ): DialogFragment() {
-    private lateinit var adapter: adapterRvcancelCollection
+    private lateinit var adapter: adapterRvCancelCollection
     private lateinit var binding: AlertCancelCollectionBinding
+    @SuppressLint("SetTextI18n")
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         binding = AlertCancelCollectionBinding.inflate(LayoutInflater.from(context))
-
         animatedAlert.animatedInit(binding.cvRecolector)
-
         val builder = AlertDialog.Builder(requireActivity())
         builder.setView(binding.root)
 
@@ -56,7 +56,7 @@ class alertCancelCollection (
         binding.tvNameCollector.text = collectionTotal[0].name_recolector
 
 
-        binding.tvKg.text = "${collectionTotal[0].kg_collection}Kg"
+        binding.tvKg.text = "${collectionTotal[0].kg_collection} Kg"
         price.priceSplit(collectionTotal[0].price_total.toInt()){
             binding.tvTotalPrice.text = it
         }
@@ -68,14 +68,9 @@ class alertCancelCollection (
         return dialog
     }
     private fun dates() {
-        CoroutineScope(Dispatchers.IO).launch{
-            launch(Dispatchers.Main) {
-                adapter = adapterRvcancelCollection(collection)
-                binding.rv.adapter = adapter
-                binding.rv.layoutManager = LinearLayoutManager(requireContext())
-
-            }
-        }
+        adapter = adapterRvCancelCollection(collection)
+        binding.rv.adapter = adapter
+        binding.rv.layoutManager = LinearLayoutManager(requireContext())
     }
 
     private fun buttons (tts: TextToSpeechInstance?){
@@ -96,6 +91,7 @@ class alertCancelCollection (
             binding.btnReady.setOnClickListener {
                 onClickListener(collectionTotal[0].PK_ID_Recolector)
                 dismiss()
+
                 try {
                     tts.close()
                 } catch (e: TextToSpeechSynthesisInterruptedError) {
@@ -105,6 +101,7 @@ class alertCancelCollection (
 
             binding.btnClose.setOnClickListener {
                 dismiss()
+
                 try {
                     tts.close()
                 } catch (e: TextToSpeechSynthesisInterruptedError) {
@@ -114,6 +111,7 @@ class alertCancelCollection (
 
             binding.btnFinish.setOnClickListener {
                 dismiss()
+
                 try {
                     tts.close()
                 } catch (e: TextToSpeechSynthesisInterruptedError) {

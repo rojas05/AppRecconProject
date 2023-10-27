@@ -44,7 +44,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/guideline12"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="@string/tvRecolcection" />
+                tools:text="@string/tvRecolection" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvTotal"

@@ -11,7 +11,7 @@ import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import com.rojasdev.apprecconproject.R
 import com.rojasdev.apprecconproject.controller.animatedAlert
-import com.rojasdev.apprecconproject.controller.customSnackbar
+import com.rojasdev.apprecconproject.controller.customSnackBar
 import com.rojasdev.apprecconproject.controller.keyLIstener
 import com.rojasdev.apprecconproject.controller.requireInput
 import com.rojasdev.apprecconproject.controller.textListener
@@ -31,19 +31,19 @@ class alertAddRecolector(
 
     private lateinit var binding: AlertRecolectonBinding
     private var insertCollector = false
+
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         binding = AlertRecolectonBinding.inflate(LayoutInflater.from(context))
+        animatedAlert.animatedInit(binding.cvRecolector)
         val builder = AlertDialog.Builder(requireActivity())
         builder.setView(binding.root)
-
-        animatedAlert.animatedInit(binding.cvRecolector)
 
         buttons(null)
 
         textListener.lister(
             binding.yesAddRecolector,
-            {addCollector()},
-            {finish()}
+            { addCollector() },
+            { finish() }
         )
 
         CoroutineScope(Dispatchers.IO).launch {
@@ -68,7 +68,7 @@ class alertAddRecolector(
             recolector,
             "active"
         )
-        customSnackbar.showCustomSnackbar(view,"Recolector $recolector guardado")
+        customSnackBar.showCustomSnackBar(view,"Recolector $recolector guardado")
         onClickListener(addUser)
     }
 

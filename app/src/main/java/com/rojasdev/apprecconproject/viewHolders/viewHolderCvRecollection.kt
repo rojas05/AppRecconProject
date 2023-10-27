@@ -9,10 +9,8 @@ import com.rojasdev.apprecconproject.controller.dateFormat
 import com.rojasdev.apprecconproject.controller.price
 import com.rojasdev.apprecconproject.data.dataModel.collectorCollection
 import com.rojasdev.apprecconproject.databinding.ItemRvRecolectionBinding
-import java.text.SimpleDateFormat
-import java.util.Locale
 
-class viewHolderCvRecollecition( var view: View ): RecyclerView.ViewHolder(view) {
+class viewHolderCvRecollection(var view: View ): RecyclerView.ViewHolder(view) {
 
     private val binding = ItemRvRecolectionBinding.bind(view)
 

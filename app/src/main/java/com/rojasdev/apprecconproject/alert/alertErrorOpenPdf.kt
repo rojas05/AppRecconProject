@@ -9,38 +9,26 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.fragment.app.DialogFragment
 import com.rojasdev.apprecconproject.controller.animatedAlert
-import com.rojasdev.apprecconproject.databinding.AlertDeleteBinding
+import com.rojasdev.apprecconproject.databinding.AlertOpenPdfAppBinding
 
-class alertDeleteCollector(
-    private val nameCollector :String,
-    val onClickListener: () -> Unit ): DialogFragment() {
+class alertErrorOpenPdf : DialogFragment(){
+    private lateinit var binding: AlertOpenPdfAppBinding
 
-    private lateinit var binding: AlertDeleteBinding
     @SuppressLint("SuspiciousIndentation")
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        binding = AlertDeleteBinding.inflate(LayoutInflater.from(context))
+        binding = AlertOpenPdfAppBinding.inflate(LayoutInflater.from(context))
+                  animatedAlert.animatedInit(binding.cvOpenPdf)
         val builder = AlertDialog.Builder(requireActivity())
             builder.setView(binding.root)
 
-        animatedAlert.animatedInit(binding.cvRecolector)
-
-        binding.tvDetailDelete.text = nameCollector
-
-        binding.brYes.setOnClickListener {
-            onClickListener()
+        binding.btnClose.setOnClickListener{
             dismiss()
         }
 
-        binding.btNo.setOnClickListener {
-            dismiss()
-        }
-
-        binding.btnClose.setOnClickListener {
-            dismiss()
-        }
 
         val dialog = builder.create()
             dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            dialog.setCanceledOnTouchOutside(false)
         return dialog
     }
 }

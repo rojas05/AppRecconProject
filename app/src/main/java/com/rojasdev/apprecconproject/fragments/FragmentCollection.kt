@@ -12,10 +12,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.rojasdev.apprecconproject.ActivityInformes
 import com.rojasdev.apprecconproject.ActivityMainModule
 import com.rojasdev.apprecconproject.R
-import com.rojasdev.apprecconproject.adapters.adapterRvColleccionTotal
+import com.rojasdev.apprecconproject.adapters.adapterRvCollectionTotal
 import com.rojasdev.apprecconproject.alert.alertCancelCollection
 import com.rojasdev.apprecconproject.alert.alertMessage
-import com.rojasdev.apprecconproject.controller.customSnackbar
+import com.rojasdev.apprecconproject.controller.customSnackBar
 import com.rojasdev.apprecconproject.controller.price
 import com.rojasdev.apprecconproject.controller.scrolling
 import com.rojasdev.apprecconproject.data.dataBase.AppDataBase
@@ -25,16 +25,17 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class FragmentCollecion(
+class FragmentCollection(
     var scroll:(String)-> Unit,
     var preferences:()-> Unit) : Fragment()
 {
     private var _binding: FragmentCollectorsAndCollecionBinding? = null
+    private lateinit var adapter: adapterRvCollectionTotal
     private val binding get() = _binding!!
-    private lateinit var adapter: adapterRvColleccionTotal
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentCollectorsAndCollecionBinding.inflate(inflater, container, false)
@@ -53,7 +54,6 @@ class FragmentCollecion(
         }
 
         getTotalCollection()
-
 
         return binding.root
     }
@@ -75,56 +75,51 @@ class FragmentCollecion(
     }
 
     private fun dates(total:List<collecionTotalCollector>) {
-    adapter = adapterRvColleccionTotal(total)
-    {
+    adapter = adapterRvCollectionTotal(total) {
         initCancelCollection(it)
     }
         binding.rvCollectors.adapter = adapter
         binding.rvCollectors.layoutManager = LinearLayoutManager(requireContext())
-
     }
 
     private fun initCancelCollection(collectionTotal: collecionTotalCollector) {
         CoroutineScope(Dispatchers.IO).launch{
+            val collection = AppDataBase.getInstance((requireContext())).RecolectoresDao().getCollectorAndCollection("active",collectionTotal.PK_ID_Recolector)
+
             launch(Dispatchers.Main) {
-                val collection = AppDataBase.getInstance((requireContext())).RecolectoresDao().getCollectorAndCollection("active",collectionTotal.PK_ID_Recolector)
-                launch {
-                    alertCancelCollection(
-                        listOf(collectionTotal),
-                        collection
-                    ){
-                        updateCollection(it)
-                    }.show(parentFragmentManager,"dialog")
-                }
+                alertCancelCollection(listOf(collectionTotal), collection) {
+                    updateCollection(it)
+                }.show(parentFragmentManager,"dialog")
             }
         }
     }
 
     private fun updateCollection(idUpdate: Int) {
         CoroutineScope(Dispatchers.IO).launch{
+            val dataBase = AppDataBase.getInstance(requireContext())
+
+            dataBase.RecolectoresDao().updateCollectorState(idUpdate)
+            dataBase.RecollectionDao().updateCollectionState(idUpdate)
+
             launch(Dispatchers.Main) {
-                AppDataBase.getInstance((requireContext())).RecolectoresDao().updateCollectorState(idUpdate)
-                AppDataBase.getInstance((requireContext())).RecollectionDao().updateCollectionState(idUpdate)
-                customSnackbar.showCustomSnackbar(requireView(),getString(R.string.collectionCanceled))
-                launch {
-                    totalCollectionCollector()
-                    preferencesUpdate()
-                }
+                customSnackBar.showCustomSnackBar(requireView(),getString(R.string.collectionCanceled))
+                totalCollectionCollector()
+                preferencesUpdate()
             }
         }
     }
 
     private fun preferencesUpdate(){
         CoroutineScope(Dispatchers.IO).launch{
-            val idCollectors = AppDataBase.getInstance((requireContext())).RecollectionDao().getfKIdCollectors()
+            val idCollectors = AppDataBase.getInstance((requireContext())).RecollectionDao().getFkIdCollectors()
             launch(Dispatchers.Main) {
                 if(idCollectors.isEmpty()){
                     alertMessage(
-                        "¡Recolección completada con éxito!",
-                        "Generar nuevo informe.",
-                        "Explorar calendario recolección.",
-                        "Ir a informes",
-                        "Volver a inicio"
+                        getString(R.string.txtNewReport),
+                        getString(R.string.txtCalendar),
+                        getString(R.string.txtGoReport),
+                        getString(R.string.txtReturnMenu),
+                        getString(R.string.txtRecolectionFull)
                     ){
                         if(it == "yes"){
                             preferences()
@@ -146,10 +141,10 @@ class FragmentCollecion(
             launch(Dispatchers.Main) {
                 if(collectionTotal.isNotEmpty()){
                     binding.lyTotal.visibility = View.VISIBLE
-                    binding.tvCollection.text = "Total recolectado\n${collectionTotal[0].cantidad.toFloat()}Kg"
+                    binding.tvCollection.text = "Total recolectado\n ${collectionTotal[0].cantidad.toFloat()}Kg"
 
                     price.priceSplit(collectionTotal[0].total.toInt()){
-                        binding.tvTotal.text = "Total a pagar\n$it"
+                        binding.tvTotal.text = "Total a pagar\n $it"
                     }
                 }
             }

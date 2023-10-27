@@ -1,3 +1,5 @@
+@file:Suppress("NAME_SHADOWING")
+
 package com.rojasdev.apprecconproject.controller
 
 import java.text.SimpleDateFormat
@@ -8,8 +10,9 @@ object dateFormat {
     fun main():String{
         val date = Calendar.getInstance().time
         val formatDate = "yyyy-MM-dd HH:mm:ss"
-        val formato = SimpleDateFormat(formatDate, Locale("es", "CO"))
-        val dateFormat = formato.format(date)
+        val format = SimpleDateFormat(formatDate, Locale("es", "CO"))
+        val dateFormat = format.format(date)
+
         return dateFormat.toString()
     }
 
@@ -21,6 +24,7 @@ object dateFormat {
         val date = formatDateOriginal.parse(getDate)
         val timeFormat = formatHour.format(date!!) // Hora
         val dateFormat = formatDate.format(date) // Fecha
+
         return Pair(dateFormat,timeFormat)
     }
 

@@ -7,11 +7,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import nl.marc_apps.tts.TextToSpeechInstance
 import nl.marc_apps.tts.errors.TextToSpeechInitialisationError
-import nl.marc_apps.tts.errors.TextToSpeechSynthesisInterruptedError
 import nl.marc_apps.tts.errors.UnknownTextToSpeechSynthesisError
 
 class textToSpeech{
-    var tts: TextToSpeechInstance? = null
+    private var tts: TextToSpeechInstance? = null
 
     @Throws(TextToSpeechInitialisationError::class)
     suspend fun start(
@@ -25,7 +24,7 @@ class textToSpeech{
         )
     }
 
-    suspend fun init(
+    private suspend fun init(
         context: Context,
         message: String,
         onStop: (TextToSpeechInstance)->Unit) {
@@ -38,7 +37,7 @@ class textToSpeech{
             onStop(tts!!)
         } catch (e: UnknownTextToSpeechSynthesisError) {
             CoroutineScope(Dispatchers.Main).launch {
-                Toast.makeText(context, "problema de inicializacion del assistente", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Problema de inicializacion del assistente", Toast.LENGTH_SHORT).show()
                 launch {
                     textToSpeech().init(
                         context,

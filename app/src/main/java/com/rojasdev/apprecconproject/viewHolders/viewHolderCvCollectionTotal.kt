@@ -13,7 +13,6 @@ class viewHolderCvCollectionTotal( var view: View): RecyclerView.ViewHolder(view
 
     val binding = ItemCollecionBinding.bind(view)
 
-
     @SuppressLint("ResourceAsColor", "SetTextI18n")
     fun render(
         item: collecionTotalCollector,
@@ -22,6 +21,7 @@ class viewHolderCvCollectionTotal( var view: View): RecyclerView.ViewHolder(view
         binding.cv.animation = AnimationUtils.loadAnimation(view.context, R.anim.recycler_transition)
         binding.tvNameCollector.text = item.name_recolector
         binding.tvKg.text = "${item.kg_collection} kg"
+
         price.priceSplit(item.price_total.toInt()){
             binding.tvTotalPrice.text = it
         }

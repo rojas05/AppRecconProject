@@ -5,7 +5,6 @@ import android.app.AlertDialog
 import android.content.Context
 import android.view.KeyEvent
 import android.view.animation.AccelerateDecelerateInterpolator
-import android.view.animation.AccelerateInterpolator
 import android.view.animation.OvershootInterpolator
 import android.widget.Toast
 import androidx.cardview.widget.CardView
@@ -14,8 +13,8 @@ object animatedAlert {
     fun animatedInit(cv: CardView){
         cv.alpha = 0f
         val animator = ValueAnimator.ofFloat(0f,1f)
-        animator.duration = 500
-        animator.interpolator = AccelerateDecelerateInterpolator()
+            animator.duration = 500
+            animator.interpolator = AccelerateDecelerateInterpolator()
         animator.addUpdateListener { valueAnimator ->
             val animatedValues = valueAnimator.animatedValue as Float
             cv.alpha = animatedValues
@@ -28,8 +27,8 @@ object animatedAlert {
     fun animatedClick(cv: CardView){
         cv.alpha = 1f
         val animator = ValueAnimator.ofFloat(1f,0.8f,1f)
-        animator.duration = 300
-        animator.interpolator = AccelerateDecelerateInterpolator()
+            animator.duration = 300
+            animator.interpolator = AccelerateDecelerateInterpolator()
         animator.addUpdateListener { valueAnimator ->
             val animatedValues = valueAnimator.animatedValue as Float
             cv.alpha = animatedValues
@@ -39,10 +38,10 @@ object animatedAlert {
         animator.start()
     }
 
-    fun onBackAlert(dialog: AlertDialog, contex : Context, mensaje : String){
-        dialog.setOnKeyListener { _, keyCode,_ ->
+    fun onBackAlert(dialog: AlertDialog, context : Context, message : String){
+        dialog.setOnKeyListener { _, keyCode, _ ->
             if (keyCode == KeyEvent.KEYCODE_BACK){
-                Toast.makeText(contex,mensaje, Toast.LENGTH_LONG).show()
+                Toast.makeText(context, message, Toast.LENGTH_LONG).show()
                 true
             }else{
                 false
@@ -53,8 +52,8 @@ object animatedAlert {
     fun animatedCv(cv: CardView){
         cv.alpha = 0f
         val animator = ValueAnimator.ofFloat(0f,1f)
-        animator.duration = 800
-        animator.interpolator = OvershootInterpolator()
+            animator.duration = 800
+            animator.interpolator = OvershootInterpolator()
         animator.addUpdateListener { valueAnimator ->
             val animatedValues = valueAnimator.animatedValue as Float
             cv.alpha = animatedValues

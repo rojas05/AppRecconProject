@@ -17,18 +17,17 @@ import com.rojasdev.apprecconproject.data.entities.SettingEntity
 import com.rojasdev.apprecconproject.databinding.AlertUpdateSettingBinding
 
 class alertSettingsUpdate(
-    var description: String,
-    var feending: String,
-    var idSetting: Int,
+    private var description: String,
+    private var fending: String,
+    private var idSetting: Int,
     var price: Int,
-    var onClickListener: (SettingEntity) -> Unit
-): DialogFragment() {
+    var onClickListener: (SettingEntity) -> Unit ): DialogFragment() {
+
     private lateinit var binding: AlertUpdateSettingBinding
+
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         binding = AlertUpdateSettingBinding.inflate(LayoutInflater.from(context))
-
         animatedAlert.animatedInit(binding.cvSettings)
-
         val builder = AlertDialog.Builder(requireActivity())
         builder.setView(binding.root)
 
@@ -67,12 +66,13 @@ class alertSettingsUpdate(
         binding.yesAliment.inputType = InputType.TYPE_CLASS_NUMBER
         binding.yesAliment.setText(price.toString())
         binding.tvDescription.text = description
-        if (feending == "yes"){
+
+        if (fending == "yes"){
             binding.tilSiAlimentacion.setStartIconDrawable(R.drawable.ic_alimentacion)
-            binding.yesAliment.setHint(R.string.si_alimentacion)
+            binding.yesAliment.setHint(R.string.yesFeeding)
         }else{
             binding.tilSiAlimentacion.setStartIconDrawable(R.drawable.ic_no_alimentacion)
-            binding.yesAliment.setHint(R.string.no_alimentacion)
+            binding.yesAliment.setHint(R.string.notFeeding)
         }
     }
 
@@ -81,7 +81,7 @@ class alertSettingsUpdate(
 
         val configAlimentYes = SettingEntity(
             idSetting,
-            feending,
+            fending,
             yesAliment.toInt(),
             "active",
             dateFormat.main()

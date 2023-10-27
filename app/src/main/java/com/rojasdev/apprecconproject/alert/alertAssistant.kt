@@ -8,7 +8,6 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.DialogFragment
 import com.rojasdev.apprecconproject.R
 import com.rojasdev.apprecconproject.controller.animatedAlert
@@ -17,13 +16,12 @@ import com.rojasdev.apprecconproject.databinding.AlertAsistantBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.util.concurrent.ExecutorService
-import java.util.concurrent.Executors
 
 class alertAssistant(
     var onClickListener: (String) -> Unit
 ): DialogFragment() {
     private lateinit var binding: AlertAsistantBinding
+
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         binding = AlertAsistantBinding.inflate(LayoutInflater.from(context))
         animatedAlert.animatedInit(binding.cv)
@@ -40,13 +38,13 @@ class alertAssistant(
                 onClickListener("false")
                 dismiss()
             }
-            "Desactivar el assistente"
+            getString(R.string.txtOffAssistant)
         }else{
             binding.tvAssistant.setOnClickListener {
                 onClickListener("true")
                 initTts(dialog)
             }
-            "Activar el assistente"
+            getString(R.string.txtOnAssistant)
         }
 
         binding.btnClose.setOnClickListener {
@@ -59,7 +57,7 @@ class alertAssistant(
             textToSpeech().start(
                 requireContext(),
                 message
-            ){}
+            ){ }
         }
 
         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
@@ -68,13 +66,14 @@ class alertAssistant(
 
     private fun initTts(dialog: AlertDialog) {
         binding.btnClose.setOnClickListener {}
-        Toast.makeText(requireContext(), "iniciando el assitente", Toast.LENGTH_SHORT).show()
-        dialog.setCanceledOnTouchOutside(false)
-        animatedAlert.onBackAlert(dialog, requireContext(), "iniciando el assitente")
+        Toast.makeText(requireContext(), getString(R.string.txtStartAssistant), Toast.LENGTH_SHORT).show()
+            dialog.setCanceledOnTouchOutside(false)
+        animatedAlert.onBackAlert(dialog, requireContext(), getString(R.string.txtStartAssistant))
+
         CoroutineScope(Dispatchers.IO).launch {
             textToSpeech().start(
                 requireContext(),
-                "assistente activado"
+                getString(R.string.txtActiveAssistant)
             ) {
                 dismiss()
             }

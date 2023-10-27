@@ -1,5 +1,6 @@
 package com.rojasdev.apprecconproject.alert
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.Dialog
 import android.graphics.Color
@@ -11,45 +12,38 @@ import com.rojasdev.apprecconproject.controller.animatedAlert
 import com.rojasdev.apprecconproject.controller.controllerCheckBox
 import com.rojasdev.apprecconproject.controller.dateFormat
 import com.rojasdev.apprecconproject.controller.requireInput
-import com.rojasdev.apprecconproject.data.dataModel.collectorCollection
-import com.rojasdev.apprecconproject.data.entities.RecolectoresEntity
 import com.rojasdev.apprecconproject.data.entities.RecollectionEntity
 import com.rojasdev.apprecconproject.databinding.AlertCollectionBinding
-import java.text.SimpleDateFormat
-import java.util.Calendar
-import java.util.Date
-import java.util.Locale
 
 class alertCollectionUpdate(
-    val PK_ID_Recoleccion: Int,
-    val PK_ID_Recolector: Int,
-    val Alimentacion: String,
-    val Cantidad: Double,
-    val nameCollector: String,
+    private val PK_ID_Recollection: Int,
+    private val PK_ID_Recolector: Int,
+    private val feeding: String,
+    private val quantity: Double,
+    private val nameCollector: String,
     private val onClickListener: (RecollectionEntity) -> Unit,
 ): DialogFragment() {
     private lateinit var binding: AlertCollectionBinding
     private var settingsId: Int? = null
+    @SuppressLint("SuspiciousIndentation")
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         binding = AlertCollectionBinding.inflate(LayoutInflater.from(context))
         val builder = AlertDialog.Builder(requireActivity())
-        builder.setView(binding.root)
+            builder.setView(binding.root)
 
         animatedAlert.animatedInit(binding.cvRecolector)
 
         binding.tvDescription.text = nameCollector
 
-        val myListInput = listOf(
-            binding.etKg
-        )
+        val myListInput = listOf( binding.etKg )
 
-        if(Alimentacion.equals("yes")){
+        if(feeding == "yes"){
             binding.cbYes.isChecked = true
         } else {
             binding.cbNo.isChecked = true
         }
 
-        binding.etKg.setText(Cantidad.toString())
+        binding.etKg.setText(quantity.toString())
 
         binding.cbYes.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
@@ -83,7 +77,7 @@ class alertCollectionUpdate(
         }
 
         val dialog = builder.create()
-        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         return dialog
     }
 
@@ -92,7 +86,7 @@ class alertCollectionUpdate(
         val kg = binding.etKg.text.toString()
 
         val collection = RecollectionEntity(
-            PK_ID_Recoleccion ,
+            PK_ID_Recollection ,
             kg.toDouble(),
             dateFormat.main(),
             "active",

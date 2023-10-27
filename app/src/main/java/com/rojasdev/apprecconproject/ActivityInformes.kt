@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.rojasdev.apprecconproject.databinding.ActivityInformesBinding
-import com.rojasdev.apprecconproject.fragments.FragmentInforme
+import com.rojasdev.apprecconproject.fragments.FragmentReport
 import com.rojasdev.apprecconproject.fragments.FragmentPdf
 
 class ActivityInformes : AppCompatActivity() {
@@ -16,15 +16,15 @@ class ActivityInformes : AppCompatActivity() {
         setContentView(binding.root)
 
         title = getString(R.string.informedTitle)
-        openFragment(FragmentInforme())
+        openFragment(FragmentReport())
 
-        //configuracion de la barra de navegacion
+        //configuracion de la barra de navigation
         binding.bottonNavigationView.setOnNavigationItemSelectedListener {
             meniItem ->
             when(meniItem.itemId){
                 R.id.list ->{
                     title = getString(R.string.informedTitle)
-                    openFragment(FragmentInforme())
+                    openFragment(FragmentReport())
                     true
                 }
                 R.id.pdf ->{

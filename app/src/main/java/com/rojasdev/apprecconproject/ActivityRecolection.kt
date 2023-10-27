@@ -9,7 +9,7 @@ import com.rojasdev.apprecconproject.alert.alertAddRecolector
 import com.rojasdev.apprecconproject.data.dataBase.AppDataBase
 import com.rojasdev.apprecconproject.data.entities.RecolectoresEntity
 import com.rojasdev.apprecconproject.databinding.ActivityRecolectionBinding
-import com.rojasdev.apprecconproject.fragments.FragmentCollecion
+import com.rojasdev.apprecconproject.fragments.FragmentCollection
 import com.rojasdev.apprecconproject.fragments.FragmentCollectors
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -100,7 +100,7 @@ class ActivityRecolection : AppCompatActivity() {
     private fun initFragmentCollection() {
          title = getString(R.string.collection)
         openFragment(
-            FragmentCollecion(
+            FragmentCollection(
                 {
                     if (it == "down"){
                         hideNavBar()

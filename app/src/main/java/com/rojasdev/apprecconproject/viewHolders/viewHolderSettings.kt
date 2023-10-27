@@ -5,9 +5,7 @@ import android.view.View
 import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.RecyclerView
 import com.rojasdev.apprecconproject.R
-import com.rojasdev.apprecconproject.controller.dateFormat
 import com.rojasdev.apprecconproject.controller.price
-import com.rojasdev.apprecconproject.data.entities.RecolectoresEntity
 import com.rojasdev.apprecconproject.data.entities.SettingEntity
 import com.rojasdev.apprecconproject.databinding.ItemSettingsBinding
 
@@ -15,7 +13,7 @@ class viewHolderSettings( var view: View): RecyclerView.ViewHolder(view) {
 
     val binding = ItemSettingsBinding.bind(view)
 
-    @SuppressLint("ResourceAsColor")
+    @SuppressLint("ResourceAsColor", "SetTextI18n")
     fun render(
         item: SettingEntity,
         onClickListenerNext: (SettingEntity) -> Unit,
@@ -25,12 +23,12 @@ class viewHolderSettings( var view: View): RecyclerView.ViewHolder(view) {
         binding.tvDate.text = item.date.substring(0,item.date.length - 9)
 
         if(item.feeding == "yes"){
-            binding.tvAliment.text = "precio por kilograco con alimentacion"
+            binding.tvAliment.text = "Precio por kilogramo con alimentacion"
             price.priceSplit(item.cost){
                 binding.tvAlimentPrice.text = it
             }
         }else{
-            binding.tvAliment.text = "precio por kilograco sin alimentacion"
+            binding.tvAliment.text = "Precio por kilogramo sin alimentacion"
             price.priceSplit(item.cost){
                 binding.tvAlimentPrice.text = it
             }

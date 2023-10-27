@@ -16,7 +16,7 @@ import com.rojasdev.apprecconproject.alert.alertMessage
 import com.rojasdev.apprecconproject.alert.alertSettings
 import com.rojasdev.apprecconproject.alert.alertWelcome
 import com.rojasdev.apprecconproject.controller.animatedAlert
-import com.rojasdev.apprecconproject.controller.customSnackbar
+import com.rojasdev.apprecconproject.controller.customSnackBar
 import com.rojasdev.apprecconproject.controller.price
 import com.rojasdev.apprecconproject.data.dataBase.AppDataBase
 import com.rojasdev.apprecconproject.data.entities.RecolectoresEntity
@@ -95,7 +95,7 @@ class ActivityMainModule : AppCompatActivity() {
                 sendIntent.data = Uri.parse(uri)
                 startActivity(sendIntent)
             } catch (e: ActivityNotFoundException){
-                customSnackbar.showCustomSnackbar(binding.textView,"lo sentimos no tienes instalado whatsapp")
+                customSnackBar.showCustomSnackBar(binding.textView,"lo sentimos no tienes instalado whatsapp")
             }
         }.show(supportFragmentManager,"dialog")
     }
@@ -172,11 +172,11 @@ class ActivityMainModule : AppCompatActivity() {
         val collection = preferences.getString("collection","")
         if(collection != "true"){
             alertMessage(
-                getString(R.string.checkAliment),
                 "${binding.tvNoAliment.text}\n ${getString(R.string.notAliment)}",
                 "${binding.tvYesAliment.text}\n ${getString(R.string.yesAliment)}",
                 getString(R.string.btCorrec),
-                getString(R.string.noCorrec)
+                getString(R.string.noCorrec),
+                getString(R.string.checkAliment)
             ){
                 if(it == "yes"){
                     alertAddRecolcetor()

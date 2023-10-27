@@ -14,10 +14,10 @@ import com.rojasdev.apprecconproject.data.entities.SettingEntity
 @Database(
     entities = [RecolectoresEntity::class,
                 RecollectionEntity::class,
-                SettingEntity::class,
-               ],
+                SettingEntity::class],
     version = 1
 )
+
 abstract class AppDataBase : RoomDatabase() {
 
     abstract fun RecolectoresDao(): RecolectoresDao

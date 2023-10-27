@@ -15,8 +15,7 @@ import com.rojasdev.apprecconproject.adapters.adapterRvCollectors
 import com.rojasdev.apprecconproject.alert.alertCollection
 import com.rojasdev.apprecconproject.alert.alertDeleteCollector
 import com.rojasdev.apprecconproject.alert.alertMessage
-import com.rojasdev.apprecconproject.controller.customSnackbar
-import com.rojasdev.apprecconproject.controller.textToSpeech
+import com.rojasdev.apprecconproject.controller.customSnackBar
 import com.rojasdev.apprecconproject.data.dataBase.AppDataBase
 import com.rojasdev.apprecconproject.data.entities.RecolectoresEntity
 import com.rojasdev.apprecconproject.data.entities.RecollectionEntity
@@ -26,14 +25,17 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class FragmentCollectors(
-    var scroll:(String)-> Unit,
-    var preferences:()-> Unit) : Fragment() {
+        var scroll:(String)-> Unit,
+        var preferences:()-> Unit
+    ) : Fragment() {
+
+    private lateinit var adapter: adapterRvCollectors
     private var _binding: FragmentCollectorsAndCollecionBinding? = null
     private val binding get() = _binding!!
-    private lateinit var adapter: adapterRvCollectors
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentCollectorsAndCollecionBinding.inflate(inflater,container,false)
@@ -59,8 +61,9 @@ class FragmentCollectors(
 
     private suspend fun dates(){
         CoroutineScope(Dispatchers.IO).launch{
-            val idCollectors = AppDataBase.getInstance((requireContext())).RecollectionDao().getfKIdCollectors()
+            val idCollectors = AppDataBase.getInstance((requireContext())).RecollectionDao().getFkIdCollectors()
             val collectors = AppDataBase.getInstance(requireContext()).RecolectoresDao().getAllRecolector()
+
             launch(Dispatchers.Main) {
                 if (collectors.isNotEmpty()){
                     initRv(idCollectors,collectors)
@@ -96,19 +99,15 @@ class FragmentCollectors(
         ).putExtra("userId", item.id).putExtra("userName", item.name))
     }
 
-
-
     private fun initAlertDelete(it: RecolectoresEntity) {
-        alertDeleteCollector(
-            it.name
-        ){
-            customSnackbar.showCustomSnackbar(requireView(),getString(R.string.deleteCollector))
+        alertDeleteCollector(it.name){
+            customSnackBar.showCustomSnackBar(requireView(),getString(R.string.deleteCollector))
+
             CoroutineScope(Dispatchers.IO).launch {
                 AppDataBase.getInstance(requireContext()).RecolectoresDao().deleteCollectorId(it.id!!)
-                launch {
-                    dates()
-                }
+                launch { dates() }
             }
+
         }.show(parentFragmentManager,"dialog")
     }
 
@@ -119,26 +118,25 @@ class FragmentCollectors(
     }
 
     private fun insertCollection(recollection: RecollectionEntity) {
-        customSnackbar.showCustomSnackbar(binding.fragmentCollectors,getString(R.string.addCollectionFinish))
+        customSnackBar.showCustomSnackBar(binding.fragmentCollectors,getString(R.string.addCollectionFinish))
+
         CoroutineScope(Dispatchers.IO).launch {
-            AppDataBase.getInstance(requireContext()).RecollectionDao().addRecoleccion(recollection)
-            launch {
-                dates()
-            }
+            AppDataBase.getInstance(requireContext()).RecollectionDao().addRecollection(recollection)
+            launch { dates() }
         }
     }
 
     private fun preferencesUpdate(){
         CoroutineScope(Dispatchers.IO).launch{
-            val idCollectors = AppDataBase.getInstance((requireContext())).RecollectionDao().getfKIdCollectors()
+            val idCollectors = AppDataBase.getInstance((requireContext())).RecollectionDao().getFkIdCollectors()
             launch(Dispatchers.Main) {
                 if(idCollectors.isEmpty()){
                     alertMessage(
-                        getString(R.string.requireCollectors),
-                        "1-Inicia una nueva recoleccion",
-                        "2-Registra todo tu equipo de recolectores",
-                        "iniciar la recoleccion",
-                        "cancelar"
+                        getString(R.string.txtMessageOne),
+                        getString(R.string.txtMessageTwo),
+                        getString(R.string.txtRecolectionStart),
+                        getString(R.string.btnFinish),
+                        getString(R.string.requireCollectors)
                     ){
                         if(it == "yes"){
                             preferences()

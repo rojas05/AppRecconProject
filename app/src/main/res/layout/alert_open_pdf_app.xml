@@ -1,30 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnClose"
-        style="@style/floadingButtons"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
         android:focusable="true"
-        app:backgroundTint="@color/Dark_Tan"
-        app:layout_constraintBottom_toTopOf="@+id/cv"
+        app:srcCompat="@drawable/ic_close"
+        app:backgroundTint="@color/Tom_Thumb"
+        app:layout_constraintBottom_toTopOf="@+id/cvOpenPdf"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_close"
         android:contentDescription="@string/txtCancel" />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cv"
+        android:id="@+id/cvOpenPdf"
         android:layout_width="0dp"
-        android:layout_height="300dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="10dp"
         app:cardElevation="8dp"
         app:cardUseCompatPadding="true"
@@ -34,51 +33,37 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/lyChat"
+            android:id="@+id/layoutDialog"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="45dp">
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
 
             <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="8dp"
-                android:contentDescription="@string/txtImage"
-                app:layout_constraintBottom_toTopOf="@+id/textView9"
+                android:id="@+id/backgroundTxt"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:src="@drawable/baseline_error"
+                android:importantForAccessibility="no"
+                android:layout_marginTop="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0"
-                app:srcCompat="@drawable/ic_whastaap"
-                tools:ignore="ImageContrastCheck" />
+                app:tint="@color/Hippie_Green" />
 
             <TextView
-                android:id="@+id/textView9"
                 style="@style/tvItem"
-                android:layout_width="0dp"
+                android:id="@+id/tvContent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginEnd="24dp"
-                android:layout_marginBottom="32dp"
-                android:text="@string/chat"
-                android:gravity="center"
+                android:layout_margin="20dp"
+                android:text="@string/txtErrorOpen"
+                android:textAlignment="center"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/backgroundTxt" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/textView2"
-            style="@style/texViewAlert"
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:text="@string/help"
-            android:padding="10dp"
-            app:autoSizeTextType="uniform" />
 
     </androidx.cardview.widget.CardView>
 

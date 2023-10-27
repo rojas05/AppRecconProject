@@ -8,7 +8,6 @@ object scrolling {
     fun scrolling(rv: RecyclerView, scroll:(String)-> Unit){
         val scrollListener = object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                // Se llama cuando el RecyclerView se desplaza
                 if (dy > 0) {
                     scrollingUp = false
                     if (!scrollingDown) {

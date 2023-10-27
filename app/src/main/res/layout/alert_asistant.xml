@@ -6,16 +6,16 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnClose"
-        style="@style/foadingButtons"
+        style="@style/floadingButtons"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:contentDescription="@string/txtCancel"
         android:clickable="true"
         android:focusable="true"
-        app:backgroundTint="@color/Dark_Tan"
         app:layout_constraintBottom_toTopOf="@+id/cv"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_close" />
+        app:srcCompat="@drawable/ic_close"/>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cv"
@@ -31,39 +31,70 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/lyChat"
+            style="@style/texViewAlert"
+            android:padding="0dp"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="45dp">
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/icAssistant"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/ic_assistant"
+                app:layout_constraintEnd_toStartOf="@+id/textView2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/guideline"
+                android:contentDescription="@string/txtImage"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textView2"
+                style="@style/texViewAlert"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="26sp"
+                android:text="@string/assistant"
+                app:autoSizeTextType="uniform"
+                app:layout_constraintBottom_toTopOf="@+id/guideline"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/icAssistant"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.5" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:src="@drawable/background_main"
+                app:layout_constraintTop_toBottomOf="@+id/guideline"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:contentDescription="@string/txtImage"/>
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvAssistant"
                 style="@style/tvItem"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="24dp"
+                android:layout_margin="5dp"
+                android:padding="5dp"
+                android:textSize="22sp"
                 android:gravity="center"
-                android:text="@string/assistantClouse"
+                android:text="@string/assistantClose"
                 app:autoSizeTextType="uniform"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/guideline" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/textView2"
-            style="@style/texViewAlert"
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:padding="10dp"
-            android:text="@string/assistant"
-            app:autoSizeTextType="uniform" />
-
     </androidx.cardview.widget.CardView>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

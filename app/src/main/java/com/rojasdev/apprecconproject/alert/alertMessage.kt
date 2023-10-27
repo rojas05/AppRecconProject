@@ -1,5 +1,6 @@
 package com.rojasdev.apprecconproject.alert
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.Dialog
 import android.graphics.Color
@@ -19,14 +20,15 @@ import nl.marc_apps.tts.TextToSpeechInstance
 import nl.marc_apps.tts.errors.TextToSpeechSynthesisInterruptedError
 
 class alertMessage(
+    private val messageA: String,
+    private val messageB: String,
+    private val btnYes: String,
+    private val btnNo: String,
     val message: String,
-    val messageA: String,
-    val messageB: String,
-    val btnYes: String,
-    val btnNo: String,
-    var onClickListener: (String) -> Unit
-): DialogFragment() {
+    var onClickListener: (String) -> Unit ): DialogFragment() {
+
     private lateinit var binding: AlertInfoBinding
+    @SuppressLint("SuspiciousIndentation")
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         binding = AlertInfoBinding.inflate(LayoutInflater.from(context))
         animatedAlert.animatedInit(binding.cvWelcome)
@@ -34,7 +36,7 @@ class alertMessage(
         builder.setView(binding.root)
 
         val messageAssistant = "$message \n ${messageA.replace("$", "")} " +
-                "\n ${messageB.replace("$", "")}"
+                               "\n ${messageB.replace("$", "")}"
 
         CoroutineScope(Dispatchers.IO).launch {
             textToSpeech().start(
@@ -53,10 +55,9 @@ class alertMessage(
 
         buttons(null)
 
-
         val dialog = builder.create()
-        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialog.setCanceledOnTouchOutside(false)
+            dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            dialog.setCanceledOnTouchOutside(false)
         animatedAlert.onBackAlert(dialog,requireContext(),getString(R.string.requireDates))
         return dialog
     }
@@ -75,15 +76,18 @@ class alertMessage(
             binding.btYes.setOnClickListener {
                 onClickListener("yes")
                 dismiss()
+
                 try {
                     tts.close()
                 } catch (e: ArithmeticException) {
                     Toast.makeText(requireContext(), e.toString(), Toast.LENGTH_SHORT).show()
                 }
             }
+
             binding.btNo.setOnClickListener {
                 onClickListener("no")
                 dismiss()
+
                 try {
                     tts.close()
                 } catch (e: TextToSpeechSynthesisInterruptedError) {

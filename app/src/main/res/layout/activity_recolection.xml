@@ -38,7 +38,7 @@
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/floatingActionButton"
-            style="@style/buttons"
+            style="@style/floadingButtons"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/collectors"

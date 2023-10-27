@@ -21,13 +21,11 @@ import nl.marc_apps.tts.errors.TextToSpeechSynthesisInterruptedError
 class alertWelcome(
     var onClickListener: () -> Unit
 ): DialogFragment() {
+
     private lateinit var binding: AlertWelcomeBinding
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-
         binding = AlertWelcomeBinding.inflate(LayoutInflater.from(context))
-
         animatedAlert.animatedInit(binding.cvWelcome)
-
         val builder = AlertDialog.Builder(requireActivity())
         builder.setView(binding.root)
 
@@ -37,7 +35,7 @@ class alertWelcome(
             textToSpeech().start(
                 requireContext(),
                 getString(R.string.assistantWelcome)
-            ){buttons(it)}
+            ){ buttons(it) }
         }
 
         val dialog = builder.create()

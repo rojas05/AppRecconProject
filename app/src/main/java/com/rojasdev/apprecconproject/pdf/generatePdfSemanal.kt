@@ -242,7 +242,7 @@ class generatePdfSemanal(
 
                     val listCell = listOf(
                         context.getString(R.string.princeTotal),
-                        context.getString(R.string.tvRecolcection),
+                        context.getString(R.string.tvRecolection),
                         context.getString(R.string.valorTotal),
                         context.getString(R.string.total)
                     )

@@ -11,7 +11,6 @@ import com.rojasdev.apprecconproject.data.dataModel.totalMonthPdf
 import com.rojasdev.apprecconproject.data.dataModel.weekPdf
 import com.rojasdev.apprecconproject.data.entities.RecolectoresEntity
 
-
 @Dao
 interface RecolectoresDao {
 

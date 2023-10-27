@@ -5,8 +5,9 @@ import android.text.TextWatcher
 import com.google.android.material.textfield.TextInputEditText
 
 object textListener {
-    fun lister(textInputEditText: TextInputEditText,ready:()->Unit,finish:()->Unit){
+    fun lister(textInputEditText: TextInputEditText, ready:()->Unit, finish:()->Unit){
         textInputEditText.addTextChangedListener(object : TextWatcher {
+
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
                 finish()
             }

@@ -20,19 +20,15 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import nl.marc_apps.tts.TextToSpeechInstance
 import nl.marc_apps.tts.errors.TextToSpeechSynthesisInterruptedError
-import java.text.SimpleDateFormat
-import java.util.Calendar
-import java.util.Locale
 
 class alertSettings(
     var onClickListener: (SettingEntity) -> Unit
 ): DialogFragment() {
     private lateinit var binding: AlertSettinsBinding
+
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         binding = AlertSettinsBinding.inflate(LayoutInflater.from(context))
-
         animatedAlert.animatedInit(binding.cvSettings)
-
         val builder = AlertDialog.Builder(requireActivity())
         builder.setView(binding.root)
 
@@ -40,9 +36,7 @@ class alertSettings(
             textToSpeech().start(
                 requireContext(),
                 getString(R.string.assistantRequire)
-            ){
-                buttons(it)
-            }
+            ){ buttons(it) }
         }
 
         val dialog = builder.create()
@@ -57,6 +51,7 @@ class alertSettings(
             binding.yesAliment,
             binding.nowAliment
         )
+
         if (tts == null){
             binding.btReady.setOnClickListener {
                 val require = requireInput.validate(myListInput,requireContext())
@@ -72,6 +67,7 @@ class alertSettings(
                     dates()
                     dismiss()
                 }
+
                 try {
                     tts.close()
                 } catch (e: TextToSpeechSynthesisInterruptedError) {
@@ -99,6 +95,7 @@ class alertSettings(
             "active",
             dateFormat.main()
         )
+
         onClickListener(configAlimentNow)
         onClickListener(configAlimentYes)
     }

@@ -10,6 +10,7 @@ import com.rojasdev.apprecconproject.viewHolders.viewHolderItemDate
 class adapterItemDate(
         private var itemDetail: List<allCollecionAndCollector>
     ) :RecyclerView.Adapter<viewHolderItemDate>() {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): viewHolderItemDate {
         return viewHolderItemDate(LayoutInflater.from(parent.context).inflate(R.layout.item_rv_all_recolection_date, parent, false))
     }

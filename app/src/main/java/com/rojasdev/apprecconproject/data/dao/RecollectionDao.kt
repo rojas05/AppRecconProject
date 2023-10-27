@@ -9,19 +9,16 @@ import com.rojasdev.apprecconproject.data.entities.RecollectionEntity
 interface RecollectionDao {
 
     @Insert
-    suspend fun addRecoleccion(recoleccion:RecollectionEntity)
-
-    @Query("SELECT * FROM Recoleccion  WHERE Fk_recolector like :idCollector AND Estado = 'active'")
-    suspend fun getCollectionIdCollector(idCollector: Int): List<RecollectionEntity>
+    suspend fun addRecollection(recoleccion:RecollectionEntity)
 
     @Query("SELECT Fecha FROM Recoleccion")
     suspend fun getDateCollection(): List<String>
 
     @Query("SELECT Fk_recolector FROM Recoleccion  WHERE Estado == 'active'")
-    suspend fun getfKIdCollectors(): List<Long>
+    suspend fun getFkIdCollectors(): List<Long>
 
-    @Query("UPDATE Recoleccion SET Cantidad = :Kg, Fecha = :date,  Fk_Configuracion = :feed WHERE PK_ID_Recoleccion = :idCollecion AND Fk_recolector = :idCollector")
-    suspend fun updateCollection(idCollecion:Int, date:String, idCollector:Int, Kg:Double, feed:Int)
+    @Query("UPDATE Recoleccion SET Cantidad = :kg, Fecha = :date,  Fk_Configuracion = :feed WHERE PK_ID_Recoleccion = :idCollection AND Fk_recolector = :idCollector")
+    suspend fun updateCollection(idCollection:Int, date:String, idCollector:Int, kg:Double, feed:Int)
 
     @Query("UPDATE recoleccion SET estado = 'archive' WHERE Fk_recolector = :id")
     suspend fun updateCollectionState(id:Int)

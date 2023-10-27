@@ -3,16 +3,8 @@ package com.rojasdev.apprecconproject.customCalendar
 import android.annotation.SuppressLint
 import android.graphics.Color
 import android.view.View
-import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.color.MaterialColors.getColor
-import com.rojasdev.apprecconproject.R
-import com.rojasdev.apprecconproject.controller.price
-import com.rojasdev.apprecconproject.data.entities.SettingEntity
 import com.rojasdev.apprecconproject.databinding.ItemDateBinding
-import com.rojasdev.apprecconproject.databinding.ItemSettingsBinding
-import java.time.LocalDate
-import java.util.Calendar
 
 class viewHolder( var view: View): RecyclerView.ViewHolder(view) {
 

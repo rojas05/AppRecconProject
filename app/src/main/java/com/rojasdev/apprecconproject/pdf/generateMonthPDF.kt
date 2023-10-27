@@ -125,7 +125,6 @@ class generateMonthPDF(
             tableInfo.horizontalAlignment = Element.ALIGN_LEFT
             tableInfo.widthPercentage = 75f
 
-             // texto
             val txtFont: Font = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 18F, BaseColor.BLACK)
             val txtPdf = Paragraph("${context.getString(R.string.txtPdfMonth)} $dateMonth \n", txtFont)
 
@@ -228,7 +227,7 @@ class generateMonthPDF(
                         header.horizontalAlignment = Element.ALIGN_CENTER
 
                     tableTitle(title,100f, document) // title
-                    itemsTable(columns, header) // Crear los items
+                    itemsTable(columns, header)
 
                     for (item in query){
                         header.phrase = Phrase(item.name_recolector)
@@ -286,7 +285,7 @@ class generateMonthPDF(
 
                     val listCell = listOf(
                         context.getString(R.string.princeTotal),
-                        context.getString(R.string.tvRecolcection),
+                        context.getString(R.string.tvRecolection),
                         context.getString(R.string.valorTotal),
                         context.getString(R.string.total)
 

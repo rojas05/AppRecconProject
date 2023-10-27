@@ -18,16 +18,14 @@ import com.rojasdev.apprecconproject.data.entities.RecolectoresEntity
 import com.rojasdev.apprecconproject.databinding.AlertUpdateSettingBinding
 
 class alertUpdateNameCollector (
+    private var idCollector: Int,
     var name: String,
-    var idCollector: Int,
-    var onClickListener: (RecolectoresEntity) -> Unit
-): DialogFragment() {
+    var onClickListener: (RecolectoresEntity) -> Unit): DialogFragment() {
+
     private lateinit var binding: AlertUpdateSettingBinding
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         binding = AlertUpdateSettingBinding.inflate(LayoutInflater.from(context))
-
         animatedAlert.animatedInit(binding.cvSettings)
-
         val builder = AlertDialog.Builder(requireActivity())
         builder.setView(binding.root)
 
@@ -36,8 +34,7 @@ class alertUpdateNameCollector (
         )
 
         binding.btReady.setOnClickListener {
-            val require = requireInput.validate(myListInput,requireContext())
-            if (require){
+            if (requireInput.validate(myListInput,requireContext())) {
                 dates()
                 dismiss()
             }
@@ -82,7 +79,7 @@ class alertUpdateNameCollector (
 
         startActivity(Intent(
             requireContext(), ActivityRecolectionDetail::class.java)
-            .putExtra("userId", idCollector).putExtra("userName", newName) // Pasar parametros
+            .putExtra("userId", idCollector).putExtra("userName", newName)
         )
     }
 }
