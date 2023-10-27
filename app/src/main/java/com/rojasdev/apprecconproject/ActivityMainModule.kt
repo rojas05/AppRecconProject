@@ -16,7 +16,6 @@ import com.rojasdev.apprecconproject.alert.alertMessage
 import com.rojasdev.apprecconproject.alert.alertSettings
 import com.rojasdev.apprecconproject.alert.alertWelcome
 import com.rojasdev.apprecconproject.controller.animatedAlert
-import com.rojasdev.apprecconproject.controller.customSnackbar
 import com.rojasdev.apprecconproject.controller.price
 import com.rojasdev.apprecconproject.data.dataBase.AppDataBase
 import com.rojasdev.apprecconproject.data.entities.RecolectoresEntity
@@ -95,7 +94,20 @@ class ActivityMainModule : AppCompatActivity() {
                 sendIntent.data = Uri.parse(uri)
                 startActivity(sendIntent)
             } catch (e: ActivityNotFoundException){
-                customSnackbar.showCustomSnackbar(binding.textView,"lo sentimos no tienes instalado whatsapp")
+                alertMessage(
+                    getString(R.string.install),
+                    getString(R.string.message),
+                    getString(R.string.ready),
+                    getString(R.string.playSore),
+                    getString(R.string.noWhatsApp)
+                ){
+                    if (it == "yes"){
+                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/search?q=whatsapp&c=apps&hl=es_419&gl=US"))
+                        startActivity(intent)
+                    }else{
+                        startActivity(Intent(this,ActivityMainModule::class.java))
+                    }
+                }.show(supportFragmentManager,"dialog")
             }
         }.show(supportFragmentManager,"dialog")
     }
