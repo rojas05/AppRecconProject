@@ -18,6 +18,7 @@
         android:roundIcon="@mipmap/ic_reccon_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppRecconProject"
+        android:disableShar="true"
         tools:targetApi="31">
 
         <provider
