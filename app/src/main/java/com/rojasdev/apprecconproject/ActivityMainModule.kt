@@ -184,11 +184,11 @@ class ActivityMainModule : AppCompatActivity() {
         val collection = preferences.getString("collection","")
         if(collection != "true"){
             alertMessage(
-                getString(R.string.checkAliment),
                 "${binding.tvNoAliment.text}\n ${getString(R.string.notAliment)}",
                 "${binding.tvYesAliment.text}\n ${getString(R.string.yesAliment)}",
                 getString(R.string.btCorrec),
-                getString(R.string.noCorrec)
+                getString(R.string.noCorrec),
+                getString(R.string.checkAliment)
             ){
                 if(it == "yes"){
                     alertAddRecolcetor()

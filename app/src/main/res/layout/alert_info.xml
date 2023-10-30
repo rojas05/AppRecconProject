@@ -80,7 +80,6 @@
                 android:gravity="center"
                 android:textSize="20sp"
                 tools:text="@string/yesFeeding"
-                android:textColor="@color/gray"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/view11"
                 app:layout_constraintEnd_toStartOf="@+id/guideline13"
