@@ -4,11 +4,13 @@ import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.OnBackPressedCallback
+import androidx.annotation.RequiresApi
 import com.rojasdev.apprecconproject.alert.alertAddRecolector
 import com.rojasdev.apprecconproject.alert.alertAssistant
 import com.rojasdev.apprecconproject.alert.alertHelp
@@ -17,6 +19,7 @@ import com.rojasdev.apprecconproject.alert.alertSettings
 import com.rojasdev.apprecconproject.alert.alertWelcome
 import com.rojasdev.apprecconproject.controller.animatedAlert
 import com.rojasdev.apprecconproject.controller.price
+import com.rojasdev.apprecconproject.controller.sifrado
 import com.rojasdev.apprecconproject.data.dataBase.AppDataBase
 import com.rojasdev.apprecconproject.data.entities.RecolectoresEntity
 import com.rojasdev.apprecconproject.data.entities.SettingEntity
@@ -27,6 +30,7 @@ import kotlinx.coroutines.launch
 
 class ActivityMainModule : AppCompatActivity() {
     lateinit var binding: ActivityMainModuleBinding
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityMainModuleBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
@@ -112,6 +116,7 @@ class ActivityMainModule : AppCompatActivity() {
         }.show(supportFragmentManager,"dialog")
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun alerts(){
         preferencesAssistant()
         alertWelcome{
@@ -121,6 +126,7 @@ class ActivityMainModule : AppCompatActivity() {
         }.show(supportFragmentManager,"dialog")
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun insertSettings(settings: SettingEntity){
         preferences()
         CoroutineScope(Dispatchers.IO).launch{
@@ -147,6 +153,7 @@ class ActivityMainModule : AppCompatActivity() {
         editor.apply()
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun checkRegister(){
         val preferences = getSharedPreferences( "register", Context.MODE_PRIVATE)
         val register = preferences.getString("register","")

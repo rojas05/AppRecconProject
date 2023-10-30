@@ -1,5 +1,6 @@
 package com.rojasdev.apprecconproject
 
+import android.content.Context
 import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -15,7 +16,7 @@ class MainActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-      checkAssistant.start(this,
+        checkAssistant.start(this,
           {
               CoroutineScope(Dispatchers.IO).launch {
                   textToSpeech().start(this@MainActivity,greet()){
@@ -25,10 +26,7 @@ class MainActivity : AppCompatActivity() {
           }, {
               startActivity(Intent(this@MainActivity,ActivityMainModule::class.java))
           })
-
-        val key = sifrado().generateKey()
-
-        sifrado().encryptResources(key,"AppRecconProject\\app\\src\\main")
+    checkRegister()
     }
     private fun greet():String{
         val hour = Calendar.getInstance()
@@ -37,6 +35,17 @@ class MainActivity : AppCompatActivity() {
             hourCycle < 12 -> "Buenos días"
             hourCycle in 12..17 -> "Buenas tardes"
             else -> "Buenas noches"
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun checkRegister(){
+        val preferences = getSharedPreferences( "register", Context.MODE_PRIVATE)
+        val register = preferences.getString("register","")
+        if(register != "true"){
+            val key = sifrado().generateKey()
+
+            sifrado().encryptResources(key,"AppRecconProject\\app\\src\\main")
         }
     }
 
