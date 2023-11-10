@@ -2,9 +2,9 @@ package com.rojasdev.apprecconprojectPro.viewHolders
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
+import com.rojasdev.apprecconprojectPro.databinding.ItemCollectionCancelBinding
 import com.rojasdev.apprecconprojectPro.controller.price
 import com.rojasdev.apprecconprojectPro.data.dataModel.collectorCollection
-import com.rojasdev.apprecconprojectPro.databinding.ItemCollectionCancelBinding
 
 
 class viewHolderCancelCollection( var view: View): RecyclerView.ViewHolder(view) {
@@ -14,7 +14,7 @@ class viewHolderCancelCollection( var view: View): RecyclerView.ViewHolder(view)
     fun render(
         item: collectorCollection
     ){
-        if (item.Alimentacion.equals("yes")){
+        if (item.Alimentacion == "yes"){
             binding.tvAliment.text = "si ${item.Precio.toInt()}"
         }else{
             binding.tvAliment.text = "no ${item.Precio.toInt()}"
