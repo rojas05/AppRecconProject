@@ -3,6 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
 
     <application
         android:allowBackup="true"
@@ -10,34 +16,54 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_reccon"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_reccon_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppRecconProject"
         tools:targetApi="31">
         <activity
+            android:name=".viewHolders.ActivityLogin"
+            android:exported="false" />
+        <activity
             android:name=".ActivityRecolectionDetail"
             android:exported="false"
-            android:parentActivityName=".ActivityRecolection" />
+            android:parentActivityName=".ActivityRecolection"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".ActivitySettings"
             android:exported="false"
-            android:parentActivityName=".ActivityMainModule" />
+            android:parentActivityName=".ActivityMainModule"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".ActivityMainModule"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".ActivityRecolection"
             android:exported="false"
-            android:parentActivityName=".ActivityMainModule" />
+            android:parentActivityName=".ActivityMainModule"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".ActivityInformes"
             android:exported="false"
             android:parentActivityName=".ActivityMainModule"
-            android:theme="@style/Theme.AppRecconProject.informes" />
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppRecconProject.informes"
+            tools:ignore="LockedOrientationActivity">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.AppRecconProject.splash">
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppRecconProject.splash"
+            tools:ignore="LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

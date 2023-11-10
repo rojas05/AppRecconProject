@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace 'com.rojasdev.apprecconproject'
+    namespace 'com.rojasdev.apprecconprojectPro'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.rojasdev.apprecconproject"
+        applicationId "com.rojasdev.apprecconprojectPro"
         minSdk 23
         targetSdk 33
         versionCode 1
