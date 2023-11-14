@@ -23,7 +23,32 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="500dp">
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tiCell"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    app:boxCornerRadiusBottomEnd="10dp"
+                    app:boxCornerRadiusBottomStart="10dp"
+                    app:boxCornerRadiusTopEnd="10dp"
+                    app:boxCornerRadiusTopStart="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tiName"
+                    app:startIconDrawable="@drawable/ic_phone_24">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/yesAlimen"
+                        android:layout_width="match_parent"
+                        android:layout_height="61dp"
+                        android:hint="@string/cell"
+                        android:inputType="textPhonetic" />
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <ImageView
                     android:id="@+id/imageView"
@@ -37,7 +62,7 @@
 
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilNoAlimentacion"
+                    android:id="@+id/tiName"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -51,55 +76,67 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/imageView"
-                    app:startIconDrawable="@drawable/ic_no_alimentacion">
+                    app:startIconDrawable="@drawable/baseline_agriculture_24">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/nowAliment"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/no_alimentacion"
+                        android:hint="@string/nameFinca"
                         android:inputType="number" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilSiAlimentacion"
+                    android:id="@+id/tiPassword"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="16dp"
                     app:boxCornerRadiusBottomEnd="10dp"
                     app:boxCornerRadiusBottomStart="10dp"
                     app:boxCornerRadiusTopEnd="10dp"
                     app:boxCornerRadiusTopStart="10dp"
-                    app:layout_constraintBottom_toTopOf="@+id/btInit"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tilNoAlimentacion"
-                    app:startIconDrawable="@drawable/ic_alimentacion">
+                    app:layout_constraintTop_toBottomOf="@+id/tiCell"
+                    app:startIconDrawable="@drawable/ic_password">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/yesAliment"
                         android:layout_width="match_parent"
                         android:layout_height="61dp"
-                        android:hint="@string/si_alimentacion"
+                        android:hint="@string/password"
                         android:inputType="number" />
                 </com.google.android.material.textfield.TextInputLayout>
 
 
-
                 <Button
-                    android:id="@+id/btInit"
+                    android:id="@+id/btRedy"
                     style="@style/buttons"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
                     android:layout_marginBottom="8dp"
-                    android:text="@string/Init"
+                    android:text="@string/createCuenta"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@+id/tiPassword" />
+
+                <Button
+                    android:id="@+id/btLogin"
+                    style="@style/buttons"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="@string/login"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tiPassword" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

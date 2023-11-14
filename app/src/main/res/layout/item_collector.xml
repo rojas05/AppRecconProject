@@ -31,7 +31,7 @@
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fbAddKg"
-            style="@style/foadingButtons"
+            style="@style/buttons"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clickable="true"
@@ -44,7 +44,7 @@
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fbDeleteCollector"
-            style="@style/foadingButtons"
+            style="@style/buttons"
             android:layout_width="wrap_content"
             android:layout_height="56dp"
             android:clickable="true"

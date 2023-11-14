@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="Base.Theme.AppRecconProject" parent="Theme.MaterialComponents.DayNight.DarkActionBar.Bridge">
         <!-- Customize your light theme here. -->
@@ -10,74 +10,207 @@
         <item name="colorSecondaryVariant">@color/Tom_Thumb</item>
     </style>
 
+    <!--splash theme. -->
+    <style name="Theme.AppRecconProject.splash" parent="Theme.MaterialComponents.NoActionBar.Bridge">
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryVariant">@color/white</item>
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="colorSecondary">@color/white</item>
+        <item name="colorSecondaryVariant">@color/white</item>
+        <item name="android:windowBackground">@drawable/splash</item>
+    </style>
+
+    <!--informed theme-->
     <style name="Theme.AppRecconProject.informes" parent="Theme.MaterialComponents.DayNight.DarkActionBar.Bridge">
         <item name="colorPrimary">@color/Hippie_Green</item>
         <item name="colorPrimaryVariant">@color/Tom_Thumb</item>
         <item name="android:statusBarColor">@color/Hippie_Green</item>
-
         <item name="colorSecondary">@color/Hippie_Green</item>
         <item name="colorSecondaryVariant">@color/Tom_Thumb</item>
     </style>
 
-    <style name="Theme.AppRecconProject.splash" parent="Theme.MaterialComponents.NoActionBar.Bridge">
-        <item name="android:windowBackground">@drawable/splash</item>
+    <!--title info informed theme-->
+    <style name="infoTitleInformed">
+        <item name="android:background">@drawable/border_radius</item>
+        <item name="android:backgroundTint">@color/Hippie_Green</item>
     </style>
 
+    <!--layout informed theme-->
+    <style name="layoutInformed">
+        <item name="android:background">@color/Hippie_Green</item>
+    </style>
+
+    <!--buttons theme-->
+    <style name="buttons">
+        <item name="android:background">@drawable/border_radius_btn</item>
+        <item name="android:backgroundTint">@color/Thunderbird</item>
+        <item name="android:padding">6dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!--buttonMain theme-->
+    <style name="buttonMain">
+        <item name="android:background">@drawable/border_radius_btn</item>
+        <item name="android:padding">6dp</item>
+        <item name="android:textColor">@color/Thunderbird</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!--layout theme-->
+    <style name="layout">
+        <item name="android:background">@color/Thunderbird</item>
+    </style>
+
+    <!--layout collection theme-->
+    <style name="layoutCollection">
+        <item name="android:background">@color/white</item>
+    </style>
+
+    <!--scroll theme-->
+    <style name="scroll">
+        <item name="android:background">@drawable/background_main</item>
+        <item name="android:backgroundTint">@color/gray_light</item>
+    </style>
+
+    <!--text theme-->
+    <style name="text">
+        <item name="android:fontFamily">@font/comfortaa</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!--item info theme-->
+    <style name="infoItem">
+        <item name="android:background">@drawable/border_radius_item</item>
+        <item name="android:backgroundTint">@color/white</item>
+    </style>
+
+    <!--image theme-->
+    <style name="image">
+        <item name="android:tint">@color/black</item>
+    </style>
+
+    <!--title info theme-->
+    <style name="infoTitle">
+        <item name="android:background">@drawable/border_radius</item>
+        <item name="android:backgroundTint">@color/Thunderbird</item>
+    </style>
+
+    <!--item theme-->
+    <style name="item">
+        <item name="android:backgroundTint">@color/gray_light</item>
+    </style>
+
+    <!--bar theme-->
+    <style name="bar">
+        <item name="android:backgroundTint">@color/gray_light</item>
+    </style>
+
+    <!--values informed-->
+    <style name="valuesInformed">
+        <item name="android:background">@color/Hippie_Green</item>
+    </style>
+
+    <!--pdf theme-->
+    <style name="pdf">
+        <item name="android:background">@color/white</item>
+    </style>
+
+    <!--pdf bar theme-->
+    <style name="pdfBar">
+        <item name="android:background">@color/gray</item>
+    </style>
+
+    <!--Buttons theme-->
+    <style name="floadingButtons">
+        <item name="android:backgroundTint">@color/Thunderbird</item>
+    </style>
+
+    <!--tvAlerts theme-->
     <style name="texViewAlert">
         <item name="android:background">@color/Thunderbird</item>
-        <item name="android:padding">8dp</item>
+        <item name="android:padding">3sp</item>
         <item name="android:fontFamily">@font/comfortaa</item>
         <item name="android:gravity">center</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="buttons">
-        <item name="android:backgroundTint">@color/Thunderbird</item>
-        <item name="android:textColor">@color/white</item>
+    <!--alert message theme-->
+    <style name="texViewAlertMessague">
+        <item name="android:padding">8dp</item>
+        <item name="android:fontFamily">@font/comfortaa</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/black</item>
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="foadingButtons">
-        <item name="android:backgroundTint">@color/Thunderbird</item>
-    </style>
-
+    <!--textView description theme-->
     <style name="texViewDescription">
         <item name="android:fontFamily">@font/comfortaa</item>
         <item name="android:gravity">center</item>
         <item name="android:textColor">@color/gray</item>
     </style>
 
+    <!--textView alert Informed theme-->
     <style name="texViewAlertInformed">
-        <item name="android:background">@color/Hippie_Green</item>
-        <item name="android:padding">8dp</item>
+        <item name="android:padding">2dp</item>
         <item name="android:fontFamily">@font/comfortaa</item>
         <item name="android:gravity">center</item>
-        <item name="android:textColor">@color/white</item>
+        <item name="android:textColor">@color/black</item>
         <item name="android:textStyle">bold</item>
     </style>
 
+    <!--buttons Informed theme-->
     <style name="buttonsInformed">
         <item name="android:backgroundTint">@color/Hippie_Green</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="foadingButtonsInformed">
-        <item name="android:backgroundTint">@color/Hippie_Green</item>
-    </style>
-
+    <!--textView description Informed theme-->
     <style name="texViewDescriptionInformed">
         <item name="android:fontFamily">@font/comfortaa</item>
-        <item name="android:gravity">center</item>
         <item name="android:textColor">@color/gray</item>
     </style>
 
+    <!--item theme-->
     <style name="tvItem">
         <item name="android:fontFamily">@font/comfortaa</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">20sp</item>
+    </style>
+
+    <!--progress bar theme-->
+    <style name="CustomProgressBar" parent="android:Widget.ProgressBar.Horizontal">
+        <item name="android:progressDrawable">@drawable/custom_progress_drawable</item>
+    </style>
+
+    <!--textView info collector theme-->
+    <style name="tvInfoUser">
+        <item name="android:fontFamily">@font/comfortaa</item>
+        <item name="android:textColor">@color/Hippie_Green</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">25sp</item>
+    </style>
+
+    <!--textView KG theme-->
+    <style name="texViewKg">
+        <item name="android:fontFamily">@font/comfortaa</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!--item collection info theme-->
+    <style name="itemRecolectionInfo">
+        <item name="android:padding">2dp</item>
+        <item name="android:fontFamily">@font/comfortaa</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="Theme.AppRecconProject" parent="Base.Theme.AppRecconProject" />

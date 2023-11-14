@@ -35,16 +35,16 @@
 
         </com.google.android.material.bottomappbar.BottomAppBar>
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/floatingActionButton"
-            style="@style/foadingButtons"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/collectors"
-            android:src="@drawable/ic_add"
-            android:tint="@color/white"
-            app:backgroundTint="@color/Dark_Tan"
-            app:layout_anchor="@id/bottomAppBarCollectors" />
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        style="@style/buttons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/collectors"
+        android:src="@drawable/ic_add"
+        android:tint="@color/white"
+        app:backgroundTint="@color/Dark_Tan"
+        app:layout_anchor="@id/bottomAppBarCollectors" />
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
