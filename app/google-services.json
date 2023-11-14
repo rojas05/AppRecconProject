@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "282630349232",
+    "firebase_url": "https://recconappprojec-default-rtdb.firebaseio.com",
+    "project_id": "recconappprojec",
+    "storage_bucket": "recconappprojec.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:282630349232:android:c86b818fefe27e2c50f675",
+        "android_client_info": {
+          "package_name": "com.rojasdev.apprecconprojectPro"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAltZparyIgu4MS6yhZgiBWxzLCtSpl06E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
