@@ -22,6 +22,7 @@ class alertAddRecolector(
     private var insertCollector = false
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         binding = AlertRecolectonBinding.inflate(LayoutInflater.from(context))
+
         val builder = AlertDialog.Builder(requireActivity())
         builder.setView(binding.root)
 
@@ -33,10 +34,10 @@ class alertAddRecolector(
 
         binding.btAddRecolector.setOnClickListener {
            val required = requireInput.validate(myListInput,requireContext())
-                if (required){
-                    dates()
-                    binding.yesAddRecolector.setText("")
-                }
+            if (required){
+                dates()
+                binding.yesAddRecolector.setText("")
+            }
         }
 
         binding.btnClose.setOnClickListener{
@@ -45,11 +46,11 @@ class alertAddRecolector(
 
         binding.btnFinishAdding.setOnClickListener {
             val recolector = binding.yesAddRecolector.text.toString()
-                if (recolector != ""){
-                    Toast.makeText(requireContext(),"Presiona el botón 'guardar'", Toast.LENGTH_SHORT).show()
-                } else {
-                    allUser()
-                }
+            if (recolector != ""){
+                Toast.makeText(requireContext(),"Presiona el botón 'guardar'", Toast.LENGTH_SHORT).show()
+            } else {
+                allUser()
+            }
         }
 
         val dialog = builder.create()

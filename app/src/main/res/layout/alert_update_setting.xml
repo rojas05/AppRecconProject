@@ -47,6 +47,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="number" />
+
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
@@ -89,7 +90,9 @@
         app:layout_constraintBottom_toTopOf="@+id/cvSettings"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_close" />
+        app:srcCompat="@drawable/ic_close"
+        android:focusable="true"
+        android:contentDescription="@string/btnClose" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

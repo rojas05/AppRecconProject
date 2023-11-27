@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="Red">#FF0011</color>
     <color name="Dark_Tan">#780d0d</color>
     <color name="Tom_Thumb">#065C19</color>
     <color name="Thunderbird">#a60e18</color>
+    <color name="Thunderbird_Ligth">#E4C70714</color>
     <color name="Hippie_Green">#4F864F</color>
     <color name="Ligth_Green">#254A784A</color>
     <color name="Cinnabar">#e63933</color>
