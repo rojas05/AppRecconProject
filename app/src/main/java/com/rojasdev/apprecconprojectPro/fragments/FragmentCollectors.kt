@@ -40,8 +40,6 @@ class FragmentCollectors(
             }
         })
 
-
-
         CoroutineScope(Dispatchers.IO).launch {
             dates()
         }
@@ -64,21 +62,21 @@ class FragmentCollectors(
                     { item ->
                         //pasar a detalle recolector
                         val id: Int? = item.id
-                            if (id != null) {
-                                CoroutineScope(Dispatchers.IO).launch {
-                                    val getId = AppDataBase.getInstance(requireContext()).RecollectionDao().getCollectionIdCollector(id)
-                                    launch(Dispatchers.Main) {
-                                        if(getId.isNotEmpty()) {
-                                            startActivity(Intent(
-                                                    requireContext(), ActivityRecolectionDetail::class.java
-                                                ).putExtra("userId", item.id).putExtra("userName", item.name)
-                                            )
-                                        } else {
+                        if (id != null) {
+                            CoroutineScope(Dispatchers.IO).launch {
+                                val getId = AppDataBase.getInstance(requireContext()).RecollectionDao().getCollectionIdCollector(id)
+                                launch(Dispatchers.Main) {
+                                    if(getId.isNotEmpty()) {
+                                        startActivity(Intent(
+                                            requireContext(), ActivityRecolectionDetail::class.java
+                                         ).putExtra("userId", item.id).putExtra("userName", item.name)
+                                        )
+                                    } else {
                                             Toast.makeText(requireContext(), "No hay datos", Toast.LENGTH_SHORT).show()
-                                        }
                                     }
                                 }
                             }
+                        }
                     },
                     {
                         //delete

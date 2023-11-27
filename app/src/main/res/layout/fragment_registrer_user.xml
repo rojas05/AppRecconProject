@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.FragmentRegisterUser"
+    android:background="@color/Thunderbird">
+
+   <androidx.constraintlayout.widget.ConstraintLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+
+       <androidx.cardview.widget.CardView
+           android:id="@+id/cvWelcome"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginStart="8dp"
+           android:layout_marginEnd="8dp"
+           app:cardBackgroundColor="@color/white"
+           app:cardCornerRadius="10dp"
+           app:cardElevation="8dp"
+           app:cardUseCompatPadding="true"
+           app:layout_constraintBottom_toBottomOf="parent"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toTopOf="parent">
+
+           <androidx.constraintlayout.widget.ConstraintLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content">
+
+               <ImageView
+                   android:id="@+id/imageView"
+                   android:layout_width="150dp"
+                   android:layout_height="150dp"
+                   android:layout_marginTop="8dp"
+                   android:contentDescription="@string/ImageLogo"
+                   app:layout_constraintEnd_toEndOf="parent"
+                   app:layout_constraintStart_toStartOf="parent"
+                   app:layout_constraintTop_toTopOf="parent"
+                   app:srcCompat="@drawable/reccon_logo" />
+
+               <TextView
+                   android:id="@+id/tvTitle"
+                   style="@style/tvTitle"
+                   android:layout_width="wrap_content"
+                   android:layout_height="match_parent"
+                   android:layout_marginTop="20dp"
+                   android:text="@string/tvTitleRegisterUser"
+                   app:layout_constraintEnd_toEndOf="parent"
+                   app:layout_constraintStart_toStartOf="parent"
+                   app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+               <com.google.android.material.textfield.TextInputLayout
+                   android:id="@+id/tvUserName"
+                   style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                   android:layout_width="0dp"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="10dp"
+                   android:layout_marginStart="16dp"
+                   android:layout_marginEnd="16dp"
+                   app:boxCornerRadiusBottomEnd="10dp"
+                   app:boxCornerRadiusBottomStart="10dp"
+                   app:boxCornerRadiusTopEnd="10dp"
+                   app:boxCornerRadiusTopStart="10dp"
+                   app:layout_constraintEnd_toEndOf="parent"
+                   app:layout_constraintStart_toStartOf="parent"
+                   app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+                   app:startIconDrawable="@drawable/baseline_agriculture_24">
+
+                   <com.google.android.material.textfield.TextInputEditText
+                       android:id="@+id/hitUserName"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:hint="@string/nameFinca"
+                       android:inputType="textAutoComplete"
+                       tools:ignore="TextContrastCheck" />
+
+               </com.google.android.material.textfield.TextInputLayout>
+
+               <com.google.android.material.textfield.TextInputLayout
+                   android:id="@+id/tvNumberPhone"
+                   style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                   android:layout_width="0dp"
+                   android:layout_height="wrap_content"
+                   android:layout_marginStart="16dp"
+                   android:layout_marginTop="16dp"
+                   android:layout_marginEnd="16dp"
+                   app:boxCornerRadiusBottomEnd="10dp"
+                   app:boxCornerRadiusBottomStart="10dp"
+                   app:boxCornerRadiusTopEnd="10dp"
+                   app:boxCornerRadiusTopStart="10dp"
+                   app:layout_constraintEnd_toEndOf="parent"
+                   app:layout_constraintStart_toStartOf="parent"
+                   app:layout_constraintTop_toBottomOf="@+id/tvUserName"
+                   app:startIconDrawable="@drawable/ic_phone_24">
+
+                   <com.google.android.material.textfield.TextInputEditText
+                       android:id="@+id/hitPhone"
+                       android:layout_width="match_parent"
+                       android:layout_height="61dp"
+                       android:hint="@string/cell"
+                       android:inputType="phone" />
+
+               </com.google.android.material.textfield.TextInputLayout>
+
+               <com.google.android.material.textfield.TextInputLayout
+                   android:id="@+id/tvPassword"
+                   style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                   android:layout_width="0dp"
+                   android:layout_height="wrap_content"
+                   android:layout_marginStart="16dp"
+                   android:layout_marginTop="16dp"
+                   android:layout_marginEnd="16dp"
+                   app:boxCornerRadiusBottomEnd="10dp"
+                   app:boxCornerRadiusBottomStart="10dp"
+                   app:boxCornerRadiusTopEnd="10dp"
+                   app:boxCornerRadiusTopStart="10dp"
+                   app:layout_constraintEnd_toEndOf="parent"
+                   app:layout_constraintStart_toStartOf="parent"
+                   app:layout_constraintTop_toBottomOf="@+id/tvNumberPhone"
+                   app:startIconDrawable="@drawable/ic_password">
+
+                   <com.google.android.material.textfield.TextInputEditText
+                       android:id="@+id/hitPassword"
+                       android:layout_width="match_parent"
+                       android:layout_height="61dp"
+                       android:hint="@string/hintPassword"
+                       android:inputType="textPassword" />
+
+               </com.google.android.material.textfield.TextInputLayout>
+
+               <Button
+                   android:id="@+id/btnCreateAccount"
+                   style="@style/buttons"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="16dp"
+                   android:layout_marginBottom="16dp"
+                   android:text="@string/createAccount"
+                   app:layout_constraintBottom_toBottomOf="parent"
+                   app:layout_constraintEnd_toEndOf="parent"
+                   app:layout_constraintStart_toStartOf="parent"
+                   app:layout_constraintTop_toBottomOf="@+id/tvPassword" />
+
+           </androidx.constraintlayout.widget.ConstraintLayout>
+
+       </androidx.cardview.widget.CardView>
+
+   </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

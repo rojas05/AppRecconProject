@@ -73,8 +73,6 @@ class alertCollection (
         return dialog
     }
 
-
-
     private fun dates() {
         dismiss()
         val kg = binding.etKg.text.toString()

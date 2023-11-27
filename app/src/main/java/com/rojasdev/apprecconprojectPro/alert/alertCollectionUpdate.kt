@@ -39,7 +39,7 @@ class alertCollectionUpdate(
             binding.etKg
         )
 
-        if(Alimentacion.equals("yes")){
+        if(Alimentacion == "yes"){
             binding.cbYes.isChecked = true
         } else {
             binding.cbNo.isChecked = true
