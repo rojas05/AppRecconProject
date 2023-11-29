@@ -52,7 +52,7 @@ class   alertPhoneVerification(
         animatedAlert.animatedInit(binding.cvVerificationSMS)
         registerUser(phoneNumber) // Iniciar para que se envia el codigo de verificacion
 
-        binding.tvTitleVerification.text = "+57 $phoneNumber"
+        binding.tvTitleVerification.text = phoneNumber
         binding.tvInfoSMS.text = "${getString(R.string.tvContentInfo)} $phoneNumber"
 
         val verificationCode = binding.editTextNumber.text
