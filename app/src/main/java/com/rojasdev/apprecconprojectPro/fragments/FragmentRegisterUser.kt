@@ -30,7 +30,7 @@ class FragmentRegisterUser : Fragment() {
         binding.btnCreateAccount.setOnClickListener {
 
             if (userName!!.isNotEmpty() && phoneNumber!!.isNotEmpty() && password!!.isNotEmpty()) {
-                alertVerificationCodeSMS(userName.toString(), phoneNumber.toString(), password.toString())
+                alertVerificationCodeSMS(userName.toString(), phoneNumber.toString(), password.toString()) // abrir el alert
             } else {
                 Toast.makeText(requireContext(), "Por favor, complete todos los campos", Toast.LENGTH_SHORT).show()
             }
@@ -43,9 +43,9 @@ class FragmentRegisterUser : Fragment() {
 
     private fun alertVerificationCodeSMS(userName: String, phoneNumber: String, password: String){
         alertPhoneVerification(
-            userName,
-            "+57 $phoneNumber",
-            password
+            userName, // Nombre
+            "+57 $phoneNumber", //Numero tefeonico
+            password // Contraseña
         ).show(parentFragmentManager, "dialog")
     }
 
