@@ -83,7 +83,7 @@
 
     <!-- verification number -->
     <string name="tvVerification"> Verifica +57  </string>
-    <string name="tvContentInfo"> Te hemos enviado un codigo al teléfono +57  </string>
+    <string name="tvContentInfo"> Te hemos enviado un codigo al teléfono  </string>
     <string name="tvHintSMS"> -- -- --    -- -- -- </string>
     <string name="tvSMSInfo"> Ingresa el codigo de 6 digitos</string>
     <string name="btnVerification"> Verificar </string>

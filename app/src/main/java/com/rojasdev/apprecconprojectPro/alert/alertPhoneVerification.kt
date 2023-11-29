@@ -47,20 +47,20 @@ class   alertPhoneVerification(
         binding = AlertPhoneVerificationBinding.inflate(LayoutInflater.from(context))
         val builder = AlertDialog.Builder(requireContext())
         builder.setView(binding.root)
-        firebaseAuth = Firebase.auth
+        firebaseAuth = Firebase.auth // Autenticacion
 
         animatedAlert.animatedInit(binding.cvVerificationSMS)
-        registerUser(phoneNumber)
+        registerUser(phoneNumber) // Iniciar para que se envia el codigo de verificacion
 
-        binding.tvTitleVerification.text = "+57 $phoneNumber"
+        binding.tvTitleVerification.text = phoneNumber
         binding.tvInfoSMS.text = "${getString(R.string.tvContentInfo)} $phoneNumber"
 
         val verificationCode = binding.editTextNumber.text
 
         binding.btnVerification.setOnClickListener {
            if (verificationCode.isNotEmpty()){
-               val credential = PhoneAuthProvider.getCredential(storedVerificationId, verificationCode.toString())
-               signInWithPhoneAuthCredential(credential)
+               val credential = PhoneAuthProvider.getCredential(storedVerificationId, verificationCode.toString()) // Verificar codigo
+               signInWithPhoneAuthCredential(credential) // Inicio de Sesion
            } else {
                Toast.makeText(requireContext(), "Por favor, complete todos los campos", Toast.LENGTH_SHORT).show()
            }
@@ -77,17 +77,19 @@ class   alertPhoneVerification(
 
         val callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
+            // En caso de que este correcto lo registre y pasa a otra activiaad
             override fun onVerificationCompleted(credential: PhoneAuthCredential) {
                 Log.d(TAG, "onVerificationCompleted:$credential")
                 signInWithPhoneAuthCredential(credential) // Inicio de sesion
             }
 
+            // En caso de que falle, manejar las execciones
             override fun onVerificationFailed(e: FirebaseException) {
                 Log.w(TAG, "onVerificationFailed", e)
 
                 when (e) {
                     is FirebaseAuthInvalidCredentialsException -> {
-                        // Invalid request
+                        // numero invalido
                         Toast.makeText(requireContext(), "Número de teléfono no válido", Toast.LENGTH_SHORT).show()
                     }
 
@@ -103,19 +105,19 @@ class   alertPhoneVerification(
                 token: PhoneAuthProvider.ForceResendingToken,
             ) {
                 Log.d(TAG, "onCodeSent:$verificationId")
-                storedVerificationId = verificationId
-                resendToken = token
+                storedVerificationId = verificationId // Codigo SMS que se envia
+                resendToken = token // Token o UID del telefono
             }
         }
 
         val options = PhoneAuthOptions.newBuilder(firebaseAuth)
-            .setPhoneNumber(phoneNumber) // Phone number to verify
-            .setTimeout(120L, TimeUnit.SECONDS) // Timeout and unit
+            .setPhoneNumber(phoneNumber) // verificar el numro telefonico
+            .setTimeout(120L, TimeUnit.SECONDS) // Tiempo de ejecucion del codigo
             .setActivity(requireActivity()) // Activity (for callback binding)
             .setCallbacks(callbacks) // OnVerificationStateChangedCallbacks
             .build()
-        firebaseAuth.setLanguageCode("es")
-        PhoneAuthProvider.verifyPhoneNumber(options)
+        firebaseAuth.setLanguageCode("es") // lenguaje
+        PhoneAuthProvider.verifyPhoneNumber(options) // verificacion del numero y envio de SMS
 
     }
 
